@@ -601,28 +601,92 @@
   z-index: 6;
 }
 
-/* Source cards (SVG) */
+/* Sticky title strip — top of the scene */
+.motion-title {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 14px 24px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.02) 0%, transparent 100%);
+  border-bottom: 0.5px solid var(--border);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  pointer-events: none;
+}
+
+.motion-title__day {
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.motion-title__sep {
+  color: var(--text-tertiary);
+}
+
+.motion-title__brand {
+  color: var(--text-tertiary);
+}
+
+/* Owner question — opens the scene, positioned above the source column */
+.motion-question {
+  position: absolute;
+  top: 14%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0;
+  font-size: 24px;
+  font-weight: 500;
+  letter-spacing: -0.015em;
+  color: var(--text-primary);
+  text-align: center;
+  max-width: 640px;
+  z-index: 3;
+  pointer-events: none;
+}
+
+/* Source cards (SVG) — dim by default, light up on activation */
 .motion-card-rect {
   fill: var(--bg);
-  stroke: var(--border-strong);
+  stroke: rgba(255, 255, 255, 0.10);
   stroke-width: 1px;
+  transition: stroke 0.4s ease;
 }
 
 .motion-card text {
   font-family: var(--font-sans);
   pointer-events: none;
   user-select: none;
+  transition: fill 0.4s ease;
 }
 
 .motion-card__name {
-  fill: var(--text-primary);
-  font-size: 13px;
+  fill: var(--text-tertiary);
+  font-size: 12px;
   font-weight: 500;
 }
 
 .motion-card__metric {
+  fill: var(--text-tertiary);
+  font-size: 11px;
+}
+
+.motion-card--active .motion-card-rect {
+  stroke: var(--accent);
+}
+
+.motion-card--active .motion-card__name {
+  fill: var(--text-primary);
+}
+
+.motion-card--active .motion-card__metric {
   fill: var(--text-secondary);
-  font-size: 12px;
 }
 
 /* DEXIS centre */
@@ -632,12 +696,18 @@
   stroke-width: 6px;
 }
 
+.motion-dexis-arc__path {
+  stroke: rgba(255, 255, 255, 0.55);
+  stroke-width: 1.5;
+  stroke-linecap: round;
+}
+
 .motion-dexis-label {
   fill: var(--bg);
   font-family: var(--font-sans);
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 500;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   pointer-events: none;
   user-select: none;
@@ -654,60 +724,68 @@
   fill: var(--accent);
 }
 
-/* Ход анализа — sits below DEXIS on the right side */
-.motion-cot {
+/* Right-side panel — DEXIS speech + inference list */
+.motion-side {
   position: absolute;
-  right: 28px;
-  top: 56%;
-  width: 320px;
-  font-family: var(--font-mono);
-  font-size: 12px;
-  line-height: 1.55;
-  color: var(--text-secondary);
+  right: 24px;
+  top: 100px;
+  bottom: 24px;
+  width: 360px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
   z-index: 2;
   pointer-events: none;
 }
 
-.motion-cot__line + .motion-cot__line {
-  margin-top: 2px;
-}
-
-.motion-cot__line {
+.motion-speech {
   margin: 0;
-  white-space: pre-wrap;
-  opacity: 0;
+  font-size: 22px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: var(--text-primary);
+  line-height: 1.25;
 }
 
-.motion-kpi-flash {
-  position: absolute;
-  right: 120px;
-  top: 43%;
-  min-width: 132px;
-  font-size: 32px;
-  line-height: 1;
+.motion-inference-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.motion-inference {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--text-secondary);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: baseline;
+}
+
+.motion-inference__dept {
+  color: var(--text-primary);
   font-weight: 500;
-  letter-spacing: -0.02em;
+}
+
+.motion-inference__sep,
+.motion-inference__arrow {
+  color: var(--text-tertiary);
+}
+
+.motion-inference__fact {
+  color: var(--text-secondary);
+}
+
+.motion-inference__kpi {
   color: var(--accent);
-  text-align: right;
-  opacity: 0;
-  z-index: 3;
-  pointer-events: none;
+  font-weight: 500;
   font-variant-numeric: tabular-nums;
 }
 
-/* Stage caption (bottom strip) */
-.motion-caption {
-  position: absolute;
-  bottom: 32px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 15px;
-  color: var(--text-secondary);
-  text-align: center;
-  max-width: 560px;
-  opacity: 0;
-  z-index: 2;
-  pointer-events: none;
+.motion-inference__action {
+  color: var(--text-primary);
 }
 
 /* ============================================================
@@ -809,12 +887,21 @@
   font-size: 12px;
   color: var(--text-primary);
   line-height: 1.5;
-  margin: 0;
+  margin: 0 0 10px;
 }
 
 .flow-card__action::before {
   content: '→ ';
   color: var(--accent);
+}
+
+.flow-card__source {
+  font-size: 10px;
+  color: var(--text-tertiary);
+  letter-spacing: 0.04em;
+  margin: 0;
+  padding-top: 8px;
+  border-top: 0.5px solid var(--border);
 }
 
 /* ============================================================
@@ -856,20 +943,22 @@
 
 @media (max-width: 900px) {
   .flow,
-  .flow-scene { min-height: 880px; height: 880px; }
+  .flow-scene { min-height: 980px; height: 980px; }
   .flow-restart {
     top: auto;
     right: 16px;
     bottom: 18px;
   }
-  .motion-cot {
+  .motion-question { font-size: 22px; max-width: calc(100% - 48px); }
+  .motion-side {
     position: absolute;
-    top: 70%;
+    top: 360px;
     right: 16px;
     left: 16px;
-    transform: none;
+    bottom: auto;
     width: auto;
   }
+  .motion-speech { font-size: 19px; }
   .motion-static {
     grid-template-columns: 1fr;
     padding: 24px;
@@ -887,19 +976,6 @@
   }
   .flow-final__cards {
     grid-template-columns: 1fr;
-  }
-  .motion-kpi-flash {
-    top: 54%;
-    right: 24px;
-    font-size: 28px;
-  }
-  .motion-cot {
-    top: auto;
-    bottom: 60px;
-    right: 16px;
-    left: 16px;
-    width: auto;
-    font-size: 12px;
   }
 }
 
