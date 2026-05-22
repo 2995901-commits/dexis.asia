@@ -395,3 +395,188 @@
     gap: 24px;
   }
 }
+
+/* ============================================================
+   MODULES — section 3 ("Что внутри DEXIS")
+   ============================================================ */
+.modules-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.module-row {
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  gap: 56px;
+  padding: 48px 0;
+  border-top: 0.5px solid var(--border);
+}
+
+.module-row:last-child {
+  border-bottom: 0.5px solid var(--border);
+}
+
+.module-row__head {
+  display: flex;
+  flex-direction: column;
+}
+
+.module-row__number {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+}
+
+.module-row__name {
+  font-size: 28px;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  font-weight: 500;
+  color: var(--text-primary);
+  margin: 14px 0 10px;
+}
+
+.module-row__essence {
+  font-size: 15px;
+  color: var(--text-secondary);
+  line-height: 1.45;
+  margin: 0 0 28px;
+}
+
+.module-row__tier {
+  margin-top: auto;
+  padding-top: 20px;
+  border-top: 0.5px solid var(--border);
+}
+
+.module-row__tier-label {
+  display: block;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  margin-bottom: 8px;
+}
+
+.module-row__tier-value {
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.module-row__body {
+  font-size: 16px;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+.module-row__body p {
+  margin: 0;
+}
+
+.module-row__body p + p {
+  margin-top: 14px;
+}
+
+.module-row__quote {
+  display: block;
+  color: var(--text-primary);
+  font-weight: 400;
+}
+
+@media (max-width: 900px) {
+  .module-row {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    padding: 36px 0;
+  }
+  .module-row__name { font-size: 24px; }
+  .module-row__body { font-size: 15px; }
+  .module-row__tier {
+    margin-top: 20px;
+  }
+}
+
+/* ============================================================
+   APPROACH — section 2 ("Как работает DEXIS")
+   Containers only. Graph / motion / orders are wired in later steps.
+   ============================================================ */
+.approach-part {
+  margin-top: 96px;
+}
+
+.approach-part:first-of-type {
+  margin-top: 64px;
+}
+
+.approach-part__label {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  margin: 0 0 16px;
+}
+
+.approach-part__title {
+  font-size: 24px;
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+  font-weight: 500;
+  color: var(--text-primary);
+  margin: 0 0 12px;
+}
+
+.approach-part__sub {
+  font-size: 15px;
+  color: var(--text-secondary);
+  line-height: 1.55;
+  margin: 0 0 32px;
+  max-width: 640px;
+}
+
+.approach-graph,
+.approach-motion,
+.approach-orders {
+  width: 100%;
+  border: 0.5px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+}
+
+.approach-graph {
+  min-height: 460px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.approach-motion {
+  min-height: 480px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.approach-orders {
+  background: transparent;
+  border: 0;
+}
+
+.approach-placeholder {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+}
+
+@media (max-width: 900px) {
+  .approach-part { margin-top: 56px; }
+  .approach-part:first-of-type { margin-top: 40px; }
+  .approach-graph,
+  .approach-motion { min-height: 360px; }
+}
