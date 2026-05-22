@@ -76,6 +76,18 @@
     { dept: 'Закупки',    fact: 'Альтернативный поставщик даёт −4%',     kpi: '₸4.8M экономия', action: 'Запросить КП' },
   ];
 
+  // Composite company-health snapshot (closing frame)
+  const health = {
+    overall: 67,
+    qualifier: 'Требует внимания',
+    breakdown: [
+      { dept: 'Финансовая устойчивость',     score: 78 },
+      { dept: 'Коммерческая дисциплина',     score: 54 },
+      { dept: 'Операционная эффективность',  score: 70 },
+    ],
+    commentary: 'Главное на сегодня — штраф ₸4.2M через 3 дня и рост дебиторки ТОО «Х». Резерв возможностей — ₸4.8M в квартал.',
+  };
+
   // Final 3 cards with source-of-confidence + CTA recipient
   const finalCards = [
     {
@@ -288,6 +300,27 @@
       `).join('')}
     </div>
     <p class="flow-final__impact" data-final-impact>Потенциальный эффект текущего цикла: ₸4.8M</p>
+    <div class="flow-health" data-health>
+      <div class="flow-health__head">
+        <p class="flow-health__label">Индекс здоровья компании</p>
+        <p class="flow-health__qualifier">${health.qualifier}</p>
+      </div>
+      <div class="flow-health__score">
+        <span class="flow-health__value" data-health-value>0</span>
+        <span class="flow-health__unit">/100</span>
+      </div>
+      <div class="flow-health__bar"><div class="flow-health__fill" data-health-fill></div></div>
+      <div class="flow-health__breakdown">
+        ${health.breakdown.map((b, i) => `
+          <div class="flow-health__row">
+            <span class="flow-health__row-dept">${b.dept}</span>
+            <div class="flow-health__mini-bar"><div class="flow-health__mini-fill" data-health-mini="${i}"></div></div>
+            <span class="flow-health__row-score" data-health-score="${i}">0</span>
+          </div>
+        `).join('')}
+      </div>
+      <p class="flow-health__commentary">${health.commentary}</p>
+    </div>
   `;
 
   scene.append(titleStrip, questionEl, svg, sidePanel, finalEl);
@@ -379,6 +412,12 @@
     gsap.set(finalEl.querySelector('[data-final-summary]'), { opacity: 0, y: 10 });
     gsap.set(finalEl.querySelectorAll('[data-final-card]'), { opacity: 0, scale: 0.6, x: 80, y: -40 });
     gsap.set(finalEl.querySelector('[data-final-impact]'), { opacity: 0, y: 8 });
+    gsap.set(finalEl.querySelector('[data-health]'), { opacity: 0, y: 10 });
+    gsap.set(finalEl.querySelector('[data-health-fill]'), { width: 0 });
+    finalEl.querySelectorAll('[data-health-mini]').forEach(el => gsap.set(el, { width: 0 }));
+    const hv = finalEl.querySelector('[data-health-value]');
+    if (hv) hv.textContent = '0';
+    finalEl.querySelectorAll('[data-health-score]').forEach(el => { el.textContent = '0'; });
   }
 
   let tl;

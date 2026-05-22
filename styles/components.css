@@ -1022,6 +1022,141 @@
 }
 
 /* ============================================================
+   COMPANY HEALTH SNAPSHOT — closing frame of the motion scene
+   ============================================================ */
+.flow-health {
+  margin-top: 18px;
+  padding: 16px 20px 14px;
+  background: var(--surface);
+  border: 0.5px solid var(--border);
+  border-radius: var(--radius-md);
+}
+
+.flow-health__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 6px;
+}
+
+.flow-health__label {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  margin: 0;
+}
+
+.flow-health__qualifier {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.flow-health__score {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+
+.flow-health__value {
+  font-size: 32px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: var(--accent);
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.flow-health__unit {
+  font-size: 14px;
+  color: var(--text-tertiary);
+  font-variant-numeric: tabular-nums;
+}
+
+.flow-health__bar {
+  height: 4px;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 2px;
+  overflow: hidden;
+  margin-bottom: 12px;
+  position: relative;
+}
+
+.flow-health__fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 0;
+  background: var(--accent);
+  border-radius: 2px;
+}
+
+.flow-health__breakdown {
+  display: grid;
+  gap: 7px;
+  margin-bottom: 12px;
+}
+
+.flow-health__row {
+  display: grid;
+  grid-template-columns: 1fr 90px 30px;
+  align-items: center;
+  gap: 14px;
+  font-size: 11px;
+}
+
+.flow-health__row-dept {
+  color: var(--text-secondary);
+}
+
+.flow-health__mini-bar {
+  height: 3px;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 2px;
+  overflow: hidden;
+  position: relative;
+}
+
+.flow-health__mini-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 0;
+  background: var(--accent);
+  opacity: 0.75;
+  border-radius: 2px;
+}
+
+.flow-health__row-score {
+  font-variant-numeric: tabular-nums;
+  font-weight: 500;
+  color: var(--text-primary);
+  text-align: right;
+}
+
+.flow-health__commentary {
+  font-size: 11px;
+  color: var(--text-secondary);
+  line-height: 1.55;
+  margin: 0;
+  padding-top: 10px;
+  border-top: 0.5px solid var(--border);
+}
+
+@media (max-width: 900px) {
+  .flow-health__row {
+    grid-template-columns: 1fr 70px 28px;
+  }
+}
+
+/* ============================================================
    STATIC FALLBACK (prefers-reduced-motion)
    ============================================================ */
 .motion-static {
