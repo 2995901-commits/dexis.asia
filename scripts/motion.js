@@ -525,6 +525,40 @@
         if (el) el.textContent = 'Утренний бриф готов · 3 решения · 2 риска · ₸4.8M потенциального эффекта';
       },
     }, 22.6);
+
+    // ─── ACT 8 — Company health snapshot (24.5–28s) ─────────
+    tl.to(finalEl.querySelector('[data-health]'), {
+      opacity: 1, y: 0, duration: 0.5, ease: 'power2.out',
+    }, 24.5);
+
+    // Main score counts up 0 → overall while main bar fills in sync
+    const overallProxy = { v: 0 };
+    tl.to(overallProxy, {
+      v: health.overall, duration: 1.4, ease: 'power2.out',
+      onUpdate: () => {
+        const el = finalEl.querySelector('[data-health-value]');
+        if (el) el.textContent = Math.round(overallProxy.v);
+      },
+    }, 24.8);
+    tl.to(finalEl.querySelector('[data-health-fill]'), {
+      width: `${health.overall}%`, duration: 1.4, ease: 'power2.out',
+    }, 24.8);
+
+    // Breakdown rows fill one by one
+    health.breakdown.forEach((b, i) => {
+      const t = 25.6 + i * 0.28;
+      const rowProxy = { v: 0 };
+      tl.to(rowProxy, {
+        v: b.score, duration: 0.8, ease: 'power2.out',
+        onUpdate: () => {
+          const el = finalEl.querySelector(`[data-health-score="${i}"]`);
+          if (el) el.textContent = Math.round(rowProxy.v);
+        },
+      }, t);
+      tl.to(finalEl.querySelector(`[data-health-mini="${i}"]`), {
+        width: `${b.score}%`, duration: 0.8, ease: 'power2.out',
+      }, t);
+    });
   }
 
   // -- Init & triggers ------------------------------------------
