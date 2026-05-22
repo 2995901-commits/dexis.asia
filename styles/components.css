@@ -127,3 +127,271 @@
     animation: none;
   }
 }
+
+/* ============================================================
+   SECTION HEADING (shared across screens 2–5)
+   ============================================================ */
+.section-head {
+  margin-bottom: 56px;
+}
+
+.section-title {
+  font-size: 48px;
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  font-weight: 500;
+  color: var(--text-primary);
+  margin: 0 0 20px;
+}
+
+.section-title__sub {
+  font-size: 17px;
+  color: var(--text-secondary);
+  line-height: 1.55;
+  margin: 0;
+  max-width: 640px;
+}
+
+@media (max-width: 900px) {
+  .section-head { margin-bottom: 40px; }
+  .section-title { font-size: 36px; }
+}
+
+/* ============================================================
+   FORMATS — section 4
+   ============================================================ */
+.formats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-bottom: 48px;
+}
+
+.format-card {
+  background: var(--surface);
+  border: 0.5px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 32px 28px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  transition: border-color 0.2s ease;
+}
+
+.format-card:hover {
+  border-color: var(--border-strong);
+}
+
+.format-card--featured {
+  background: var(--surface-2);
+  border: 1.5px solid var(--accent);
+}
+
+.format-card--featured:hover {
+  border-color: var(--accent);
+}
+
+.format-card__badge {
+  position: absolute;
+  top: -12px;
+  left: 28px;
+  background: var(--accent);
+  color: var(--bg);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 5px 12px;
+  border-radius: 999px;
+}
+
+.format-card__name {
+  font-size: 22px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  margin: 0 0 12px;
+  color: var(--text-primary);
+}
+
+.format-card__desc {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.55;
+  margin: 0 0 28px;
+  min-height: 64px;
+}
+
+.format-card__label {
+  font-size: 11px;
+  color: var(--text-tertiary);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 500;
+  margin: 0 0 14px;
+}
+
+.format-card__modules {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 28px;
+  font-size: 14px;
+  color: var(--text-primary);
+}
+
+.format-card__modules li {
+  padding: 10px 0;
+  border-bottom: 0.5px solid var(--border);
+}
+
+.format-card__modules li:last-child {
+  border-bottom: 0;
+}
+
+.module-note {
+  color: var(--text-tertiary);
+  font-size: 13px;
+}
+
+.format-card__fit {
+  font-size: 13px;
+  color: var(--text-tertiary);
+  line-height: 1.55;
+  padding-top: 20px;
+  border-top: 0.5px solid var(--border);
+  margin: auto 0 0;
+}
+
+.formats-bottom {
+  text-align: center;
+  padding-top: 32px;
+}
+
+.formats-note {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  max-width: 560px;
+  margin: 0 auto 28px;
+}
+
+@media (max-width: 900px) {
+  .formats-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ============================================================
+   SECTION LABEL (used across about + contacts)
+   ============================================================ */
+.section-label {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  margin: 0 0 24px;
+}
+
+/* ============================================================
+   ABOUT — section 5 (founder + approach)
+   ============================================================ */
+.about-block {
+  max-width: 720px;
+  margin: 0 0 80px;
+}
+
+.body-text {
+  font-size: 17px;
+  color: var(--text-secondary);
+  line-height: 1.65;
+  margin: 0 0 24px;
+  max-width: 720px;
+}
+
+.body-text:last-child {
+  margin-bottom: 0;
+}
+
+.body-text strong {
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+/* ============================================================
+   CONTACTS BLOCK
+   ============================================================ */
+.contacts-block {
+  background: var(--surface);
+  border: 0.5px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 48px;
+  margin-top: 56px;
+}
+
+.contacts-block__title {
+  font-size: 32px;
+  line-height: 1.15;
+  letter-spacing: -0.025em;
+  font-weight: 500;
+  color: var(--text-primary);
+  margin: 0 0 8px;
+}
+
+.contacts-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  margin-top: 32px;
+}
+
+.contact-item {
+  border-left: 2px solid var(--accent);
+  padding-left: 20px;
+}
+
+.contact-label {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  margin: 0 0 10px;
+}
+
+.contact-value {
+  display: inline-block;
+  font-size: 22px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: var(--text-primary);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.contact-value:hover {
+  color: var(--accent);
+}
+
+.contact-note {
+  font-size: 13px;
+  color: var(--text-tertiary);
+  line-height: 1.5;
+  margin: 8px 0 0;
+}
+
+.location {
+  margin-top: 32px;
+  padding-top: 32px;
+  border-top: 0.5px solid var(--border);
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+@media (max-width: 900px) {
+  .about-block { margin-bottom: 56px; }
+  .contacts-block { padding: 32px 24px; }
+  .contacts-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}
