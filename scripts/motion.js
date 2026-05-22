@@ -201,6 +201,15 @@
     s.link = line;
   });
 
+  // Connector line — DEXIS → thinking window (drawn when DEXIS starts thinking)
+  const connector = document.createElementNS(svgNS, 'line');
+  connector.setAttribute('class', 'motion-link motion-connector');
+  connector.setAttribute('x1', dexisX + dexisR);
+  connector.setAttribute('y1', dexisY);
+  connector.setAttribute('x2', dexisX + dexisR);
+  connector.setAttribute('y2', dexisY);
+  linksLayer.appendChild(connector);
+
   // Right-side speech + inference panel
   const sidePanel = document.createElement('div');
   sidePanel.className = 'motion-side';
@@ -269,6 +278,26 @@
     const handle = setInterval(emit, 800 + Math.random() * 300);
     streamHandles.set(s.id, handle);
   }
+  // Connector stream — particles flow from DEXIS to thinking window
+  function startConnectorStream() {
+    if (streamHandles.has('connector')) return;
+    function emit() {
+      const dot = document.createElementNS(svgNS, 'circle');
+      dot.setAttribute('class', 'motion-pulse');
+      dot.setAttribute('r', '2.5');
+      dot.setAttribute('cx', dexisX + dexisR);
+      dot.setAttribute('cy', dexisY);
+      dotsLayer.appendChild(dot);
+      gsap.fromTo(dot,
+        { attr: { cx: dexisX + dexisR, cy: dexisY }, opacity: 0.7 },
+        { attr: { cx: 800, cy: dexisY }, opacity: 0, duration: 1.1, ease: 'none',
+          onComplete: () => dot.remove() }
+      );
+    }
+    emit();
+    const handle = setInterval(emit, 600 + Math.random() * 200);
+    streamHandles.set('connector', handle);
+  }
   function stopAllStreams() {
     streamHandles.forEach(h => clearInterval(h));
     streamHandles.clear();
@@ -299,10 +328,13 @@
       });
     });
     gsap.set(dexisG, { x: dexisX, y: dexisY, scale: 0, opacity: 1, svgOrigin: '0 0' });
+    gsap.set(dexisCircle, { scale: 1, transformOrigin: '50% 50%' });
     gsap.set(dexisArcGroup, { opacity: 0 });
+    gsap.set(connector, { attr: { x1: dexisX + dexisR, y1: dexisY, x2: dexisX + dexisR, y2: dexisY }, opacity: 0 });
     gsap.set(titleStrip, { opacity: 0, y: -8 });
     gsap.set(questionEl, { opacity: 0 });
-    gsap.set(sidePanel, { opacity: 1 });
+    gsap.set(sidePanel, { opacity: 0, scale: 0.96, transformOrigin: '50% 30%' });
+    sidePanel.classList.remove('is-thinking');
     gsap.set(speechEl, { opacity: 0 });
     inferenceList.querySelectorAll('.motion-inference').forEach(el => gsap.set(el, { opacity: 0, y: 6 }));
     gsap.set(finalEl, { opacity: 0 });
@@ -345,17 +377,37 @@
       tl.add(() => startStream(s), t + 0.35);
     });
 
-    // ─── ACT 3 — speech 1 «Собираю свежие данные» (6.6–7.4s)
+    // ─── ACT 3 — DEXIS starts thinking, window opens (6.4–7.4s) ───
+    // Connector draws from DEXIS to the right SVG edge (entrance of window)
+    tl.to(connector, {
+      attr: { x2: 800, y2: dexisY },
+      opacity: 0.6,
+      duration: 0.5,
+      ease: 'power2.out',
+    }, 6.4);
+    // Thinking window fades in from below DEXIS-side
+    tl.to(sidePanel, { opacity: 1, scale: 1, duration: 0.55, ease: 'power2.out' }, 6.5);
+    tl.add(() => sidePanel.classList.add('is-thinking'), 7.0);
+    // Speech 1 appears inside the now-visible window
     tl.to(speechEl, {
       opacity: 1, duration: 0.4,
       onStart: () => setSpeech('Собираю свежие данные'),
-    }, 6.6);
+    }, 6.9);
+    // Connector data flow starts
+    tl.add(() => startConnectorStream(), 7.1);
 
     // ─── ACT 4 — speech 2 «Провожу анализ» + 4 inferences (7.4–17.4s)
     tl.to(speechEl, {
       opacity: 1, duration: 0.4,
       onStart: () => setSpeech('Провожу анализ'),
     }, 7.4);
+    // DEXIS comes alive during analysis: circle pulses, arc speeds up
+    tl.to(dexisCircle, {
+      scale: 1.06, duration: 1.4, repeat: 6, yoyo: true, ease: 'sine.inOut',
+      transformOrigin: '50% 50%',
+    }, 7.4);
+    tl.add(() => { if (arcSpin) arcSpin.timeScale(2.2); }, 7.4);
+    tl.add(() => { if (arcSpin) arcSpin.timeScale(1); }, 17.4);
 
     const infEls = inferenceList.querySelectorAll('.motion-inference');
     const infStart = 8.2;
@@ -376,7 +428,8 @@
 
     // ─── ACT 6 — fade scene, cards emerge from DEXIS-side (18.4–22.4s)
     tl.add(() => stopAllStreams(), 18.4);
-    tl.to([...sources.map(s => s.el), ...sources.map(s => s.link), dexisG, sidePanel],
+    tl.add(() => sidePanel.classList.remove('is-thinking'), 18.4);
+    tl.to([...sources.map(s => s.el), ...sources.map(s => s.link), connector, dexisG, sidePanel],
       { opacity: 0, duration: 0.6, ease: 'power2.in' }, 18.4);
 
     tl.to(finalEl, { opacity: 1, duration: 0.3 }, 19.0);

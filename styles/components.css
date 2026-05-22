@@ -720,11 +720,15 @@
   fill: none;
 }
 
+.motion-connector {
+  stroke-width: 1.5px;
+}
+
 .motion-pulse {
   fill: var(--accent);
 }
 
-/* Right-side panel — DEXIS thinking window (speech + inferences) */
+/* DEXIS thinking window — appears only when DEXIS starts thinking */
 .motion-side {
   position: absolute;
   right: 28px;
@@ -737,10 +741,49 @@
   z-index: 2;
   pointer-events: none;
   background: var(--surface-2);
-  border: 0.5px solid var(--border);
+  border: 1px solid rgba(16, 185, 129, 0.30);
   border-radius: var(--radius-md);
   padding: 20px 22px;
   box-sizing: border-box;
+  overflow: hidden;
+}
+
+/* Breathing accent border + running scan lines while DEXIS is thinking */
+.motion-side.is-thinking {
+  animation: panel-breath 2.6s ease-in-out infinite;
+}
+
+.motion-side.is-thinking::before,
+.motion-side.is-thinking::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, var(--accent) 50%, transparent 100%);
+  opacity: 0.65;
+  animation: panel-scan 3.2s linear infinite;
+}
+
+.motion-side.is-thinking::before { top: 0; }
+.motion-side.is-thinking::after  { bottom: 0; animation-direction: reverse; }
+
+@keyframes panel-breath {
+  0%, 100% { border-color: rgba(16, 185, 129, 0.30); }
+  50%      { border-color: rgba(16, 185, 129, 0.70); }
+}
+
+@keyframes panel-scan {
+  0%   { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .motion-side.is-thinking,
+  .motion-side.is-thinking::before,
+  .motion-side.is-thinking::after {
+    animation: none;
+  }
 }
 
 .motion-speech {
