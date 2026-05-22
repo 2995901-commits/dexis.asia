@@ -18,7 +18,9 @@
   <link rel="stylesheet" href="styles/layout.css">
   <link rel="stylesheet" href="styles/components.css">
 
+  <script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js" defer></script>
   <script src="scripts/main.js" defer></script>
+  <script src="scripts/graph.js" defer></script>
 </head>
 <body>
 
@@ -63,7 +65,11 @@
         <h3 class="approach-part__title">Граф источников данных</h3>
         <p class="approach-part__sub">Семь основных систем, из которых DEXIS подтягивает данные. Узлы можно перемещать, при наведении видно, какие показатели приходят из каждого источника.</p>
         <div class="approach-graph" data-graph-root>
-          <span class="approach-placeholder">Граф источников — реализуется в следующем шаге</span>
+          <div class="graph-toolbar">
+            <button type="button" class="btn-link" data-graph-toggle aria-expanded="false">Показать все источники</button>
+          </div>
+          <div class="graph-canvas" data-graph-canvas></div>
+          <div class="graph-tooltip" data-graph-tooltip role="tooltip" hidden></div>
         </div>
       </div>
 
