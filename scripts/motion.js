@@ -76,7 +76,7 @@
     { dept: 'Закупки',    fact: 'Альтернативный поставщик даёт −4%',     kpi: '₸4.8M экономия', action: 'Запросить КП' },
   ];
 
-  // Final 3 cards with source-of-confidence
+  // Final 3 cards with source-of-confidence + CTA recipient
   const finalCards = [
     {
       dept: 'Финансовый отдел',
@@ -85,6 +85,7 @@
       meta: 'Денежный поток',
       context: 'Остаток ₸94M, обязательства ₸67M. Штраф ₸4.2M (3 дня).',
       action: 'Подготовить план оплат с приоритетом по штрафам.',
+      cta: 'Отправить финансовому директору',
       source: 'Halyk Bank · 1С',
     },
     {
@@ -94,6 +95,7 @@
       meta: 'Дебиторка',
       context: 'ТОО «Х» — ₸42M, просрочка 17 дней. Топ-10 клиентов.',
       action: 'Согласовать реструктуризацию на 30 дней.',
+      cta: 'Отправить коммерческому директору',
       source: 'Bitrix24 · 1С',
     },
     {
@@ -103,6 +105,7 @@
       meta: 'Поставщик',
       context: 'АО «Х» +8% за квартал. АО «Y» −4% при том же качестве.',
       action: 'Запросить КП у АО «Y» на квартальный объём.',
+      cta: 'Отправить директору по закупкам',
       source: 'Excel поставщиков · ИС ЭСФ',
     },
   ];
@@ -279,6 +282,7 @@
           <p class="flow-card__meta">${c.meta}</p>
           <p class="flow-card__value">${c.context}</p>
           <p class="flow-card__action">${c.action}</p>
+          <span class="flow-card__cta" aria-hidden="true">${c.cta} <span class="flow-card__cta-arrow">→</span></span>
           <p class="flow-card__source">Источник: ${c.source}</p>
         </article>
       `).join('')}
