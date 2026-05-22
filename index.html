@@ -19,8 +19,10 @@
   <link rel="stylesheet" href="styles/components.css">
 
   <script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
   <script src="scripts/main.js" defer></script>
   <script src="scripts/graph.js" defer></script>
+  <script src="scripts/motion.js" defer></script>
 </head>
 <body>
 
@@ -78,7 +80,25 @@
         <h3 class="approach-part__title">Как разрозненные данные становятся действием</h3>
         <p class="approach-part__sub">Анимация в три акта, 30 секунд: хаос источников → обработка и chain-of-thought → готовое поручение, ушедшее в Telegram.</p>
         <div class="approach-motion" data-motion-root>
-          <span class="approach-placeholder">Motion-нарратив — реализуется в следующем шаге</span>
+          <div class="motion-toolbar">
+            <button class="btn-link" type="button" data-motion-play>Посмотреть, как это работает</button>
+            <button class="btn-link" type="button" data-motion-restart hidden>Посмотреть ещё раз ↻</button>
+          </div>
+          <div class="motion-scene" data-motion-scene></div>
+          <ol class="motion-static" data-motion-static hidden>
+            <li>
+              <span class="motion-static__label">Источники</span>
+              <p>Данные среднего бизнеса в Казахстане живут в десяти разных системах: 1С, ИС ЭСФ, банк-клиенты, CRM, КГД, Excel, госзакупки.</p>
+            </li>
+            <li>
+              <span class="motion-static__label">Обработка</span>
+              <p>DEXIS объединяет данные, сверяет с прошлой неделей, находит отклонение в марже фармацевтического направления и его причину.</p>
+            </li>
+            <li>
+              <span class="motion-static__label">Действие</span>
+              <p>Готовое поручение коммерческому директору — запросить КП у альтернативного поставщика — отправлено в Telegram.</p>
+            </li>
+          </ol>
         </div>
       </div>
 
