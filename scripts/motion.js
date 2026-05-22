@@ -506,7 +506,7 @@
     // ─── ACT 6 — fade scene, cards emerge from DEXIS-side (18.4–22.4s)
     tl.add(() => stopAllStreams(), 18.4);
     tl.add(() => sidePanel.classList.remove('is-thinking'), 18.4);
-    tl.to([...sources.map(s => s.el), ...sources.map(s => s.link), connector, dexisG, sidePanel],
+    tl.to([...sources.map(s => s.el), ...sources.map(s => s.link), connector, dexisG, sidePanel, titleStrip],
       { opacity: 0, duration: 0.6, ease: 'power2.in' }, 18.4);
 
     tl.to(finalEl, { opacity: 1, duration: 0.3 }, 19.0);
