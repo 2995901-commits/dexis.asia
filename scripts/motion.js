@@ -5,7 +5,7 @@
  *  1.6–7.0s  Seven source cards appear in a left-side column, one by one
  *  7.4–8.0s  DEXIS centre appears on the right
  *  8.0–13s   Sequential link draw from each source to DEXIS («чик-чик-чик»)
- * 13.0–21s   Chain-of-thought, six lines below DEXIS
+ * 13.0–21s   «Ход анализа», six lines below DEXIS
  * 21.0–23s   Transition caption «Выявил паттерны — предлагаю решение»
  * 23.0–30s   Three compact cards appear inside the scene (no full-screen mock-up)
  *
@@ -33,14 +33,14 @@
   const gsap = window.gsap;
   const svgNS = 'http://www.w3.org/2000/svg';
   const W = 800;
-  const H = 600;
+  const H = 520;
 
   // Source list — left column
   const cardW = 200;
-  const cardH = 50;
+  const cardH = 46;
   const cardX = 60 + cardW / 2; // center of card on x=160 (so x range 60..260)
-  const listGap = 14;
-  const listTop = 80;
+  const listGap = 10;
+  const listTop = 36;
 
   const sources = [
     { id: '1c',    name: '1С',                    metric: 'Выручка ₸384M' },
@@ -59,7 +59,7 @@
   });
 
   // DEXIS — right side, vertical centre of source list
-  const dexisR = 44;
+  const dexisR = 40;
   const dexisX = 600;
   const dexisY = listTop + (sources.length * (cardH + listGap) - listGap) / 2;
 
