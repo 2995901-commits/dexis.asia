@@ -1,8 +1,14 @@
 /* Unified flow scene (section 2 — «Как работает DEXIS»).
- * Auto-plays on first viewport entry. Three acts in one scene:
- *   1. Sources appear in chaos (0–7s)
- *   2. DEXIS processes data, chain-of-thought visible (7–22s)
- *   3. Final frame: morning brief mock-up with three orders (22–30s)
+ * Auto-plays on first viewport entry. Universal copy (no industry specifics).
+ *
+ *  0.0–1.6s  Intro caption «Каждое утро бизнес работает с разрозненными данными»
+ *  1.6–7.0s  Seven source cards appear in a left-side column, one by one
+ *  7.4–8.0s  DEXIS centre appears on the right
+ *  8.0–13s   Sequential link draw from each source to DEXIS («чик-чик-чик»)
+ * 13.0–21s   Chain-of-thought, six lines below DEXIS
+ * 21.0–23s   Transition caption «Выявил паттерны — предлагаю решение»
+ * 23.0–30s   Three compact cards appear inside the scene (no full-screen mock-up)
+ *
  * prefers-reduced-motion shows static 3-item fallback.
  */
 (() => {
@@ -28,64 +34,68 @@
   const svgNS = 'http://www.w3.org/2000/svg';
   const W = 800;
   const H = 600;
-  const cx = W / 2;
-  const cy = H / 2 - 30;
-  const orbitR = 210;
+
+  // Source list — left column
+  const cardW = 200;
+  const cardH = 50;
+  const cardX = 60 + cardW / 2; // center of card on x=160 (so x range 60..260)
+  const listGap = 14;
+  const listTop = 80;
 
   const sources = [
-    { id: '1c',    name: '1С:Бухгалтерия',     metric: 'Выручка ₸384M',           chaos: { x: 110, y: 120 } },
-    { id: 'esf',   name: 'ИС ЭСФ',              metric: '1 247 счетов-фактур',     chaos: { x: 620, y: 90  } },
-    { id: 'bank',  name: 'Halyk Bank',          metric: 'Остаток ₸94M',            chaos: { x: 140, y: 340 } },
-    { id: 'crm',   name: 'Bitrix24',            metric: '23 активные сделки',      chaos: { x: 580, y: 300 } },
-    { id: 'excel', name: 'Поставщики_май.xlsx', metric: 'Excel · ручной ввод',     chaos: { x: 70,  y: 230 } },
-    { id: 'kgd',   name: 'КГД',                 metric: 'Налоговая нагрузка 8.2%', chaos: { x: 670, y: 440 } },
-    { id: 'gz',    name: 'Goszakup.gov.kz',     metric: '3 активных тендера',      chaos: { x: 320, y: 470 } },
+    { id: '1c',    name: '1С',                    metric: 'Выручка ₸384M' },
+    { id: 'esf',   name: 'ИС ЭСФ',                metric: '1 247 счетов-фактур' },
+    { id: 'bank',  name: 'Halyk Bank',            metric: 'Остаток ₸94M' },
+    { id: 'crm',   name: 'Bitrix24',              metric: '23 активные сделки' },
+    { id: 'excel', name: 'Поставщики_май.xlsx',   metric: 'Excel · ручной ввод' },
+    { id: 'kgd',   name: 'КГД',                   metric: 'Налоговая нагрузка 8.2%' },
+    { id: 'gz',    name: 'Goszakup.gov.kz',       metric: '3 активных тендера' },
   ];
 
   sources.forEach((s, i) => {
-    const angle = (i / sources.length) * Math.PI * 2 - Math.PI / 2;
-    s.orbit = {
-      x: cx + orbitR * Math.cos(angle),
-      y: cy + orbitR * Math.sin(angle),
-    };
+    s.x = cardX;
+    s.y = listTop + i * (cardH + listGap) + cardH / 2;
+    s.rightEdge = { x: cardX + cardW / 2, y: s.y };
   });
+
+  // DEXIS — right side, vertical centre of source list
+  const dexisR = 44;
+  const dexisX = 600;
+  const dexisY = listTop + (sources.length * (cardH + listGap) - listGap) / 2;
 
   const cotLines = [
     'Считаю остатки по счетам.',
     'Сверяю с прошлой неделей.',
-    'Нахожу отклонение в марже фармацевтического направления.',
+    'Нахожу отклонение в марже основного направления.',
     'Сопоставляю с динамикой закупочных цен.',
     'Определяю причину.',
     'Готовлю поручения ответственным.',
   ];
 
-  const tasks = [
+  const finalCards = [
     {
       dept: 'Финансовый отдел',
       urgency: 'высокая',
       urgencyMod: 'high',
-      type: 'Управление денежным потоком',
-      owner: 'Финансовый директор',
-      context: 'На счетах ₸94M. Срочные обязательства за неделю — ₸67M. Свободный остаток для распределения — ₸27M. Среди обязательств — штраф по поставке от 14.05 (₸4.2M, до срока 3 дня).',
-      action: 'Подготовить план оплат на неделю с приоритетом по штрафным обязательствам и ключевым поставщикам.',
+      meta: 'Денежный поток',
+      context: 'Остаток ₸94M, обязательства за неделю ₸67M. Среди них штраф ₸4.2M по поставке (до срока 3 дня).',
+      action: 'Подготовить план оплат с приоритетом по штрафам.',
     },
     {
       dept: 'Коммерческий отдел',
       urgency: 'средняя',
       urgencyMod: 'mid',
-      type: 'Дебиторская задолженность',
-      owner: 'Коммерческий директор',
-      context: 'Клиент ТОО «Х». Задолженность ₸42M, просрочка 17 дней. За 12 месяцев клиент сделал оборот ₸380M (входит в топ-10).',
-      action: 'Согласовать с клиентом план реструктуризации с продлением графика на 30 дней. Скрипт разговора — в приложенном файле.',
+      meta: 'Дебиторка',
+      context: 'ТОО «Х» — задолженность ₸42M, просрочка 17 дней. Оборот за год ₸380M (топ-10).',
+      action: 'Согласовать реструктуризацию на 30 дней.',
     },
     {
       dept: 'Закупки',
       urgency: 'низкая',
       urgencyMod: 'low',
-      type: 'Поставщик',
-      owner: 'Директор по закупкам',
-      context: 'Цена закупки у поставщика АО «Х» выросла на +8% за квартал. Альтернативный поставщик АО «Y» предлагает −4% при сопоставимом качестве, подтверждённом тремя успешными поставками в 2025 году.',
-      action: 'Запросить коммерческое предложение у АО «Y» на квартальный объём.',
+      meta: 'Поставщик',
+      context: 'АО «Х» поднял цену +8% за квартал. АО «Y» предлагает −4% при том же качестве.',
+      action: 'Запросить КП у АО «Y» на квартальный объём.',
     },
   ];
 
@@ -95,35 +105,35 @@
   svg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
   svg.setAttribute('aria-hidden', 'true');
   const linksLayer = document.createElementNS(svgNS, 'g');
-  const dotsLayer = document.createElementNS(svgNS, 'g');
   const cardsLayer = document.createElementNS(svgNS, 'g');
   const dexisLayer = document.createElementNS(svgNS, 'g');
-  svg.append(linksLayer, dotsLayer, cardsLayer, dexisLayer);
+  svg.append(linksLayer, cardsLayer, dexisLayer);
 
+  // Source cards as <g> with rect + 2 texts; positioned via gsap.set (x/y)
   sources.forEach(s => {
     const g = document.createElementNS(svgNS, 'g');
     g.classList.add('motion-card');
 
     const rect = document.createElementNS(svgNS, 'rect');
     rect.setAttribute('class', 'motion-card-rect');
-    rect.setAttribute('width', '200');
-    rect.setAttribute('height', '60');
-    rect.setAttribute('x', '-100');
-    rect.setAttribute('y', '-30');
+    rect.setAttribute('width', cardW);
+    rect.setAttribute('height', cardH);
+    rect.setAttribute('x', -cardW / 2);
+    rect.setAttribute('y', -cardH / 2);
     rect.setAttribute('rx', '8');
     g.appendChild(rect);
 
     const name = document.createElementNS(svgNS, 'text');
     name.setAttribute('class', 'motion-card__name');
-    name.setAttribute('x', '-86');
-    name.setAttribute('y', '-6');
+    name.setAttribute('x', -cardW / 2 + 14);
+    name.setAttribute('y', -3);
     name.textContent = s.name;
     g.appendChild(name);
 
     const metric = document.createElementNS(svgNS, 'text');
     metric.setAttribute('class', 'motion-card__metric');
-    metric.setAttribute('x', '-86');
-    metric.setAttribute('y', '14');
+    metric.setAttribute('x', -cardW / 2 + 14);
+    metric.setAttribute('y', 15);
     metric.textContent = s.metric;
     g.appendChild(metric);
 
@@ -131,10 +141,11 @@
     s.el = g;
   });
 
+  // DEXIS group
   const dexisG = document.createElementNS(svgNS, 'g');
   const dexisCircle = document.createElementNS(svgNS, 'circle');
   dexisCircle.setAttribute('class', 'motion-dexis-circle');
-  dexisCircle.setAttribute('r', '44');
+  dexisCircle.setAttribute('r', dexisR);
   dexisG.appendChild(dexisCircle);
   const dexisLabel = document.createElementNS(svgNS, 'text');
   dexisLabel.setAttribute('class', 'motion-dexis-label');
@@ -144,13 +155,19 @@
   dexisG.appendChild(dexisLabel);
   dexisLayer.appendChild(dexisG);
 
+  // Links — one per source, drawn from source.right toward DEXIS.left
   sources.forEach(s => {
     const line = document.createElementNS(svgNS, 'line');
     line.setAttribute('class', 'motion-link');
+    line.setAttribute('x1', s.rightEdge.x);
+    line.setAttribute('y1', s.rightEdge.y);
+    line.setAttribute('x2', s.rightEdge.x); // start collapsed
+    line.setAttribute('y2', s.rightEdge.y);
     linksLayer.appendChild(line);
     s.link = line;
   });
 
+  // Chain-of-thought lines
   const cotWrap = document.createElement('div');
   cotWrap.className = 'motion-cot';
   cotLines.forEach((text, i) => {
@@ -164,70 +181,39 @@
   const captionEl = document.createElement('p');
   captionEl.className = 'motion-caption';
 
-  // Morning brief mock-up
-  const briefEl = document.createElement('article');
-  briefEl.className = 'morning-brief';
-  briefEl.setAttribute('aria-label', 'Утренний бриф DEXIS — пример');
-  briefEl.innerHTML = `
-    <header class="morning-brief__head">
-      <span class="morning-brief__brand">DEXIS · Утренний бриф</span>
-      <time class="morning-brief__time">Сегодня, 8:00</time>
-    </header>
-    <ol class="morning-brief__tasks">
-      ${tasks.map(t => `
-        <li class="morning-brief__task">
-          <header class="morning-brief__task-head">
-            <span class="morning-brief__dept">${t.dept}</span>
-            <span class="morning-brief__urgency morning-brief__urgency--${t.urgencyMod}">${t.urgency} срочность</span>
-          </header>
-          <dl class="morning-brief__meta">
-            <dt>Тип</dt><dd>${t.type}</dd>
-            <dt>Ответственный</dt><dd>${t.owner}</dd>
-          </dl>
-          <div class="morning-brief__section">
-            <span class="morning-brief__label">Контекст</span>
-            <p>${t.context}</p>
-          </div>
-          <div class="morning-brief__section">
-            <span class="morning-brief__label">Предлагаемое действие</span>
-            <p>${t.action}</p>
-          </div>
-        </li>
-      `).join('')}
-    </ol>
-  `;
+  // Final compact cards
+  const finalEl = document.createElement('div');
+  finalEl.className = 'flow-final';
+  finalEl.innerHTML = finalCards.map(c => `
+    <article class="flow-card" data-final-card>
+      <p class="flow-card__dept">${c.dept}</p>
+      <p class="flow-card__urgency flow-card__urgency--${c.urgencyMod}">${c.urgency} срочность</p>
+      <p class="flow-card__meta">${c.meta}</p>
+      <p class="flow-card__value">${c.context}</p>
+      <p class="flow-card__action">${c.action}</p>
+    </article>
+  `).join('');
 
-  scene.append(svg, cotWrap, captionEl, briefEl);
+  scene.append(svg, cotWrap, captionEl, finalEl);
 
   // -- Helpers --------------------------------------------------
   function setCaption(text) { captionEl.textContent = text; }
 
-  function dotPulse(s, delay) {
-    const dot = document.createElementNS(svgNS, 'circle');
-    dot.setAttribute('class', 'motion-pulse');
-    dot.setAttribute('r', '3');
-    dot.setAttribute('cx', s.orbit.x);
-    dot.setAttribute('cy', s.orbit.y);
-    dotsLayer.appendChild(dot);
-    gsap.fromTo(dot,
-      { attr: { cx: s.orbit.x, cy: s.orbit.y }, opacity: 0.9 },
-      { attr: { cx: cx, cy: cy }, opacity: 0, duration: 1.2, delay, ease: 'none',
-        onComplete: () => dot.remove() }
-    );
-  }
-
   // -- Reset & timeline ----------------------------------------
   function resetScene() {
-    dotsLayer.innerHTML = '';
     sources.forEach(s => {
-      gsap.set(s.el, { x: s.chaos.x, y: s.chaos.y, scale: 0.85, opacity: 0, svgOrigin: '0 0' });
-      gsap.set(s.link, { attr: { x1: cx, y1: cy, x2: cx, y2: cy }, opacity: 0 });
+      gsap.set(s.el, { x: s.x, y: s.y, opacity: 0, scale: 0.92, svgOrigin: '0 0' });
+      gsap.set(s.link, {
+        attr: { x1: s.rightEdge.x, y1: s.rightEdge.y, x2: s.rightEdge.x, y2: s.rightEdge.y },
+        opacity: 0,
+      });
     });
-    gsap.set(dexisG, { x: cx, y: cy, scale: 0, svgOrigin: '0 0' });
-    gsap.set(dexisCircle, { attr: { r: 44 } });
+    gsap.set(dexisG, { x: dexisX, y: dexisY, scale: 0, svgOrigin: '0 0' });
+    gsap.set(dexisCircle, { attr: { r: dexisR } });
     cotWrap.querySelectorAll('.motion-cot__line').forEach(el => gsap.set(el, { opacity: 0 }));
     gsap.set(captionEl, { opacity: 0 });
-    gsap.set(briefEl, { opacity: 0, scale: 0.96 });
+    gsap.set(finalEl, { opacity: 0 });
+    gsap.set(finalEl.querySelectorAll('[data-final-card]'), { opacity: 0, y: 16 });
   }
 
   let tl;
@@ -238,64 +224,66 @@
       onComplete: () => { if (restartWrap) restartWrap.hidden = false; },
     });
 
-    // ─── ACT 1 — Sources appear in chaos (0–7s) ──────────────
-    sources.forEach((s, i) => {
-      tl.to(s.el, { opacity: 1, scale: 1, duration: 0.5, ease: 'power2.out' }, 0.5 + i * 0.8);
-    });
+    // ─── INTRO (0.0–1.6s) ────────────────────────────────────
     tl.to(captionEl, {
       opacity: 1, duration: 0.4,
-      onStart: () => setCaption('Данные среднего бизнеса в Казахстане живут в десяти разных системах'),
-    }, 6.4);
+      onStart: () => setCaption('Каждое утро бизнес работает с разрозненными данными'),
+    }, 0);
+    tl.to(captionEl, { opacity: 0, duration: 0.3 }, 1.6);
 
-    // ─── ACT 2 — DEXIS processes (7–22s) ─────────────────────
-    tl.to(captionEl, { opacity: 0, duration: 0.3 }, 7.6);
-    tl.to(dexisG, { scale: 1, duration: 0.6, ease: 'back.out(1.7)' }, 7.8);
-    sources.forEach(s => {
-      tl.to(s.el, { x: s.orbit.x, y: s.orbit.y, duration: 1.5, ease: 'power3.inOut' }, 8.2);
-    });
-    sources.forEach(s => {
-      tl.to(s.link, {
-        attr: { x1: s.orbit.x, y1: s.orbit.y, x2: cx, y2: cy },
-        opacity: 0.6, duration: 0.8, ease: 'power2.out',
-      }, 9.5);
-    });
+    // ─── ACT 1 — sources as a left-side list (1.6–7.0s) ──────
     sources.forEach((s, i) => {
-      for (let k = 0; k < 4; k++) {
-        const delay = 10.5 + i * 0.18 + k * 1.6;
-        tl.add(() => dotPulse(s, 0), delay);
-      }
+      tl.to(s.el, { opacity: 1, scale: 1, duration: 0.5, ease: 'power2.out' }, 1.6 + i * 0.55);
     });
 
+    // ─── ACT 2 — DEXIS appears (7.4–8.0s) ────────────────────
+    tl.to(dexisG, { scale: 1, duration: 0.6, ease: 'back.out(1.7)' }, 7.4);
+
+    // ─── ACT 2b — sequential link draw «чик-чик-чик» (8–13s) ─
+    sources.forEach((s, i) => {
+      const t = 8.0 + i * 0.65;
+      tl.to(s.link, {
+        attr: { x2: dexisX - dexisR, y2: dexisY },
+        opacity: 0.6,
+        duration: 0.45,
+        ease: 'power2.out',
+      }, t);
+      // Brief flash at the line tip to signal "connection made"
+      tl.to(s.link, { opacity: 1, duration: 0.1, yoyo: true, repeat: 1, ease: 'sine.inOut' }, t + 0.45);
+    });
+
+    // ─── ACT 3 — chain-of-thought (13–21s) ───────────────────
     const cotEls = cotWrap.querySelectorAll('.motion-cot__line');
-    const cotTimings = [
-      [10.5, 12.0], [12.0, 13.5], [13.5, 15.0],
-      [15.0, 16.5], [16.5, 18.0], [18.0, 20.0],
-    ];
+    const cotStart = 13.0;
+    const cotPer = 1.3;
     cotEls.forEach((el, i) => {
-      const [tIn, tOut] = cotTimings[i];
+      const tIn = cotStart + i * cotPer;
       tl.to(el, { opacity: 1, duration: 0.4, ease: 'power2.out' }, tIn);
       if (i < cotEls.length - 1) {
-        tl.to(el, { opacity: 0.35, duration: 0.3 }, tOut - 0.1);
+        tl.to(el, { opacity: 0.35, duration: 0.3 }, tIn + cotPer - 0.1);
       }
     });
 
+    // ─── TRANSITION — caption «Выявил паттерны…» (21–23s) ────
     tl.to(captionEl, {
       opacity: 1, duration: 0.4,
-      onStart: () => setCaption('DEXIS объединяет данные и собирает поручения для каждого отдела'),
-    }, 19.0);
-    tl.to(dexisCircle, { attr: { r: 48 }, duration: 0.5, repeat: 3, yoyo: true, ease: 'sine.inOut' }, 20.0);
+      onStart: () => setCaption('Выявил паттерны — предлагаю решение'),
+    }, 21.0);
 
-    // ─── ACT 3 — Morning brief mock-up (22–30s) ──────────────
-    tl.to(captionEl, { opacity: 0, duration: 0.3 }, 21.4);
-    tl.to(cotEls, { opacity: 0, duration: 0.4 }, 21.6);
-    tl.to([...sources.map(s => s.el), ...sources.map(s => s.link), dexisG], {
-      opacity: 0, duration: 0.8, ease: 'power2.in',
-    }, 22.0);
-    tl.to(briefEl, { opacity: 1, scale: 1, duration: 0.9, ease: 'back.out(1.4)' }, 22.6);
+    // ─── ACT 4 — fade everything, reveal three cards (23–30s) ─
+    tl.to([...sources.map(s => s.el), ...sources.map(s => s.link), dexisG, cotWrap],
+      { opacity: 0, duration: 0.6, ease: 'power2.in' }, 22.6);
+    tl.to(captionEl, { opacity: 0, duration: 0.4 }, 23.2);
+
+    tl.to(finalEl, { opacity: 1, duration: 0.3 }, 23.4);
+    tl.to(finalEl.querySelectorAll('[data-final-card]'), {
+      opacity: 1, y: 0, duration: 0.5, ease: 'power2.out', stagger: 0.18,
+    }, 23.6);
+
     tl.to(captionEl, {
       opacity: 1, duration: 0.4,
-      onStart: () => setCaption('От разрозненных данных — к готовому действию'),
-    }, 28.2);
+      onStart: () => setCaption('Готовые поручения для каждого отдела'),
+    }, 27.8);
   }
 
   // -- Init & triggers ------------------------------------------
@@ -303,7 +291,6 @@
   buildTimeline();
 
   let played = false;
-
   function play() {
     if (played) return;
     played = true;
@@ -321,7 +308,6 @@
     }, { threshold: 0.35 });
     io.observe(root);
   } else {
-    // Fallback: play immediately
     play();
   }
 

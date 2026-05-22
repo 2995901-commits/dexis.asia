@@ -608,19 +608,22 @@
   fill: var(--accent);
 }
 
-/* Chain-of-thought lines */
+/* Chain-of-thought lines — sit below DEXIS on the right side */
 .motion-cot {
   position: absolute;
   right: 32px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 280px;
+  top: 58%;
+  width: 320px;
   font-family: var(--font-mono);
   font-size: 13px;
-  line-height: 1.6;
+  line-height: 1.55;
   color: var(--text-secondary);
   z-index: 2;
   pointer-events: none;
+}
+
+.motion-cot__line + .motion-cot__line {
+  margin-top: 4px;
 }
 
 .motion-cot__line {
@@ -645,130 +648,77 @@
 }
 
 /* ============================================================
-   MORNING BRIEF mock-up (final frame)
+   FLOW FINAL — three compact cards inside the scene
    ============================================================ */
-.morning-brief {
+.flow-final {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%) scale(0.96);
-  width: min(720px, calc(100% - 48px));
-  background: var(--surface-2);
-  border: 1px solid rgba(16, 185, 129, 0.35);
-  border-radius: var(--radius-lg);
-  padding: 24px 28px 8px;
-  opacity: 0;
+  transform: translate(-50%, -50%);
+  width: min(760px, calc(100% - 48px));
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
   z-index: 5;
-  box-sizing: border-box;
 }
 
-.morning-brief__head {
+.flow-card {
+  background: var(--surface-2);
+  border: 0.5px solid var(--border-strong);
+  border-radius: var(--radius-md);
+  padding: 18px 18px 16px;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding-bottom: 14px;
-  border-bottom: 0.5px solid var(--border);
+  flex-direction: column;
 }
 
-.morning-brief__brand {
-  font-family: var(--font-mono);
-  font-size: 12px;
-  font-weight: 400;
-  letter-spacing: 0.04em;
-  color: var(--accent);
-}
-
-.morning-brief__time {
-  font-family: var(--font-mono);
-  font-size: 12px;
-  color: var(--text-tertiary);
-}
-
-.morning-brief__tasks {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.morning-brief__task {
-  padding: 16px 0 18px;
-  border-bottom: 0.5px solid var(--border);
-}
-
-.morning-brief__task:last-child {
-  border-bottom: 0;
-}
-
-.morning-brief__task-head {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 12px;
-  margin-bottom: 8px;
-}
-
-.morning-brief__dept {
-  font-size: 14px;
+.flow-card__dept {
+  font-size: 13px;
   font-weight: 500;
   color: var(--text-primary);
+  margin: 0 0 4px;
   letter-spacing: -0.005em;
 }
 
-.morning-brief__urgency {
+.flow-card__urgency {
   font-size: 10px;
   font-weight: 500;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  white-space: nowrap;
+  margin: 0 0 12px;
 }
 
-.morning-brief__urgency--high { color: var(--accent); }
-.morning-brief__urgency--mid { color: var(--text-secondary); }
-.morning-brief__urgency--low { color: var(--text-tertiary); }
+.flow-card__urgency--high { color: var(--accent); }
+.flow-card__urgency--mid { color: var(--text-secondary); }
+.flow-card__urgency--low { color: var(--text-tertiary); }
 
-.morning-brief__meta {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  column-gap: 16px;
-  row-gap: 4px;
-  margin: 6px 0 10px;
-}
-
-.morning-brief__meta dt {
+.flow-card__meta {
   font-size: 10px;
-  font-weight: 500;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
   color: var(--text-tertiary);
-  margin: 0;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin: 0 0 6px;
+  font-weight: 500;
+  padding-top: 8px;
+  border-top: 0.5px solid var(--border);
 }
 
-.morning-brief__meta dd {
-  margin: 0;
+.flow-card__value {
   font-size: 12px;
   color: var(--text-secondary);
-  line-height: 1.45;
+  line-height: 1.5;
+  margin: 0 0 10px;
 }
 
-.morning-brief__section {
-  margin-top: 8px;
-}
-
-.morning-brief__label {
-  display: block;
-  font-size: 10px;
-  font-weight: 500;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--text-tertiary);
-  margin-bottom: 4px;
-}
-
-.morning-brief__section p {
+.flow-card__action {
+  font-size: 12px;
+  color: var(--text-primary);
+  line-height: 1.5;
   margin: 0;
-  font-size: 12.5px;
-  color: var(--text-secondary);
-  line-height: 1.55;
+}
+
+.flow-card__action::before {
+  content: '→ ';
+  color: var(--accent);
 }
 
 /* ============================================================
@@ -823,11 +773,18 @@
     grid-template-columns: 1fr;
     padding: 24px;
   }
-  .morning-brief {
-    padding: 20px 22px 6px;
+  .flow-final {
+    grid-template-columns: 1fr;
+    width: calc(100% - 32px);
   }
-  .morning-brief__dept { font-size: 13px; }
-  .morning-brief__section p { font-size: 12px; }
+  .motion-cot {
+    top: auto;
+    bottom: 60px;
+    right: 16px;
+    left: 16px;
+    width: auto;
+    font-size: 12px;
+  }
 }
 
 /* ============================================================
