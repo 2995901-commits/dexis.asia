@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <rect width="1200" height="630" fill="#0c0d14"/>
+
+  <!-- Logo -->
+  <text x="80" y="220" font-family="DM Sans, system-ui, sans-serif" font-weight="500" font-size="120" fill="#f5f5f7" letter-spacing="-3">dexis</text>
+  <circle cx="412" cy="220" r="14" fill="#10b981"/>
+
+  <!-- Accent rule -->
+  <rect x="80" y="280" width="80" height="2" fill="#10b981"/>
+
+  <!-- Tagline -->
+  <text x="80" y="370" font-family="DM Sans, system-ui, sans-serif" font-weight="500" font-size="56" fill="#f5f5f7" letter-spacing="-1.5">Каждое утро — главное за сутки.</text>
+
+  <!-- Subline -->
+  <text x="80" y="450" font-family="DM Sans, system-ui, sans-serif" font-weight="400" font-size="28" fill="#a1a1aa">Где деньги. Какие риски. Что делать сегодня.</text>
+
+  <!-- Bottom meta -->
+  <text x="80" y="560" font-family="DM Sans, system-ui, sans-serif" font-weight="500" font-size="20" fill="#71717a" letter-spacing="2" text-transform="uppercase">DEXIS · АЛМАТЫ · KZ</text>
+</svg>
