@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DEXIS — Об основателе (превью)</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0c0d14;
+    --surface: #13141d;
+    --surface-2: #1c1d27;
+    --accent: #10b981;
+    --text-primary: #f5f5f7;
+    --text-secondary: #a1a1aa;
+    --text-tertiary: #71717a;
+    --border: rgba(255, 255, 255, 0.08);
+    --border-strong: rgba(255, 255, 255, 0.15);
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text-primary);
+    font-family: 'DM Sans', system-ui, sans-serif;
+    line-height: 1.5;
+  }
+  .container {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 64px 32px;
+  }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+    border-bottom: 0.5px solid var(--border);
+    margin-bottom: 96px;
+  }
+  .logo {
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+  }
+  .logo-dot { color: var(--accent); }
+  .nav-links {
+    display: flex;
+    gap: 28px;
+    font-size: 13px;
+    color: var(--text-secondary);
+  }
+  .nav-links span { cursor: pointer; }
+  .section {
+    margin-bottom: 80px;
+  }
+  .section-label {
+    font-size: 12px;
+    color: var(--text-secondary);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin: 0 0 24px;
+    font-weight: 500;
+  }
+  .h2 {
+    font-size: 48px;
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+    font-weight: 500;
+    margin: 0 0 32px;
+    color: var(--text-primary);
+  }
+  .body-text {
+    font-size: 17px;
+    color: var(--text-secondary);
+    line-height: 1.65;
+    max-width: 720px;
+    margin: 0 0 24px;
+  }
+  .body-text:last-child { margin-bottom: 0; }
+  .body-text strong {
+    color: var(--text-primary);
+    font-weight: 500;
+  }
+  .contacts-block {
+    background: var(--surface);
+    border: 0.5px solid var(--border);
+    border-radius: 16px;
+    padding: 48px;
+    margin-top: 56px;
+  }
+  .contacts-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    margin-top: 32px;
+  }
+  .contact-item {
+    border-left: 2px solid var(--accent);
+    padding-left: 20px;
+  }
+  .contact-label {
+    font-size: 12px;
+    color: var(--text-tertiary);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin: 0 0 10px;
+    font-weight: 500;
+  }
+  .contact-value {
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--text-primary);
+    letter-spacing: -0.01em;
+    text-decoration: none;
+    display: inline-block;
+    transition: color 0.2s ease;
+  }
+  .contact-value:hover {
+    color: var(--accent);
+  }
+  .contact-note {
+    font-size: 13px;
+    color: var(--text-tertiary);
+    margin: 8px 0 0;
+    line-height: 1.5;
+  }
+  .location {
+    margin-top: 32px;
+    padding-top: 32px;
+    border-top: 0.5px solid var(--border);
+    font-size: 14px;
+    color: var(--text-secondary);
+  }
+  .footer {
+    margin-top: 120px;
+    padding-top: 32px;
+    border-top: 0.5px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+    color: var(--text-tertiary);
+  }
+  .footer-links {
+    display: flex;
+    gap: 24px;
+  }
+  .footer-links a {
+    color: var(--text-tertiary);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+  .footer-links a:hover {
+    color: var(--text-secondary);
+  }
+
+  @media (max-width: 900px) {
+    .h2 { font-size: 36px; }
+    .container { padding: 32px 20px; }
+    .contacts-grid { grid-template-columns: 1fr; gap: 24px; }
+    .contacts-block { padding: 32px 24px; }
+    .footer { flex-direction: column; gap: 16px; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <div class="nav">
+    <div class="logo">dexis<span class="logo-dot">.</span></div>
+    <div class="nav-links">
+      <span>Продукт</span>
+      <span>Подход</span>
+      <span>Форматы</span>
+      <span>Контакты</span>
+    </div>
+  </div>
+
+  <div class="section">
+    <p class="section-label">Кто за этим стоит</p>
+    <h2 class="h2">Виталий Ли</h2>
+    <p class="body-text">DEXIS основан в Алматы. До создания компании Виталий вёл маркетинг в Vitis Capital — инвестиционной компании с офисами в Алматы, Астане и Сеуле, работающей с регуляторной лицензией AIFC. Этот опыт дал понимание того, как принимаются решения в среде, где данные служат материалом для управления, а не приложением к нему.</p>
+    <p class="body-text">DEXIS строится на наблюдении, которое сложно увидеть со стороны: казахстанский средний бизнес уже зрелый по управленческой культуре, но инструменты для работы с данными у него остались на уровне 2010-х. Excel-таблицы, разрозненные конфигурации 1С, отчётность с задержкой в неделю. Этот разрыв и есть тот вакуум, который DEXIS заполняет.</p>
+  </div>
+
+  <div class="section">
+    <p class="section-label">Подход</p>
+    <p class="body-text">DEXIS внедряется лично основателем — без отдела продаж, без посредников, без передачи проекта команде после подписания. Это решение продуктивное и осознанное: каждое внедрение даёт обратную связь, которая возвращается в продукт. Компании, которые работают с DEXIS сегодня, фактически формируют его архитектуру.</p>
+    <p class="body-text">Когда DEXIS вырастет до команды, этот подход изменится. Сейчас он — главное преимущество для первых клиентов.</p>
+  </div>
+
+  <div class="contacts-block">
+    <p class="section-label">Контакты</p>
+    <h2 class="h2" style="margin-bottom: 8px; font-size: 32px;">Связаться напрямую</h2>
+    <p class="body-text" style="margin-bottom: 0;">Отвечаю лично в рабочее время. Без скриптов, без воронок.</p>
+
+    <div class="contacts-grid">
+      <div class="contact-item">
+        <p class="contact-label">WhatsApp</p>
+        <a href="https://wa.me/77002995901" class="contact-value">+7 700 299 59 01</a>
+        <p class="contact-note">Для делового общения и быстрого согласования встречи</p>
+      </div>
+      <div class="contact-item">
+        <p class="contact-label">Telegram</p>
+        <a href="https://t.me/leevitaliy" class="contact-value">@leevitaliy</a>
+        <p class="contact-note">Для развёрнутой переписки и обмена материалами</p>
+      </div>
+    </div>
+
+    <div class="location">Алматы, Казахстан</div>
+  </div>
+
+  <div class="footer">
+    <div>© 2026 DEXIS. Все права защищены.</div>
+    <div class="footer-links">
+      <a href="#">Политика конфиденциальности</a>
+      <a href="#">Условия использования</a>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>
