@@ -678,6 +678,23 @@
   opacity: 0;
 }
 
+.motion-kpi-flash {
+  position: absolute;
+  right: 120px;
+  top: 43%;
+  min-width: 132px;
+  font-size: 32px;
+  line-height: 1;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: var(--accent);
+  text-align: right;
+  opacity: 0;
+  z-index: 3;
+  pointer-events: none;
+  font-variant-numeric: tabular-nums;
+}
+
 /* Stage caption (bottom strip) */
 .motion-caption {
   position: absolute;
@@ -702,10 +719,43 @@
   left: 50%;
   transform: translate(-50%, -50%);
   width: min(760px, calc(100% - 48px));
+  z-index: 5;
+}
+
+.flow-final__summary {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 16px;
+  padding-bottom: 14px;
+  border-bottom: 0.5px solid var(--border);
+  color: var(--text-secondary);
+  font-size: 13px;
+}
+
+.flow-final__summary strong {
+  color: var(--text-primary);
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+}
+
+.flow-final__cards {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 16px;
-  z-index: 5;
+}
+
+.flow-final__impact {
+  margin: 16px 0 0;
+  color: var(--accent);
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
 }
 
 .flow-card {
@@ -806,7 +856,12 @@
 
 @media (max-width: 900px) {
   .flow,
-  .flow-scene { min-height: 720px; height: 720px; }
+  .flow-scene { min-height: 880px; height: 880px; }
+  .flow-restart {
+    top: auto;
+    right: 16px;
+    bottom: 18px;
+  }
   .motion-cot {
     position: absolute;
     top: 70%;
@@ -820,8 +875,23 @@
     padding: 24px;
   }
   .flow-final {
-    grid-template-columns: 1fr;
     width: calc(100% - 32px);
+  }
+  .flow-final__summary {
+    display: block;
+  }
+  .flow-final__summary strong {
+    display: block;
+    margin-top: 4px;
+    white-space: normal;
+  }
+  .flow-final__cards {
+    grid-template-columns: 1fr;
+  }
+  .motion-kpi-flash {
+    top: 54%;
+    right: 24px;
+    font-size: 28px;
   }
   .motion-cot {
     top: auto;
