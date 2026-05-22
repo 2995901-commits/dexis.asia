@@ -25,9 +25,35 @@
     el.classList.add('hero-title--anim');
   }
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', animateHeroTitle, { once: true });
-  } else {
+  function observeOnView() {
+    const targets = document.querySelectorAll('[data-orders-observe]');
+    if (!targets.length) return;
+
+    if (reduced || typeof IntersectionObserver === 'undefined') {
+      targets.forEach(t => t.classList.add('is-visible'));
+      return;
+    }
+
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { rootMargin: '0px 0px -10% 0px', threshold: 0.15 });
+
+    targets.forEach(t => io.observe(t));
+  }
+
+  function init() {
     animateHeroTitle();
+    observeOnView();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init, { once: true });
+  } else {
+    init();
   }
 })();

@@ -107,7 +107,64 @@
         <h3 class="approach-part__title">От инсайта — к исполнению</h3>
         <p class="approach-part__sub">Каждая выявленная ситуация превращается в готовую задачу для ответственного отдела — с контекстом, цифрами и предлагаемым действием.</p>
         <div class="approach-orders" data-orders-root>
-          <span class="approach-placeholder">Карточки поручений — реализуются в следующем шаге</span>
+          <div class="orders-grid" data-orders-observe>
+
+            <article class="order-card" style="--idx: 0">
+              <p class="order-card__dept">Финансовый отдел</p>
+              <dl class="order-card__meta">
+                <div><dt>Тип</dt><dd>Управление денежным потоком</dd></div>
+                <div><dt>Срочность</dt><dd class="order-card__urgency order-card__urgency--high">высокая</dd></div>
+                <div><dt>Ответственный</dt><dd>Финансовый директор</dd></div>
+              </dl>
+              <div class="order-card__block">
+                <span class="order-card__label">Контекст</span>
+                <p>На счетах ₸94M. Срочные обязательства за неделю — ₸67M. Свободный остаток для распределения — ₸27M. Среди обязательств — штраф по поставке от 14.05 (₸4.2M, до срока 3 дня).</p>
+              </div>
+              <div class="order-card__block">
+                <span class="order-card__label">Предлагаемое действие</span>
+                <p>Подготовить план оплат на неделю с приоритетом по штрафным обязательствам и ключевым поставщикам.</p>
+              </div>
+              <span class="order-card__cta" aria-hidden="true">Подтвердить и отправить →</span>
+            </article>
+
+            <article class="order-card" style="--idx: 1">
+              <p class="order-card__dept">Коммерческий отдел</p>
+              <dl class="order-card__meta">
+                <div><dt>Тип</dt><dd>Дебиторская задолженность</dd></div>
+                <div><dt>Срочность</dt><dd class="order-card__urgency order-card__urgency--mid">средняя</dd></div>
+                <div><dt>Ответственный</dt><dd>Коммерческий директор</dd></div>
+              </dl>
+              <div class="order-card__block">
+                <span class="order-card__label">Контекст</span>
+                <p>Клиент ТОО «Х». Задолженность ₸42M, просрочка 17 дней. За 12 месяцев клиент сделал оборот ₸380M (входит в топ-10).</p>
+              </div>
+              <div class="order-card__block">
+                <span class="order-card__label">Предлагаемое действие</span>
+                <p>Согласовать с клиентом план реструктуризации с продлением графика на 30 дней. Скрипт разговора — в приложенном файле.</p>
+              </div>
+              <span class="order-card__cta" aria-hidden="true">Подтвердить и отправить →</span>
+            </article>
+
+            <article class="order-card" style="--idx: 2">
+              <p class="order-card__dept">Закупки</p>
+              <dl class="order-card__meta">
+                <div><dt>Тип</dt><dd>Поставщик</dd></div>
+                <div><dt>Срочность</dt><dd class="order-card__urgency order-card__urgency--low">низкая</dd></div>
+                <div><dt>Ответственный</dt><dd>Директор по закупкам</dd></div>
+              </dl>
+              <div class="order-card__block">
+                <span class="order-card__label">Контекст</span>
+                <p>Цена закупки у поставщика АО «Х» выросла на +8% за квартал. Альтернативный поставщик АО «Y» предлагает −4% при сопоставимом качестве, подтверждённом тремя успешными поставками в 2025 году.</p>
+              </div>
+              <div class="order-card__block">
+                <span class="order-card__label">Предлагаемое действие</span>
+                <p>Запросить коммерческое предложение у АО «Y» на квартальный объём.</p>
+              </div>
+              <span class="order-card__cta" aria-hidden="true">Подтвердить и отправить →</span>
+            </article>
+
+          </div>
+          <p class="orders-note">Каждая задача формируется на основе фактических данных компании. Собственник видит контекст и предлагаемое действие; одно подтверждение — задача уходит ответственному в его рабочую среду (Bitrix24, amoCRM, 1С, email).</p>
         </div>
       </div>
 
