@@ -1,14 +1,14 @@
 :root {
-  --bg: #0c0d14;
-  --surface: #13141d;
-  --surface-2: #1c1d27;
+  --bg: #131420;
+  --surface: #1d1e29;
+  --surface-2: #272834;
   --accent: #10b981;
   --accent-glow: rgba(16, 185, 129, 0.25);
   --text-primary: #f5f5f7;
   --text-secondary: #a1a1aa;
-  --text-tertiary: #71717a;
-  --border: rgba(255, 255, 255, 0.08);
-  --border-strong: rgba(255, 255, 255, 0.15);
+  --text-tertiary: #82828b;
+  --border: rgba(255, 255, 255, 0.10);
+  --border-strong: rgba(255, 255, 255, 0.18);
 
   --font-sans: 'DM Sans', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
   --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
