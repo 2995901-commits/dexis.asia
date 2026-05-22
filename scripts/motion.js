@@ -63,9 +63,9 @@
     s.rightEdge = { x: cardX + cardW / 2, y: s.y };
   });
 
-  // DEXIS — centre-right
+  // DEXIS — centre-left so the right thinking panel has its own space
   const dexisR = 38;
-  const dexisX = 540;
+  const dexisX = 460;
   const dexisY = listTop + (sources.length * (cardH + listGap) - listGap) / 2;
 
   // 4 inference observations: dept · fact · kpi · action
@@ -291,17 +291,18 @@
     dotsLayer.innerHTML = '';
 
     sources.forEach(s => {
-      gsap.set(s.el, { x: s.x, y: s.y, svgOrigin: '0 0' });
+      gsap.set(s.el, { x: s.x, y: s.y, opacity: 1, svgOrigin: '0 0' });
       s.el.classList.remove('motion-card--active');
       gsap.set(s.link, {
         attr: { x1: s.rightEdge.x, y1: s.rightEdge.y, x2: s.rightEdge.x, y2: s.rightEdge.y },
         opacity: 0,
       });
     });
-    gsap.set(dexisG, { x: dexisX, y: dexisY, scale: 0, svgOrigin: '0 0' });
+    gsap.set(dexisG, { x: dexisX, y: dexisY, scale: 0, opacity: 1, svgOrigin: '0 0' });
     gsap.set(dexisArcGroup, { opacity: 0 });
     gsap.set(titleStrip, { opacity: 0, y: -8 });
     gsap.set(questionEl, { opacity: 0 });
+    gsap.set(sidePanel, { opacity: 1 });
     gsap.set(speechEl, { opacity: 0 });
     inferenceList.querySelectorAll('.motion-inference').forEach(el => gsap.set(el, { opacity: 0, y: 6 }));
     gsap.set(finalEl, { opacity: 0 });

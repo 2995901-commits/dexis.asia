@@ -724,27 +724,46 @@
   fill: var(--accent);
 }
 
-/* Right-side panel — DEXIS speech + inference list */
+/* Right-side panel — DEXIS thinking window (speech + inferences) */
 .motion-side {
   position: absolute;
-  right: 24px;
-  top: 100px;
-  bottom: 24px;
+  right: 28px;
+  top: 110px;
+  bottom: 28px;
   width: 360px;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 14px;
   z-index: 2;
   pointer-events: none;
+  background: var(--surface-2);
+  border: 0.5px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 20px 22px;
+  box-sizing: border-box;
 }
 
 .motion-speech {
-  margin: 0;
-  font-size: 22px;
+  margin: 0 0 6px;
+  padding-bottom: 12px;
+  border-bottom: 0.5px solid var(--border);
+  font-size: 20px;
   font-weight: 500;
   letter-spacing: -0.01em;
   color: var(--text-primary);
   line-height: 1.25;
+  min-height: 26px;
+}
+
+.motion-speech::before {
+  content: 'DEXIS · ';
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  display: block;
+  margin-bottom: 4px;
 }
 
 .motion-inference-list {
