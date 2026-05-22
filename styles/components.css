@@ -579,13 +579,13 @@
   border: 0.5px solid var(--border);
   border-radius: var(--radius-lg);
   overflow: hidden;
-  min-height: 520px;
+  min-height: 640px;
 }
 
 .flow-scene {
   position: relative;
   width: 100%;
-  height: 520px;
+  height: 640px;
 }
 
 .flow-scene > svg {
@@ -765,8 +765,8 @@
 .motion-side {
   position: absolute;
   right: 28px;
-  top: 110px;
-  bottom: 28px;
+  top: 130px;
+  bottom: 80px;
   width: 360px;
   display: flex;
   flex-direction: column;
@@ -991,25 +991,26 @@
 }
 
 .flow-card__cta {
-  display: inline-flex;
+  display: inline-block;
   align-self: flex-start;
-  align-items: center;
-  gap: 6px;
+  max-width: 100%;
   font-size: 11px;
   font-weight: 500;
   color: var(--accent);
   background: rgba(16, 185, 129, 0.10);
   border: 0.5px solid rgba(16, 185, 129, 0.35);
   border-radius: 999px;
-  padding: 6px 12px 6px 14px;
+  padding: 6px 14px;
   letter-spacing: 0.01em;
-  line-height: 1.2;
+  line-height: 1.3;
   margin-bottom: 14px;
+  white-space: normal;
+  box-sizing: border-box;
 }
 
 .flow-card__cta-arrow {
+  margin-left: 4px;
   font-size: 12px;
-  line-height: 1;
 }
 
 .flow-card__source {
