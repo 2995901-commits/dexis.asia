@@ -42,19 +42,19 @@
   const W = 800;
   const H = 520;
 
-  // Left-side source list
-  const cardW = 190;
-  const cardH = 44;
-  const cardX = 50 + cardW / 2; // centre at x=145
+  // Left-side source list — mini app-window mockups
+  const cardW = 200;
+  const cardH = 76;
+  const cardX = 50 + cardW / 2; // centre at x=150
   const listGap = 10;
-  const listTop = 86; // leaves room for title strip on top
+  const listTop = 80; // leaves room for title strip on top
 
   const sources = [
-    { id: '1c',     name: '1С',                  metric: 'Выручка · обязательства' },
-    { id: 'bank',   name: 'Halyk Bank',          metric: 'Остаток ₸94M' },
-    { id: 'crm',    name: 'Bitrix24',            metric: 'Сделки · дебиторка' },
-    { id: 'excel',  name: 'Excel поставщиков',   metric: 'Прайс-листы и условия' },
-    { id: 'esf',    name: 'ИС ЭСФ',              metric: 'Счета-фактуры' },
+    { id: '1c',    title: '1С: Бухгалтерия',       rows: [['Выручка',    '₸384M'], ['Расходы',    '₸267M']] },
+    { id: 'bank',  title: 'Halyk Business',        rows: [['Остаток',    '₸94M'],  ['Поступления', '+₸12M']] },
+    { id: 'crm',   title: 'Bitrix24 · Сделки',     rows: [['Активные',   '23'],    ['Дебиторка',  '₸42M']] },
+    { id: 'excel', title: 'Поставщики_май.xlsx',   rows: [['Поставщики', '38'],    ['Контракты',  '12']] },
+    { id: 'esf',   title: 'ИС ЭСФ',                rows: [['Счета',      '1 247'], ['За месяц',   '184']] },
   ];
 
   sources.forEach((s, i) => {
@@ -128,11 +128,12 @@
   const dexisLayer = document.createElementNS(svgNS, 'g');
   svg.append(linksLayer, dotsLayer, cardsLayer, dexisLayer);
 
-  // Source cards (start dim, activate on connection)
+  // Source cards as mini app-window mockups
   sources.forEach(s => {
     const g = document.createElementNS(svgNS, 'g');
     g.classList.add('motion-card');
 
+    // Window outer rect
     const rect = document.createElementNS(svgNS, 'rect');
     rect.setAttribute('class', 'motion-card-rect');
     rect.setAttribute('width', cardW);
@@ -142,19 +143,52 @@
     rect.setAttribute('rx', '8');
     g.appendChild(rect);
 
-    const name = document.createElementNS(svgNS, 'text');
-    name.setAttribute('class', 'motion-card__name');
-    name.setAttribute('x', -cardW / 2 + 12);
-    name.setAttribute('y', -3);
-    name.textContent = s.name;
-    g.appendChild(name);
+    // Traffic-light dots — monochrome, KPMG-sober
+    const dotY = -cardH / 2 + 11;
+    [0, 1, 2].forEach((i) => {
+      const dot = document.createElementNS(svgNS, 'circle');
+      dot.setAttribute('class', 'motion-card__dot');
+      dot.setAttribute('r', '2.4');
+      dot.setAttribute('cx', -cardW / 2 + 12 + i * 8);
+      dot.setAttribute('cy', dotY);
+      g.appendChild(dot);
+    });
 
-    const metric = document.createElementNS(svgNS, 'text');
-    metric.setAttribute('class', 'motion-card__metric');
-    metric.setAttribute('x', -cardW / 2 + 12);
-    metric.setAttribute('y', 13);
-    metric.textContent = s.metric;
-    g.appendChild(metric);
+    // Window title
+    const title = document.createElementNS(svgNS, 'text');
+    title.setAttribute('class', 'motion-card__title');
+    title.setAttribute('x', -cardW / 2 + 42);
+    title.setAttribute('y', dotY + 4);
+    title.textContent = s.title;
+    g.appendChild(title);
+
+    // Separator under title bar
+    const sep = document.createElementNS(svgNS, 'line');
+    sep.setAttribute('class', 'motion-card__sep');
+    sep.setAttribute('x1', -cardW / 2 + 12);
+    sep.setAttribute('y1', dotY + 11);
+    sep.setAttribute('x2',  cardW / 2 - 12);
+    sep.setAttribute('y2', dotY + 11);
+    g.appendChild(sep);
+
+    // Two label/value rows
+    s.rows.forEach((row, idx) => {
+      const rowY = dotY + 26 + idx * 16;
+      const label = document.createElementNS(svgNS, 'text');
+      label.setAttribute('class', 'motion-card__label');
+      label.setAttribute('x', -cardW / 2 + 12);
+      label.setAttribute('y', rowY);
+      label.textContent = row[0];
+      g.appendChild(label);
+
+      const value = document.createElementNS(svgNS, 'text');
+      value.setAttribute('class', 'motion-card__value');
+      value.setAttribute('x',  cardW / 2 - 12);
+      value.setAttribute('y', rowY);
+      value.setAttribute('text-anchor', 'end');
+      value.textContent = row[1];
+      g.appendChild(value);
+    });
 
     cardsLayer.appendChild(g);
     s.el = g;

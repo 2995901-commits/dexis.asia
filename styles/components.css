@@ -651,7 +651,7 @@
   pointer-events: none;
 }
 
-/* Source cards (SVG) — dim by default, light up on activation */
+/* Source cards (SVG) — mini app-window mockups, dim by default */
 .motion-card-rect {
   fill: var(--bg);
   stroke: rgba(255, 255, 255, 0.10);
@@ -666,27 +666,60 @@
   transition: fill 0.4s ease;
 }
 
-.motion-card__name {
+.motion-card__dot {
   fill: var(--text-tertiary);
-  font-size: 12px;
-  font-weight: 500;
+  opacity: 0.45;
+  transition: opacity 0.4s ease, fill 0.4s ease;
 }
 
-.motion-card__metric {
+.motion-card__title {
   fill: var(--text-tertiary);
-  font-size: 11px;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+.motion-card__sep {
+  stroke: rgba(255, 255, 255, 0.10);
+  stroke-width: 0.5;
+  transition: stroke 0.4s ease;
+}
+
+.motion-card__label {
+  fill: var(--text-tertiary);
+  font-size: 10px;
+  letter-spacing: 0.02em;
+}
+
+.motion-card__value {
+  fill: var(--text-tertiary);
+  font-size: 13px;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
 }
 
 .motion-card--active .motion-card-rect {
   stroke: var(--accent);
 }
 
-.motion-card--active .motion-card__name {
-  fill: var(--text-primary);
+.motion-card--active .motion-card__dot {
+  opacity: 0.85;
 }
 
-.motion-card--active .motion-card__metric {
+.motion-card--active .motion-card__title {
   fill: var(--text-secondary);
+}
+
+.motion-card--active .motion-card__sep {
+  stroke: rgba(255, 255, 255, 0.18);
+}
+
+.motion-card--active .motion-card__label {
+  fill: var(--text-secondary);
+}
+
+.motion-card--active .motion-card__value {
+  fill: var(--text-primary);
 }
 
 /* DEXIS centre */
