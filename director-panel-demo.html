@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DEXIS — пример панели руководителя</title>
+  <link rel="stylesheet" href="styles.css?v=dashboard-wow-1">
+</head>
+<body class="demo-page">
+  <a class="skip-link" href="#demo-main">Перейти к панели</a>
+
+  <div class="demo-shell demo-shell-wide">
+    <header class="demo-nav" aria-label="Навигация демо">
+      <a class="brand" href="index.html?v=conversion-1">dexis<span>.</span></a>
+      <a class="demo-back" href="index.html?v=conversion-1#owner-panel">Вернуться к лендингу</a>
+    </header>
+
+    <main id="demo-main">
+      <section class="demo-hero demo-hero-compact" aria-labelledby="demo-title">
+        <div>
+          <p class="eyebrow">Панель руководителя · демонстрационный пример</p>
+          <h1 id="demo-title">DEXIS уже собрал картину компании на сегодня.</h1>
+        </div>
+        <p>Обезличенный сценарий показывает главное: состояние компании, причину отклонения, управленческое действие и поручения ответственным.</p>
+      </section>
+
+      <section class="demo-console" aria-label="Пример управленческой панели DEXIS">
+        <div class="console-top">
+          <div>
+            <span>Панель руководителя</span>
+            <strong>Сегодня · 08:00</strong>
+          </div>
+          <div class="console-source-strip" aria-label="Проверенные источники">
+            <span>1С</span>
+            <span>Банк</span>
+            <span>CRM</span>
+            <span>ИС ЭСФ</span>
+            <span>Excel</span>
+            <span>Задачи</span>
+          </div>
+          <div class="demo-pill">Демо · обезличено</div>
+        </div>
+
+        <div class="console-grid">
+          <aside class="console-index" aria-label="Индекс состояния">
+            <span>Индекс состояния</span>
+            <div class="console-score" aria-label="72 из 100">
+              <strong>72</strong>
+              <small>/100</small>
+            </div>
+            <div class="console-change">−11 пунктов за 7 дней</div>
+            <div class="demo-meter" aria-hidden="true">
+              <i></i><i></i><i></i><i></i><i></i>
+              <i></i><i></i><i></i><i></i><i></i>
+            </div>
+            <div class="console-priorities">
+              <article>
+                <span>Деньги</span>
+                <strong>Штраф через 3 дня</strong>
+              </article>
+              <article>
+                <span>Дебиторка</span>
+                <strong>₸42M просрочки</strong>
+              </article>
+              <article>
+                <span>Закупки</span>
+                <strong>₸4.8M резерва</strong>
+              </article>
+            </div>
+          </aside>
+
+          <section class="console-main" aria-labelledby="decision-title">
+            <span>Главное решение дня</span>
+            <h2 id="decision-title">Перенести платеж со штрафом, согласовать оплату клиента и проверить альтернативного поставщика.</h2>
+            <div class="decision-rationale">
+              <article>
+                <span>Причина</span>
+                <strong>Клиент задержал оплату на 17 дней</strong>
+                <p>Поступление ₸42M не попало в плановую дату и сместило платежный баланс.</p>
+              </article>
+              <article>
+                <span>Риск</span>
+                <strong>Кассовый разрыв в критический день</strong>
+                <p>Через 3 дня стоит платеж, при задержке возникает штраф ₸4.2M.</p>
+              </article>
+              <article>
+                <span>Эффект</span>
+                <strong>₸4.8M потенциального резерва</strong>
+                <p>Альтернативный поставщик дает −4% при том же классе качества.</p>
+              </article>
+            </div>
+          </section>
+
+          <aside class="console-tasks" aria-label="Поручения руководителям">
+            <div class="tasks-head">
+              <span>Поручения</span>
+              <strong>3 задачи готовы</strong>
+            </div>
+            <article>
+              <span>Финансы</span>
+              <strong>Подготовить план оплат</strong>
+              <p>Приоритет: платеж со штрафом и ближайшие 5 дней.</p>
+            </article>
+            <article>
+              <span>Коммерция</span>
+              <strong>Согласовать оплату ₸42M</strong>
+              <p>Зафиксировать дату поступления и новый график.</p>
+            </article>
+            <article>
+              <span>Закупки</span>
+              <strong>Запросить КП</strong>
+              <p>Проверить альтернативного поставщика на квартальный объем.</p>
+            </article>
+          </aside>
+        </div>
+      </section>
+
+      <section class="demo-trace-panel" aria-labelledby="trace-title">
+        <div class="demo-section-title">
+          <h2 id="trace-title">Как DEXIS пришел к решению.</h2>
+          <p>Каждый вывод можно открыть до исходного факта. Это не “черный ящик”, а проверяемая управленческая цепочка.</p>
+        </div>
+        <div class="trace-grid">
+          <article>
+            <span>01 · Источник</span>
+            <strong>Банк + 1С + CRM</strong>
+            <p>Остатки, платежи, обязательства и дебиторка клиента.</p>
+          </article>
+          <article>
+            <span>02 · Факт</span>
+            <strong>₸94M против ₸67M</strong>
+            <p>Через 3 дня стоит платеж со штрафом.</p>
+          </article>
+          <article>
+            <span>03 · Причина</span>
+            <strong>₸42M задержано</strong>
+            <p>Клиент не оплатил 17 дней после плановой даты.</p>
+          </article>
+          <article>
+            <span>04 · Риск</span>
+            <strong>Разрыв в критический день</strong>
+            <p>Платежный баланс становится зависимым от одного поступления.</p>
+          </article>
+          <article>
+            <span>05 · Рекомендация</span>
+            <strong>Связать оплату и дебиторку</strong>
+            <p>Перенести платеж и согласовать поступление.</p>
+          </article>
+          <article>
+            <span>06 · Действие</span>
+            <strong>Закрепить ответственных</strong>
+            <p>Финансы, коммерция и закупки получают задачи.</p>
+          </article>
+        </div>
+      </section>
+    </main>
+  </div>
+</body>
+</html>

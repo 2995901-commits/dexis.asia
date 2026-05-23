@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DEXIS — Каждое утро главное за сутки</title>
-  <meta name="description" content="DEXIS отвечает на три вопроса собственника: где находятся деньги, какие риски появились, какое действие приоритетно. Утреннее резюме в Telegram и готовые задачи для отделов.">
-  <meta name="theme-color" content="#131420">
+  <title>DEXIS — ИИ-сотрудник собственника</title>
+  <meta name="description" content="DEXIS — ИИ-сотрудник, который каждый день показывает собственнику, где деньги, где риск и что поручить сегодня. Подключается к 1С, банкам, CRM, ИС ЭСФ и таблицам. Для компаний 50–500 сотрудников в Казахстане.">
+  <meta name="theme-color" content="#f4efe6">
   <meta name="robots" content="index, follow">
   <meta name="author" content="DEXIS · Виталий Ли">
   <meta name="geo.region" content="KZ-ALA">
@@ -16,320 +16,594 @@
   <meta property="og:type" content="website">
   <meta property="og:locale" content="ru_RU">
   <meta property="og:site_name" content="DEXIS">
-  <meta property="og:title" content="DEXIS — Каждое утро главное за сутки">
-  <meta property="og:description" content="DEXIS отвечает на три вопроса собственника: где находятся деньги, какие риски появились, какое действие приоритетно. Утреннее резюме в Telegram и готовые задачи для отделов.">
+  <meta property="og:title" content="DEXIS — ИИ-сотрудник собственника">
+  <meta property="og:description" content="ИИ-сотрудник, который каждый день показывает собственнику, где деньги, где риск и что поручить сегодня. Для компаний 50–500 сотрудников в Казахстане.">
   <meta property="og:url" content="https://dexis.asia/">
   <meta property="og:image" content="https://dexis.asia/assets/og-image.svg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
 
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="DEXIS — Каждое утро главное за сутки">
-  <meta name="twitter:description" content="DEXIS отвечает на три вопроса собственника: где деньги, какие риски, какое действие приоритетно.">
+  <meta name="twitter:title" content="DEXIS — ИИ-сотрудник собственника">
+  <meta name="twitter:description" content="ИИ-сотрудник, который каждый день показывает собственнику, где деньги, где риск и что поручить сегодня.">
   <meta name="twitter:image" content="https://dexis.asia/assets/og-image.svg">
 
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=conversion-1">
+  <script src="script.js?v=conversion-1" defer charset="UTF-8"></script>
 
-  <link rel="stylesheet" href="styles/tokens.css">
-  <link rel="stylesheet" href="styles/base.css">
-  <link rel="stylesheet" href="styles/layout.css">
-  <link rel="stylesheet" href="styles/components.css">
-
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
-  <script src="scripts/main.js" defer></script>
-  <script src="scripts/motion.js" defer></script>
+  <style>
+    .site-footer { padding: 40px 24px 24px; border-top: 1px solid rgba(0,0,0,0.08); margin-top: 48px; font: 400 13px/1.5 -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif; color: rgba(0,0,0,0.55); display: flex; flex-wrap: wrap; gap: 16px 32px; justify-content: space-between; align-items: center; }
+    .site-footer__links { display: flex; gap: 24px; }
+    .site-footer__links a { color: rgba(0,0,0,0.55); text-decoration: none; }
+    .site-footer__links a:hover { color: rgba(0,0,0,0.85); }
+    @media (max-width: 560px) { .site-footer { padding: 32px 20px 20px; flex-direction: column; align-items: flex-start; } }
+  </style>
 </head>
 <body>
+  <a class="skip-link" href="#main">Перейти к основному содержанию</a>
 
-<a class="skip-link" href="#top">Перейти к основному содержанию</a>
-
-<header class="site-nav">
-  <div class="container">
-    <a href="#top" class="logo" aria-label="DEXIS — на главный экран">dexis<span class="logo-dot">.</span></a>
-    <nav class="nav-links" aria-label="Основная навигация">
-      <a href="#product">Продукт</a>
-      <a href="#approach">Подход</a>
-      <a href="#formats">Форматы</a>
-      <a href="#contacts">Контакты</a>
+  <header class="site-nav" aria-label="Основная навигация">
+    <a class="brand" href="#top" aria-label="DEXIS">dexis<span>.</span></a>
+    <nav>
+      <a href="#dashboard">Результат</a>
+      <a href="#benefits">Выгоды</a>
+      <a href="#work">Как работает</a>
+      <a href="#proof">Доказательства</a>
+      <a href="#fit">Для кого</a>
+      <a href="#formats">Внедрение</a>
     </nav>
-  </div>
-</header>
+    <a class="nav-action" href="#contact">Разобрать первый сценарий</a>
+  </header>
 
-<main id="top">
-
-  <section class="section-hero" id="hero">
-    <div class="container">
-      <div class="hero">
-        <p class="hero-eyebrow anim-fade-up">Для собственников и руководителей</p>
-        <h1 class="hero-title js-letter-anim">Утренний управленческий бриф в Telegram.</h1>
-        <p class="hero-sub anim-fade-up" style="--step: 1">DEXIS собирает данные из 1С, банк-клиентов, CRM, ИС ЭСФ и внешних источников и отвечает на три вопроса собственника: где деньги, какие риски, какое действие приоритетно. Результат — утреннее резюме и готовые задачи для отделов.</p>
-        <p class="hero-proof anim-fade-up" style="--step: 2">DEXIS работает с собственниками среднего бизнеса в Казахстане — компании от 50 до 500 сотрудников в производстве, дистрибуции, торговле и B2B-услугах.</p>
-        <div class="hero-cta-block anim-fade-up" style="--step: 3">
-          <a href="#contacts" class="btn-primary">Обсудить внедрение</a>
-          <p class="hero-cta-note">Напрямую с основателем DEXIS.</p>
+  <main id="main">
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="eyebrow">Для собственников компаний 50–500 сотрудников</p>
+        <h1 id="hero-title">ИИ-сотрудник, который каждый день показывает собственнику, где деньги, где риск и что поручить сегодня.</h1>
+        <p class="hero-sub">DEXIS связывает данные из 1С, банков, CRM и таблиц, находит отклонения, объясняет причины и готовит управленческие действия для руководителей. Собственник видит не набор отчетов, а картину компании на сегодня.</p>
+        <div class="hero-assurance" aria-label="Что подключает DEXIS">
+          <span>1С</span>
+          <span>Банк-клиенты</span>
+          <span>CRM</span>
+          <span>Excel</span>
+          <span>ИС ЭСФ</span>
+          <span>Bitrix24 / задачи</span>
         </div>
       </div>
-    </div>
-  </section>
 
-  <section class="section-approach" id="approach">
-    <div class="container">
-      <header class="section-head">
-        <h2 class="section-title">Как работает DEXIS</h2>
-        <p class="section-title__sub">DEXIS ежедневно обрабатывает данные из операционных систем компании и формирует управленческий бриф с приоритетами на день.</p>
-      </header>
-
-      <div class="flow" data-flow-root>
-        <div class="flow-scene" data-flow-scene></div>
-        <div class="flow-restart" data-flow-restart hidden>
-          <button type="button" class="btn-link" data-flow-restart-btn>Посмотреть ещё раз ↻</button>
-        </div>
-        <ol class="motion-static" data-motion-static hidden>
-          <li>
-            <span class="motion-static__label">Источники</span>
-            <p>Данные среднего бизнеса в Казахстане живут в десяти разных системах: 1С, ИС ЭСФ, банк-клиенты, CRM, КГД, Excel, госзакупки.</p>
-          </li>
-          <li>
-            <span class="motion-static__label">Обработка</span>
-            <p>DEXIS объединяет данные, сверяет с прошлой неделей, находит отклонения в марже, дебиторке и закупочных ценах, определяет приоритеты.</p>
-          </li>
-          <li>
-            <span class="motion-static__label">Действие</span>
-            <p>Утренний бриф собственника содержит готовые поручения для финансового, коммерческого и отдела закупок — с контекстом, срочностью и предлагаемым действием.</p>
-          </li>
-        </ol>
-      </div>
-
-    </div>
-  </section>
-
-  <section class="section-modules" id="product">
-    <div class="container">
-      <header class="section-head">
-        <h2 class="section-title">Что внутри DEXIS</h2>
-        <p class="section-title__sub">Основа продукта — три модуля. Ещё два расширяют DEXIS под отдельные сценарии.</p>
-      </header>
-
-      <p class="modules-group-label">Основа продукта</p>
-      <div class="modules-list">
-
-        <article class="module-row">
-          <div class="module-row__head">
-            <span class="module-row__number">01</span>
-            <h3 class="module-row__name">CEO Brief</h3>
-            <p class="module-row__essence">Главное за сутки.</p>
-            <div class="module-row__tier">
-              <span class="module-row__tier-label">Доступно с формата</span>
-              <span class="module-row__tier-value">Точечный</span>
+      <div class="command-center hero-snapshot health-panel" id="dashboard" aria-label="Панель руководителя DEXIS">
+        <div class="dashboard-screen">
+          <div class="screen-topbar">
+            <div>
+              <span>Панель руководителя</span>
+              <strong>Сегодня · 08:00</strong>
             </div>
+            <div class="screen-sync">6 источников проверено</div>
           </div>
-          <div class="module-row__body">
-            <p>Каждое утро в 8:00 в Ваш Telegram приходит сообщение из трёх блоков: текущая позиция по деньгам, новые риски за сутки, приоритетное действие на день. Без вкладок, без логина, без подготовки отчёта — одно сообщение, 90 секунд чтения.</p>
+
+          <div class="screen-title">
+            <span>Индекс состояния компании на сегодня</span>
+            <strong>DEXIS проверил деньги, дебиторку, закупки и обязательства. Показатель снизился из-за кассового риска, просрочки клиента и резерва в закупках.</strong>
           </div>
-        </article>
 
-        <article class="module-row">
-          <div class="module-row__head">
-            <span class="module-row__number">02</span>
-            <h3 class="module-row__name">AI Analyst</h3>
-            <p class="module-row__essence">Превращает вопрос в ответ.</p>
-            <div class="module-row__tier">
-              <span class="module-row__tier-label">Доступно с формата</span>
-              <span class="module-row__tier-value">Точечный</span>
-            </div>
-          </div>
-          <div class="module-row__body">
-            <p>Вы спрашиваете в чате: <span class="module-row__quote">«Почему упала маржа по основному направлению в апреле?»</span></p>
-            <p>AI Analyst за 4 секунды отвечает: <span class="module-row__quote">«Причина — рост закупочной цены у двух поставщиков (ТОО «Альфа» +12%, ТОО «Бета» +8%). Влияние на маржу: −1.4 пп. Рекомендация — обсудить с коммерческим директором перенаправление 40% объёма на третьего поставщика.»</span></p>
-          </div>
-        </article>
+          <div class="health-grid">
+            <article class="health-score-card">
+              <p class="kicker">Индекс состояния</p>
+              <div class="health-score" aria-label="72 из 100">
+                <strong>72</strong>
+                <span>/100</span>
+              </div>
+              <div class="screen-meta">На основе 6 источников за последние 7 дней</div>
+              <div class="health-status">Требует внимания</div>
+              <div class="health-scale" aria-hidden="true">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+              <p>Индекс не просто оценивает компанию. Он показывает, где внимание собственника сегодня даст максимальный эффект.</p>
+            </article>
 
-        <article class="module-row">
-          <div class="module-row__head">
-            <span class="module-row__number">03</span>
-            <h3 class="module-row__name">Поручения</h3>
-            <p class="module-row__essence">От инсайта — к исполнению.</p>
-            <div class="module-row__tier">
-              <span class="module-row__tier-label">Доступно с формата</span>
-              <span class="module-row__tier-value">Командный (базовые сценарии — финансы и коммерческий отдел) и Корпоративный (все отделы плюс кастомизация)</span>
-            </div>
-          </div>
-          <div class="module-row__body">
-            <p>Когда DEXIS видит ситуацию, требующую действия, он формирует готовую задачу для ответственного отдела: тип, срочность, контекст с цифрами, предлагаемое действие. Вы подтверждаете одним нажатием — задача уходит в рабочую среду отдела (Bitrix24, amoCRM, 1С, email).</p>
-          </div>
-        </article>
+            <article class="health-reasons">
+              <p class="kicker">Почему снизился индекс</p>
+              <div class="reason-list">
+                <div>
+                  <span>Касса</span>
+                  <strong>Штраф через 3 дня</strong>
+                  <p>Остаток ₸94M против обязательств ₸67M.</p>
+                </div>
+                <div>
+                  <span>Дебиторка</span>
+                  <strong>₸42M просрочки</strong>
+                  <p>ТОО «Х» держит оплату 17 дней.</p>
+                </div>
+                <div>
+                  <span>Закупки</span>
+                  <strong>₸4.8M резерва</strong>
+                  <p>Альтернативный поставщик дает −4%.</p>
+                </div>
+              </div>
+            </article>
 
-      </div>
-
-      <p class="modules-group-label modules-group-label--secondary">Дополнительные сценарии</p>
-      <div class="modules-list">
-
-        <article class="module-row">
-          <div class="module-row__head">
-            <span class="module-row__number">04</span>
-            <h3 class="module-row__name">AI Sales Assistant</h3>
-            <p class="module-row__essence">Лидам отвечают в первую минуту.</p>
-            <div class="module-row__tier">
-              <span class="module-row__tier-label">Доступно с формата</span>
-              <span class="module-row__tier-value">Командный</span>
-            </div>
-          </div>
-          <div class="module-row__body">
-            <p>Клиент пишет в WhatsApp или на сайт в 22:30 в субботу. AI Sales Assistant отвечает за 40 секунд: квалифицирует запрос, отвечает на типовые вопросы по продукту и условиям, фиксирует контакт в Bitrix24, назначает время звонка менеджеру на ближайший рабочий день. Звонок начинается с уже собранного контекста.</p>
-          </div>
-        </article>
-
-        <article class="module-row">
-          <div class="module-row__head">
-            <span class="module-row__number">05</span>
-            <h3 class="module-row__name">AI Onboarding</h3>
-            <p class="module-row__essence">Адаптация сотрудника без потери времени руководителя.</p>
-            <div class="module-row__tier">
-              <span class="module-row__tier-label">Доступно с формата</span>
-              <span class="module-row__tier-value">Корпоративный</span>
-            </div>
-          </div>
-          <div class="module-row__body">
-            <p>Новый менеджер выходит на работу и общается с AI-ассистентом, у которого есть доступ к договорам, регламентам, базе клиентов компании. Вопрос <span class="module-row__quote">«как у нас оформляется отгрузка через ИС ЭСФ?»</span> — ответ из Вашего регламента с примерами из реальных сделок. Вопрос <span class="module-row__quote">«кто отвечает за работу с госклиниками?»</span> — ответ с актуальным распределением.</p>
-            <p>Руководитель не тратит часы на повторяющиеся объяснения.</p>
-          </div>
-        </article>
-
-      </div>
-    </div>
-  </section>
-
-  <section class="section-formats" id="formats">
-    <div class="container">
-      <header class="section-head">
-        <h2 class="section-title">Форматы внедрения</h2>
-        <p class="section-title__sub">DEXIS внедряется по трём форматам, которые подбираются под масштаб компании и набор необходимых модулей.</p>
-      </header>
-
-      <div class="formats-grid">
-
-        <article class="format-card">
-          <h3 class="format-card__name">Точечный</h3>
-          <p class="format-card__desc">Один модуль на выбор, одна конфигурация 1С, один контур данных.</p>
-          <p class="format-card__label">Модули</p>
-          <ul class="format-card__modules">
-            <li>CEO Brief <span class="module-note">— или</span></li>
-            <li>AI Analyst</li>
-          </ul>
-          <p class="format-card__fit">Подходит компаниям с одним юридическим лицом и небольшой управленческой структурой.</p>
-        </article>
-
-        <article class="format-card format-card--featured">
-          <span class="format-card__badge">Оптимальный выбор</span>
-          <h3 class="format-card__name">Командный</h3>
-          <p class="format-card__desc">Три модуля, интеграция с несколькими источниками, базовые поручения для ключевых отделов.</p>
-          <p class="format-card__label">Модули</p>
-          <ul class="format-card__modules">
-            <li>CEO Brief</li>
-            <li>AI Analyst</li>
-            <li>AI Sales Assistant</li>
-            <li>Поручения <span class="module-note">— базовый сценарий</span></li>
-          </ul>
-          <p class="format-card__fit">Подходит компаниям с двумя-тремя юридическими лицами и развитой коммерческой службой.</p>
-        </article>
-
-        <article class="format-card">
-          <h3 class="format-card__name">Корпоративный</h3>
-          <p class="format-card__desc">Все пять модулей, мультиюрлицо, расширенные сценарии поручений, кастомизация.</p>
-          <p class="format-card__label">Модули</p>
-          <ul class="format-card__modules">
-            <li>CEO Brief</li>
-            <li>AI Analyst</li>
-            <li>AI Sales Assistant</li>
-            <li>Поручения <span class="module-note">— все отделы</span></li>
-            <li>AI Onboarding</li>
-          </ul>
-          <p class="format-card__fit">Подходит компаниям с разветвлённой структурой и несколькими направлениями деятельности.</p>
-        </article>
-
-      </div>
-
-      <div class="formats-bottom">
-        <p class="formats-note">Стоимость каждого формата зависит от количества источников данных, сложности интеграции и набора подключаемых модулей. Расчёт делается индивидуально под Вашу компанию.</p>
-        <a href="#contacts" class="btn-primary">Запросить оценку внедрения</a>
-      </div>
-
-    </div>
-  </section>
-
-  <section class="section-about" id="about">
-    <div class="container">
-
-      <div class="about-block">
-        <p class="section-label">Кто за этим стоит</p>
-        <h2 class="section-title">Виталий Ли</h2>
-        <p class="body-text">DEXIS основан в Алматы Виталием Ли. До этого — маркетинг в Vitis Capital, инвестиционной компании AIFC с офисами в Алматы, Астане и Сеуле. Опыт работы со средой, где данные служат материалом для управления решениями, а не приложением к ним.</p>
-        <p class="body-text">DEXIS строится на наблюдении: казахстанский средний бизнес зрелый по управленческой культуре, но его инструменты для работы с данными остались на уровне 2010-х — Excel-таблицы, разрозненные конфигурации 1С, отчётность с задержкой в неделю. Этот разрыв и заполняет DEXIS.</p>
-      </div>
-
-      <div class="about-block">
-        <p class="section-label">Экспертиза</p>
-        <ul class="expertise-list">
-          <li>Интеграции с 1С (Бухгалтерия, Управление торговлей, УНФ)</li>
-          <li>CRM-системы (Bitrix24, amoCRM) и банк-клиенты</li>
-          <li>Управленческая отчётность для среднего бизнеса</li>
-          <li>Казахстанский B2B-контекст: ИС ЭСФ, КГД, госзакупки</li>
-        </ul>
-      </div>
-
-      <div class="about-block">
-        <p class="section-label">Подход</p>
-        <p class="body-text">DEXIS внедряется лично основателем — без отдела продаж, без посредников, без передачи проекта команде после подписания. Это решение продуктивное и осознанное: каждое внедрение даёт обратную связь, которая возвращается в продукт. Компании, которые работают с DEXIS сегодня, фактически формируют его архитектуру.</p>
-        <p class="body-text">Когда DEXIS вырастет до команды, этот подход изменится. Сейчас он — главное преимущество для первых клиентов.</p>
-      </div>
-
-      <div class="contacts-block" id="contacts">
-        <p class="section-label">Контакты</p>
-        <h2 class="contacts-block__title">Связаться напрямую</h2>
-        <p class="body-text">Отвечаю лично в рабочее время. Без скриптов, без воронок.</p>
-
-        <div class="contacts-grid">
-          <div class="contact-item">
-            <p class="contact-label">WhatsApp</p>
-            <a href="https://wa.me/77002995901" class="contact-value">+7 700 299 59 01</a>
-            <p class="contact-note">Для делового общения и быстрого согласования встречи</p>
-          </div>
-          <div class="contact-item">
-            <p class="contact-label">Telegram</p>
-            <a href="https://t.me/leevitaliy" class="contact-value">@leevitaliy</a>
-            <p class="contact-note">Для развёрнутой переписки и обмена материалами</p>
+            <article class="health-action">
+              <p class="kicker">Действие сегодня</p>
+              <strong>Финансам — перенести платеж со штрафом. Коммерции — согласовать оплату ₸42M. Закупкам — проверить альтернативного поставщика.</strong>
+              <p>DEXIS разложил риск на поручения для ответственных руководителей.</p>
+            </article>
           </div>
         </div>
+      </div>
+    </section>
 
-        <div class="location">Алматы, Казахстан</div>
+    <section class="benefits-section" id="benefits" aria-labelledby="benefits-title">
+      <div class="section-head">
+        <p class="eyebrow">Что получает собственник</p>
+        <h2 id="benefits-title">Ясность до того, как проблема станет отчетом.</h2>
+        <p>DEXIS берет на себя рутинную управленческую проверку: видит данные, находит отклонения, объясняет причины и переводит выводы в поручения.</p>
+      </div>
+      <div class="benefit-grid">
+        <article>
+          <span>01</span>
+          <h3>Видит деньги без ручной сборки</h3>
+          <p>Остатки, обязательства, поступления и кассовые разрывы собираются без отдельной подготовки таблиц.</p>
+        </article>
+        <article>
+          <span>02</span>
+          <h3>Получает ранние сигналы риска</h3>
+          <p>Просрочки, падение маржи, зависшие сделки и опасные платежи видны до совещания в конце недели.</p>
+        </article>
+        <article>
+          <span>03</span>
+          <h3>Понимает причину отклонения</h3>
+          <p>Собственник видит не только факт, но и причину: поставщик поднял цену, клиент задержал оплату, расходы выросли.</p>
+        </article>
+        <article>
+          <span>04</span>
+          <h3>Дает поручения на основе данных</h3>
+          <p>Каждое действие связано с основанием, ответственным руководителем и риском бездействия.</p>
+        </article>
+        <article>
+          <span>05</span>
+          <h3>Видит последствия бездействия</h3>
+          <p>DEXIS показывает, что может произойти через несколько дней и какой эффект даст своевременное действие.</p>
+        </article>
+        <article>
+          <span>06</span>
+          <h3>Не зависит от совещаний и памяти</h3>
+          <p>Система не забывает, не устает и не ждет, пока отделы подготовят очередную сводку.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="fit-section" id="fit" aria-labelledby="fit-title">
+      <div class="section-head">
+        <p class="eyebrow">Где DEXIS особенно полезен</p>
+        <h2 id="fit-title">В бизнесе, где деньги, продажи и закупки живут в разных системах.</h2>
+        <p>DEXIS нужен там, где собственник уже не может держать всю управленческую картину в голове, а отчеты приходят позже, чем нужно принимать решение.</p>
+      </div>
+      <div class="fit-grid">
+        <article>
+          <span>Фарм-дистрибуция</span>
+          <h3>Дебиторка, остатки, сроки оплат</h3>
+          <p>Риск появляется не в одном отчете, а между продажами, складом, закупками и оплатами клиентов.</p>
+        </article>
+        <article>
+          <span>Поставщики оборудования</span>
+          <h3>Сделки, маржа, поставщики</h3>
+          <p>DEXIS помогает видеть, где сделка выглядит успешной, но теряет маржу или зависает в оплате.</p>
+        </article>
+        <article>
+          <span>Производство</span>
+          <h3>Себестоимость, закупки, касса</h3>
+          <p>Собственник видит, как изменение цены поставщика влияет на маржу, платежи и ближайшие решения.</p>
+        </article>
+        <article>
+          <span>B2B-услуги</span>
+          <h3>Проекты, загрузка, деньги</h3>
+          <p>Система связывает выручку, исполнение, просрочки и поручения ответственным руководителям.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="work-section" id="work" aria-labelledby="work-title">
+      <div class="section-head">
+        <p class="eyebrow">Как работает DEXIS</p>
+        <h2 id="work-title">От источников данных к готовому управленческому действию.</h2>
+        <p>DEXIS не просто отображает данные. Он выполняет цепочку работы: принимает информацию из источников, ищет причины, формирует выводы и превращает их в рекомендации.</p>
       </div>
 
-    </div>
-  </section>
+      <div class="flow-controls" aria-label="Управление демонстрацией">
+        <button type="button" class="control-button" data-action="pause">Пауза</button>
+        <button type="button" class="control-button" data-action="replay">Сначала</button>
+      </div>
 
-</main>
+      <div class="work-stage" data-work-stage aria-live="polite">
+        <div class="motion-title">
+          <span>Состояние компании</span>
+          <span>Панель собственника DEXIS</span>
+        </div>
+        <p class="motion-question">Что требует внимания собственника сегодня?</p>
 
-<aside class="cookies-banner" role="note" aria-label="Уведомление об использовании cookies">
-  <div class="container">
-    <p>Сайт использует cookies для анализа посещаемости в соответствии с Законом РК 94-V «О персональных данных и их защите». Продолжая просмотр, Вы соглашаетесь с условиями <a href="/privacy">Политики конфиденциальности</a>.</p>
-  </div>
-</aside>
+        <div class="data-plane" aria-label="Источники данных">
+          <article data-source="1">
+            <span>1С</span>
+            <strong>Выручка ₸384M</strong>
+            <p>Расходы ₸267M · обязательства ₸67M</p>
+          </article>
+          <article data-source="2">
+            <span>Банк-клиенты</span>
+            <strong>Остаток ₸94M</strong>
+            <p>Платежи · поступления · календарь</p>
+          </article>
+          <article data-source="3">
+            <span>CRM</span>
+            <strong>Дебиторка ₸42M</strong>
+            <p>ТОО «Х» · 17 дней просрочки</p>
+          </article>
+          <article data-source="4">
+            <span>ИС ЭСФ · Excel · КГД</span>
+            <strong>Поставщики −4%</strong>
+            <p>Альтернативный поставщик · тот же класс качества</p>
+          </article>
+        </div>
 
-<!-- Yandex Metrika — counter ID set in scripts/main.js when provided by user -->
+        <div class="data-streams" aria-hidden="true">
+          <span style="--y: 0"></span>
+          <span style="--y: 1"></span>
+          <span style="--y: 2"></span>
+          <span style="--y: 3"></span>
+        </div>
 
-<footer class="site-footer">
-  <div class="container">
-    <div>© 2026 DEXIS. Все права защищены.</div>
-    <div class="footer-links">
+        <div class="mobile-data-flow" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+
+        <div class="worker-core">
+          <div class="core-ring" aria-hidden="true"></div>
+          <div class="neural-brain" aria-hidden="true">
+            <svg viewBox="0 0 160 120" role="img">
+              <line x1="34" y1="38" x2="64" y2="28"></line>
+              <line x1="64" y1="28" x2="98" y2="36"></line>
+              <line x1="98" y1="36" x2="124" y2="54"></line>
+              <line x1="45" y1="72" x2="76" y2="60"></line>
+              <line x1="76" y1="60" x2="112" y2="82"></line>
+              <line x1="64" y1="28" x2="76" y2="60"></line>
+              <line x1="98" y1="36" x2="76" y2="60"></line>
+              <line x1="34" y1="38" x2="45" y2="72"></line>
+              <line x1="124" y1="54" x2="112" y2="82"></line>
+              <line x1="45" y1="72" x2="88" y2="96"></line>
+              <line x1="88" y1="96" x2="112" y2="82"></line>
+              <circle cx="34" cy="38" r="5"></circle>
+              <circle cx="64" cy="28" r="4"></circle>
+              <circle cx="98" cy="36" r="5"></circle>
+              <circle cx="124" cy="54" r="4"></circle>
+              <circle cx="45" cy="72" r="5"></circle>
+              <circle cx="76" cy="60" r="6"></circle>
+              <circle cx="112" cy="82" r="5"></circle>
+              <circle cx="88" cy="96" r="4"></circle>
+            </svg>
+          </div>
+          <span>DEXIS</span>
+          <p data-worker-state>Собираю данные</p>
+        </div>
+
+        <div class="output-streams" aria-hidden="true">
+          <span style="--y: 0"></span>
+          <span style="--y: 1"></span>
+          <span style="--y: 2"></span>
+          <span style="--y: 3"></span>
+        </div>
+
+        <div class="mobile-output-flow" aria-hidden="true">
+          <span></span>
+          <span></span>
+        </div>
+
+        <div class="thinking-panel" data-thinking-panel>
+          <span>Процесс DEXIS</span>
+          <strong data-process-title>Принимаю данные из источников</strong>
+          <div class="thinking-bars" aria-hidden="true">
+            <i></i>
+            <i></i>
+            <i></i>
+          </div>
+          <p data-process-caption>Система соединяет финансы, продажи, закупки и внешние источники в один управленческий слой.</p>
+        </div>
+
+        <div class="analysis-plane" aria-label="Выводы DEXIS">
+          <article class="analysis-item" data-analysis="1">
+            <span>Финансы</span>
+            <strong>Кассовый разрыв через 3 дня</strong>
+            <p>₸4.2M штраф → план оплат</p>
+          </article>
+          <article class="analysis-item" data-analysis="2">
+            <span>Маржа</span>
+            <strong>Поставщик поднял цену</strong>
+            <p>−1.4 п.п. → пересмотр поставщиков</p>
+          </article>
+          <article class="analysis-item" data-analysis="3">
+            <span>Дебиторка</span>
+            <strong>ТОО «Х» — 17 дней просрочки</strong>
+            <p>₸42M риск → реструктуризация</p>
+          </article>
+          <article class="analysis-item" data-analysis="4">
+            <span>Закупки</span>
+            <strong>Альтернативный поставщик дает −4%</strong>
+            <p>₸4.8M экономия → запросить КП</p>
+          </article>
+        </div>
+
+        <div class="decision-output" data-decision-output>
+          <div class="decision-summary">
+            <span>Готовое управленческое действие</span>
+            <em>Рекомендации</em>
+            <strong>Причина, риск, ответственный и следующий шаг собраны в одно решение.</strong>
+          </div>
+          <div class="decision-card-grid">
+            <article>
+              <span>Финансовый отдел</span>
+              <strong>План оплат</strong>
+              <p>Приоритет — платежи со штрафом ₸4.2M.</p>
+            </article>
+            <article>
+              <span>Коммерческий отдел</span>
+              <strong>Дебиторка</strong>
+              <p>Согласовать реструктуризацию ТОО «Х» на 30 дней.</p>
+            </article>
+            <article>
+              <span>Закупки</span>
+              <strong>Поставщик</strong>
+              <p>Запросить КП у АО «Y» на квартальный объем.</p>
+            </article>
+          </div>
+          <p class="delivery-note">Собственник получает не отчет, а готовое действие с причиной, ответственным и риском бездействия.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="proof-section" id="proof" aria-labelledby="proof-title">
+      <div class="section-head">
+        <p class="eyebrow">Почему этому можно доверять</p>
+        <h2 id="proof-title">Каждый вывод DEXIS можно проверить: источник данных, факт, причина, риск, рекомендация и действие.</h2>
+      </div>
+      <div class="evidence-board" aria-label="Пример доказательной цепочки DEXIS">
+        <div class="evidence-source">
+          <span>Пример цепочки</span>
+          <h3>Кассовый риск через 3 дня</h3>
+          <p>DEXIS собирает данные из нескольких систем и показывает, почему именно это действие нужно сегодня.</p>
+        </div>
+        <div class="evidence-steps">
+          <article>
+            <span>Источник</span>
+            <strong>Банк-клиент + 1С</strong>
+            <p>DEXIS сверил остаток, календарь платежей и обязательства.</p>
+          </article>
+          <article>
+            <span>Факт</span>
+            <strong>Остаток ₸94M против обязательств ₸67M</strong>
+            <p>Через 3 дня стоит платеж, при задержке возникает штраф ₸4.2M.</p>
+          </article>
+          <article>
+            <span>Причина</span>
+            <strong>Поступление задержано</strong>
+            <p>ТОО «Х» держит ₸42M дебиторки уже 17 дней.</p>
+          </article>
+          <article>
+            <span>Риск</span>
+            <strong>Кассовый разрыв через 3 дня</strong>
+            <p>Если поступление не согласовать, платеж со штрафом попадет в критический день.</p>
+          </article>
+          <article>
+            <span>Рекомендация</span>
+            <strong>Перенести платеж и ускорить поступление</strong>
+            <p>DEXIS предлагает связать план оплат с коммерческим действием по клиенту.</p>
+          </article>
+          <article>
+            <span>Действие</span>
+            <strong>Закрепить ответственных</strong>
+            <p>Финансы готовят план оплат, коммерция согласует реструктуризацию.</p>
+          </article>
+        </div>
+      </div>
+      <div class="proof-grid">
+        <article>
+          <h3>Источники данных</h3>
+          <p>1С, банк-клиенты, CRM, ИС ЭСФ, Excel и внешние данные. DEXIS не просит верить “на слово”: каждый вывод можно открыть до исходного факта.</p>
+        </article>
+        <article>
+          <h3>Логика вывода</h3>
+          <p>Источник → факт → причина → риск → рекомендация → ответственное действие. Собственник видит, почему система предлагает именно этот шаг.</p>
+        </article>
+        <article>
+          <h3>Проверка на одном участке бизнеса</h3>
+          <p>До запуска фиксируется критерий эффекта: скорость реакции, снижение просрочки, экономия или качество управленческой ясности.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="owner-panel-section" id="owner-panel" aria-labelledby="owner-panel-title">
+      <div class="section-head">
+        <p class="eyebrow">Панель собственника</p>
+        <h2 id="owner-panel-title">DEXIS показывает не больше данных. Он показывает, где нужно решение.</h2>
+      </div>
+      <div class="owner-panel">
+        <div class="owner-panel-main">
+          <span>Сегодня</span>
+          <strong>3 вопроса требуют решения собственника</strong>
+          <p>Финансы, дебиторка и закупки связаны в один управленческий сценарий.</p>
+          <a class="panel-demo-link" href="director-panel-demo.html">Посмотреть пример панели руководителя</a>
+        </div>
+        <div class="owner-panel-list">
+          <article>
+            <span>Деньги</span>
+            <strong>Кассовый разрыв через 3 дня</strong>
+            <p>Рекомендация: перенести оплату и согласовать поступление.</p>
+          </article>
+          <article>
+            <span>Риск</span>
+            <strong>₸42M дебиторки держит клиент</strong>
+            <p>Рекомендация: реструктуризация на 30 дней с ответственным.</p>
+          </article>
+          <article>
+            <span>Резерв</span>
+            <strong>₸4.8M экономии в закупках</strong>
+            <p>Рекомендация: запросить КП у альтернативного поставщика.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="modules-section" id="modules" aria-labelledby="modules-title">
+      <div class="section-head">
+        <p class="eyebrow">Что внутри DEXIS</p>
+        <h2 id="modules-title">Пять функций ИИ-сотрудника.</h2>
+      </div>
+      <div class="module-list">
+        <article>
+          <span>01</span>
+          <h3>Панель собственника</h3>
+          <p>Показывает состояние компании: деньги, риски, маржа, дебиторка, закупки.</p>
+        </article>
+        <article>
+          <span>02</span>
+          <h3>Ежедневный вывод</h3>
+          <p>Сжимает главное за день в управленческое резюме для собственника.</p>
+        </article>
+        <article>
+          <span>03</span>
+          <h3>Управленческий аналитик</h3>
+          <p>Находит причины отклонений и отвечает на вопросы по данным компании.</p>
+        </article>
+        <article>
+          <span>04</span>
+          <h3>Координатор поручений</h3>
+          <p>Превращает решение в задачу для ответственного отдела.</p>
+        </article>
+        <article>
+          <span>05</span>
+          <h3>Коммерческий ассистент</h3>
+          <p>Подключает продажи: лиды, сделки, клиентские риски и скорость реакции.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="trust-section" id="trust" aria-labelledby="trust-title">
+      <div class="section-head">
+        <p class="eyebrow">Управляемое внедрение</p>
+        <h2 id="trust-title">ИИ не принимает решения вместо собственника. Он готовит основание для решения.</h2>
+        <p>Для дорогих управленческих процессов важно не только получить рекомендацию, но и понимать, откуда она взялась, кто ее проверяет и как измеряется эффект.</p>
+      </div>
+      <div class="trust-grid">
+        <article>
+          <span>01</span>
+          <h3>Доступ только к нужным источникам</h3>
+          <p>Первый этап ограничивается выбранным сценарием: деньги, дебиторка, маржа, закупки или коммерческие риски.</p>
+        </article>
+        <article>
+          <span>02</span>
+          <h3>Каждый вывод имеет основание</h3>
+          <p>DEXIS показывает источник, факт, причину, риск, рекомендацию и ответственное действие.</p>
+        </article>
+        <article>
+          <span>03</span>
+          <h3>Решение остается за человеком</h3>
+          <p>Система готовит управленческое действие, но утверждает его собственник или назначенный руководитель.</p>
+        </article>
+        <article>
+          <span>04</span>
+          <h3>Эффект проверяется на пилоте</h3>
+          <p>До масштабирования фиксируется критерий: скорость реакции, снижение просрочки, экономия или качество управленческой ясности.</p>
+        </article>
+        <article>
+          <span>05</span>
+          <h3>Доступы и журнал действий</h3>
+          <p>Подключаются только нужные источники. Все действия и изменения логируются и доступны для проверки собственником.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="formats-section" id="formats" aria-labelledby="formats-title">
+      <div class="section-head">
+        <p class="eyebrow">Форматы внедрения</p>
+        <h2 id="formats-title">Начинаем не с большой системы, а с одного управленческого сценария.</h2>
+        <p>Первый этап нужен, чтобы быстро проверить эффект DEXIS на реальных данных: ясность, действие и измеримый результат.</p>
+      </div>
+      <div class="format-grid">
+        <article>
+          <h3>Точечный</h3>
+          <p>Один управленческий сценарий: деньги, дебиторка или маржа.</p>
+          <strong>Результат: на пилоте видно, дает ли DEXIS управленческий эффект.</strong>
+          <span>1–2 источника данных</span>
+        </article>
+        <article class="selected-format">
+          <h3>Командный</h3>
+          <p>Финансы, коммерция и закупки в одной системе.</p>
+          <strong>Результат: выводы превращаются в поручения для ответственных отделов.</strong>
+          <span>3–5 источников данных</span>
+        </article>
+        <article>
+          <h3>Группа компаний</h3>
+          <p>Несколько юрлиц, направлений и расширенные сценарии поручений.</p>
+          <strong>Результат: собственник видит единую картину по группе компаний.</strong>
+          <span>холдинг или несколько направлений</span>
+        </article>
+      </div>
+      <div class="implementation-path" aria-label="Как проходит первый этап">
+        <article>
+          <span>01</span>
+          <strong>Разбираем источники</strong>
+          <p>Какие данные уже есть, где они лежат и кто ими пользуется.</p>
+        </article>
+        <article>
+          <span>02</span>
+          <strong>Выбираем первый сценарий</strong>
+          <p>Деньги, дебиторка, маржа, закупки или коммерческие риски.</p>
+        </article>
+        <article>
+          <span>03</span>
+          <strong>Показываем первый результат</strong>
+          <p>Вывод, причина, рекомендация, поручение и критерий результата.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="founder-section" id="contact" aria-labelledby="contact-title">
+      <div>
+        <p class="eyebrow">Первый разговор</p>
+        <h2 id="contact-title">Разобрать первый управленческий сценарий.</h2>
+      </div>
+      <div class="founder-facts">
+        <div class="founder-profile">
+          <span>Основатель</span>
+          <strong>Виталий Ли</strong>
+          <p>DEXIS развивается как продуктовая версия методологии управленческой аналитики для собственника: не отчет ради отчета, а система для решений.</p>
+          <p>Продукт строится от управленческого вопроса собственника, а не от витрины показателей: где деньги, где риск, кому что поручить сегодня.</p>
+        </div>
+        <p>На первой встрече определяем участок бизнеса, источники данных и критерий результата.</p>
+        <p>Результат разговора — понятный сценарий запуска: деньги, дебиторка, маржа, закупки или коммерческие риски.</p>
+        <a href="https://t.me/leevitaliy">Разобрать первый сценарий</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer" aria-label="Подвал сайта">
+    <div>© 2026 DEXIS · Алматы, Казахстан</div>
+    <div class="site-footer__links">
       <a href="/privacy">Политика конфиденциальности</a>
       <a href="/terms">Условия использования</a>
     </div>
-  </div>
-</footer>
+  </footer>
 
+  <!-- Yandex Metrika placeholder — counter ID to be set when provided -->
 </body>
 </html>
