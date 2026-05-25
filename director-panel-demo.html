@@ -4,24 +4,24 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>DEXIS — пример панели руководителя</title>
-  <link rel="stylesheet" href="styles.css?v=dashboard-wow-1">
+  <link rel="stylesheet" href="styles.css?v=visual-upgrade-16">
 </head>
 <body class="demo-page">
   <a class="skip-link" href="#demo-main">Перейти к панели</a>
 
   <div class="demo-shell demo-shell-wide">
     <header class="demo-nav" aria-label="Навигация демо">
-      <a class="brand" href="index.html?v=conversion-1">dexis<span>.</span></a>
-      <a class="demo-back" href="index.html?v=conversion-1#owner-panel">Вернуться к лендингу</a>
+      <a class="brand" href="index.html?v=visual-upgrade-16">dexis<span>.</span></a>
+      <a class="demo-back" href="index.html?v=visual-upgrade-16#owner-panel">Вернуться к лендингу</a>
     </header>
 
     <main id="demo-main">
       <section class="demo-hero demo-hero-compact" aria-labelledby="demo-title">
         <div>
           <p class="eyebrow">Панель руководителя · демонстрационный пример</p>
-          <h1 id="demo-title">DEXIS уже собрал картину компании на сегодня.</h1>
+          <h1 id="demo-title">DEXIS подготовил ход руководителя на сегодня.</h1>
         </div>
-        <p>Обезличенный сценарий показывает главное: состояние компании, причину отклонения, управленческое действие и поручения ответственным.</p>
+        <p>Обезличенный сценарий демонстрирует не отчет, а работу управленческого AI-сотрудника: скрытая связка, последствия, выбранный сценарий, поручения и контроль.</p>
       </section>
 
       <section class="demo-console" aria-label="Пример управленческой панели DEXIS">
@@ -38,7 +38,7 @@
             <span>Excel</span>
             <span>Задачи</span>
           </div>
-          <div class="demo-pill">Демо · обезличено</div>
+          <div class="demo-pill">Проверка 24/7 · демо</div>
         </div>
 
         <div class="console-grid">
@@ -54,39 +54,44 @@
               <i></i><i></i><i></i><i></i><i></i>
             </div>
             <div class="console-priorities">
-              <article>
-                <span>Деньги</span>
-                <strong>Штраф через 3 дня</strong>
+              <article class="is-active">
+              <span>Связка</span>
+              <strong>₸42M + цена + штраф</strong>
               </article>
               <article>
-                <span>Дебиторка</span>
-                <strong>₸42M просрочки</strong>
+                <span>Без действия</span>
+                <strong>Разрыв и маржа</strong>
               </article>
               <article>
-                <span>Закупки</span>
-                <strong>₸4.8M резерва</strong>
+                <span>Ход</span>
+                <strong>3 поручения</strong>
               </article>
             </div>
           </aside>
 
           <section class="console-main" aria-labelledby="decision-title">
-            <span>Главное решение дня</span>
-            <h2 id="decision-title">Перенести платеж со штрафом, согласовать оплату клиента и проверить альтернативного поставщика.</h2>
+            <span>Выбранный ход дня</span>
+            <h2 id="decision-title">Связать финансы, коммерцию и закупки: снять кассовый риск, сохранить маржу и не задержать поставку.</h2>
             <div class="decision-rationale">
               <article>
-                <span>Причина</span>
-                <strong>Клиент задержал оплату на 17 дней</strong>
-                <p>Поступление ₸42M не попало в плановую дату и сместило платежный баланс.</p>
+                <span>Скрытая связка</span>
+                <strong>₸42M, цена +4%, штраф через 3 дня</strong>
+                <p>Три события из разных источников попали в один короткий период.</p>
               </article>
               <article>
-                <span>Риск</span>
-                <strong>Кассовый разрыв в критический день</strong>
-                <p>Через 3 дня стоит платеж, при задержке возникает штраф ₸4.2M.</p>
+                <span>Без действия</span>
+                <strong>Разрыв, потеря маржи, риск поставки</strong>
+                <p>Один сбой запускает три последствия для денег, прибыли и обязательств перед клиентом.</p>
               </article>
               <article>
-                <span>Эффект</span>
-                <strong>₸4.8M потенциального резерва</strong>
-                <p>Альтернативный поставщик дает −4% при том же классе качества.</p>
+                <span>Сценарии</span>
+                <strong>DEXIS сравнил 3 варианта</strong>
+                <p>Ждать оплату, сдвинуть платеж или связать финансы, коммерцию и закупки в один ход.</p>
+              </article>
+              <article>
+                <span>Ожидаемый эффект</span>
+                <strong>Риск снят, маржа сохранена</strong>
+                <p>Платеж выходит из критического дня, поступление закреплено, поставщик проверен.</p>
               </article>
             </div>
           </section>
@@ -94,22 +99,31 @@
           <aside class="console-tasks" aria-label="Поручения руководителям">
             <div class="tasks-head">
               <span>Поручения</span>
-              <strong>3 задачи готовы</strong>
+              <strong>4 задачи готовы</strong>
             </div>
             <article>
               <span>Финансы</span>
-              <strong>Подготовить план оплат</strong>
-              <p>Приоритет: платеж со штрафом и ближайшие 5 дней.</p>
+              <strong>Сдвинуть платеж</strong>
+              <small class="task-state">готово к назначению</small>
+              <p>Убрать штрафной платеж из критического дня и обновить календарь.</p>
             </article>
             <article>
               <span>Коммерция</span>
-              <strong>Согласовать оплату ₸42M</strong>
-              <p>Зафиксировать дату поступления и новый график.</p>
+              <strong>Закрепить оплату ₸42M</strong>
+              <small class="task-state">ожидает подтверждения</small>
+              <p>Зафиксировать дату поступления и ответственного со стороны клиента.</p>
             </article>
             <article>
               <span>Закупки</span>
-              <strong>Запросить КП</strong>
-              <p>Проверить альтернативного поставщика на квартальный объем.</p>
+              <strong>Сравнить поставщика −4%</strong>
+              <small class="task-state">срок 3 дня</small>
+              <p>Запросить КП на квартальный объем и проверить класс качества.</p>
+            </article>
+            <article>
+              <span>DEXIS</span>
+              <strong>Проверить исполнение завтра</strong>
+              <small class="task-state">контроль 08:00</small>
+              <p>Сверить поручения с остаточным риском и подготовить следующий шаг.</p>
             </article>
           </aside>
         </div>
@@ -117,39 +131,44 @@
 
       <section class="demo-trace-panel" aria-labelledby="trace-title">
         <div class="demo-section-title">
-          <h2 id="trace-title">Как DEXIS пришел к решению.</h2>
-          <p>Каждый вывод можно открыть до исходного факта. Это не “черный ящик”, а проверяемая управленческая цепочка.</p>
+          <h2 id="trace-title">Как DEXIS пришел к выбранному ходу.</h2>
+          <p>Каждый вывод можно открыть до исходного факта, примененной модели и сценария. Это не “черный ящик”, а проверяемая управленческая цепочка.</p>
         </div>
         <div class="trace-grid">
           <article>
             <span>01 · Источник</span>
-            <strong>Банк + 1С + CRM</strong>
-            <p>Остатки, платежи, обязательства и дебиторка клиента.</p>
+            <strong>1С + банк + CRM + закупки</strong>
+            <p>Обязательства, платежный календарь, дебиторка клиента и цены поставщиков.</p>
           </article>
           <article>
             <span>02 · Факт</span>
-            <strong>₸94M против ₸67M</strong>
-            <p>Через 3 дня стоит платеж со штрафом.</p>
+            <strong>₸42M задержано, цена +4%, штраф через 3 дня</strong>
+            <p>Факты из разных систем сошлись в одном периоде.</p>
           </article>
           <article>
-            <span>03 · Причина</span>
-            <strong>₸42M задержано</strong>
-            <p>Клиент не оплатил 17 дней после плановой даты.</p>
+            <span>03 · Модель</span>
+            <strong>Причинно-сценарная модель</strong>
+            <p>DEXIS сопоставил деньги, дебиторку, маржу, закупки и поставку клиенту.</p>
           </article>
           <article>
-            <span>04 · Риск</span>
-            <strong>Разрыв в критический день</strong>
-            <p>Платежный баланс становится зависимым от одного поступления.</p>
+            <span>04 · Причина</span>
+            <strong>Риск возник между отделами</strong>
+            <p>Коммерция ждёт оплату, финансы видят штраф, закупки работают по старой цене.</p>
           </article>
           <article>
-            <span>05 · Рекомендация</span>
-            <strong>Связать оплату и дебиторку</strong>
-            <p>Перенести платеж и согласовать поступление.</p>
+            <span>05 · Риск</span>
+            <strong>Разрыв, маржа, поставка</strong>
+            <p>Если не вмешаться, компания теряет управляемость в трех местах.</p>
           </article>
           <article>
-            <span>06 · Действие</span>
-            <strong>Закрепить ответственных</strong>
-            <p>Финансы, коммерция и закупки получают задачи.</p>
+            <span>06 · Рекомендация</span>
+            <strong>Связать 3 действия</strong>
+            <p>Сдвинуть платеж, закрепить поступление и проверить поставщика с −4%.</p>
+          </article>
+          <article>
+            <span>07 · Действие</span>
+            <strong>Закрепить и проверить</strong>
+            <p>Финансы, коммерция и закупки получают задачи, DEXIS проверяет результат завтра.</p>
           </article>
         </div>
       </section>
