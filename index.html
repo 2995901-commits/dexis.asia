@@ -31,9 +31,9 @@
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 
   <link rel="preconnect" href="https://fonts.bunny.net" crossorigin>
-  <link href="https://fonts.bunny.net/css?family=manrope:400,500,600,700,800|fraunces:400,500,600,700,800" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=visual-upgrade-21">
-  <script src="script.js?v=visual-upgrade-21" defer charset="UTF-8"></script>
+  <link href="https://fonts.bunny.net/css?family=manrope:400,500,600,700|fraunces:600,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=visual-upgrade-23-final">
+  <script src="script.js?v=visual-upgrade-23-final" defer charset="UTF-8"></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Перейти к основному содержанию</a>
@@ -56,74 +56,151 @@
         <p class="eyebrow">Управленческий AI-сотрудник для собственника</p>
         <h1 id="hero-title">Деньги, маржа и сроки&nbsp;— без задержек между отделами.</h1>
         <p class="hero-sub">DEXIS связывает изменения в оплате, складе, цене и обязательствах в одно решение с основанием, поручениями и проверкой результата.</p>
-        <aside class="gartner-note" aria-label="Контекст Gartner">
-          <span>Gartner · апрель 2026</span>
-          <strong>80% CEO ожидают, что AI серьезно изменит операционные возможности бизнеса.</strong>
-          <p>Для управления это означает простой сдвиг: быстрее видеть изменение, точнее понимать последствия, понятнее поручать действия.</p>
-        </aside>
+        <ul class="hero-sources" aria-label="Подключаемые источники">
+          <li>1С</li>
+          <li>Банк</li>
+          <li>CRM</li>
+          <li>Склад</li>
+          <li>Закупки</li>
+        </ul>
       </div>
 
-      <div class="command-center hero-snapshot health-panel" aria-label="Что делает DEXIS">
-        <div class="dashboard-screen">
-          <div class="screen-topbar">
-            <div>
-              <span>С DEXIS</span>
-              <strong>Решение к 08:00</strong>
-            </div>
-            <div class="screen-sync">данные · связки · ход</div>
+      <div class="connections-graph" aria-label="Граф связок DEXIS: 4 уровня — источники, события, риск, ход">
+        <div class="cg-frame">
+          <div class="cg-header">
+            <span class="cg-eyebrow">DEXIS · сегодня к 08:00</span>
+            <strong class="cg-title">Связка одного утра</strong>
           </div>
-          <div class="ai-page-cards ai-page-cards-single">
-            <article>
-              <div class="reason-list">
-                <div>
-                  <span>Онлайн</span>
-                  <strong>Изменения видны по мере появления</strong>
-                  <p>Оплата, резерв, цена и поручение не ждут общего отчета.</p>
-                </div>
-                <div>
-                  <span>Связь</span>
-                  <strong>Факты складываются в цепочку</strong>
-                  <p>Система показывает влияние одного изменения на другое.</p>
-                </div>
-                <div>
-                  <span>Решение</span>
-                  <strong>DEXIS предлагает варианты</strong>
-                  <p>Руководитель утверждает решение, видя основание и последствия.</p>
-                </div>
-              </div>
-            </article>
+          <svg class="cg-svg" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
+            <defs>
+              <linearGradient id="cgRisk" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#2d6f4d"/>
+                <stop offset="100%" stop-color="#1f5a3c"/>
+              </linearGradient>
+            </defs>
+
+            <!-- Links: L1→L2 (curves) -->
+            <g class="cg-links cg-links-1">
+              <path d="M 80 70 Q 100 160 160 220" class="cg-link"/>
+              <path d="M 200 70 Q 200 160 180 220" class="cg-link"/>
+              <path d="M 320 70 Q 320 160 300 220" class="cg-link"/>
+              <path d="M 320 70 Q 350 160 420 220" class="cg-link"/>
+              <path d="M 440 70 Q 430 160 320 220" class="cg-link"/>
+              <path d="M 560 70 Q 530 160 440 220" class="cg-link"/>
+            </g>
+
+            <!-- Links: L2→L3 -->
+            <g class="cg-links cg-links-2">
+              <path d="M 160 260 Q 230 320 290 360" class="cg-link"/>
+              <path d="M 320 260 Q 320 310 320 360" class="cg-link"/>
+              <path d="M 440 260 Q 380 320 340 360" class="cg-link"/>
+            </g>
+
+            <!-- Links: L3→L4 -->
+            <g class="cg-links cg-links-3">
+              <path d="M 300 460 Q 240 490 160 540" class="cg-link"/>
+              <path d="M 320 460 Q 320 500 320 540" class="cg-link"/>
+              <path d="M 340 460 Q 400 490 460 540" class="cg-link"/>
+            </g>
+
+            <!-- Level 1: 5 источников -->
+            <g class="cg-level cg-level-1">
+              <g class="cg-node cg-node-src"><circle cx="80" cy="60" r="22"/><text x="80" y="64">1С</text></g>
+              <g class="cg-node cg-node-src"><circle cx="200" cy="60" r="22"/><text x="200" y="64">Банк</text></g>
+              <g class="cg-node cg-node-src"><circle cx="320" cy="60" r="22"/><text x="320" y="64">CRM</text></g>
+              <g class="cg-node cg-node-src"><circle cx="440" cy="60" r="22"/><text x="440" y="64">Склад</text></g>
+              <g class="cg-node cg-node-src"><circle cx="560" cy="60" r="22"/><text x="560" y="64">Закупки</text></g>
+            </g>
+
+            <!-- Level 2: 3 события -->
+            <g class="cg-level cg-level-2">
+              <g class="cg-node cg-node-event">
+                <rect x="100" y="220" width="160" height="48" rx="8"/>
+                <text x="180" y="244" class="cg-event-title">Оплата −17 дней</text>
+                <text x="180" y="260" class="cg-event-sub">сдвиг календаря</text>
+              </g>
+              <g class="cg-node cg-node-event">
+                <rect x="240" y="220" width="160" height="48" rx="8"/>
+                <text x="320" y="244" class="cg-event-title">Цена +4%</text>
+                <text x="320" y="260" class="cg-event-sub">закупка обновилась</text>
+              </g>
+              <g class="cg-node cg-node-event">
+                <rect x="380" y="220" width="160" height="48" rx="8"/>
+                <text x="460" y="244" class="cg-event-title">Резерв падает</text>
+                <text x="460" y="260" class="cg-event-sub">срок поставки</text>
+              </g>
+            </g>
+
+            <!-- Level 3: 1 риск (central, large) -->
+            <g class="cg-level cg-level-3">
+              <g class="cg-node cg-node-risk">
+                <rect x="180" y="350" width="240" height="100" rx="12"/>
+                <text x="300" y="378" class="cg-risk-eyebrow">Связка</text>
+                <text x="300" y="402" class="cg-risk-title">Кассовый разрыв</text>
+                <text x="300" y="422" class="cg-risk-title">+ маржа −4%</text>
+                <text x="300" y="440" class="cg-risk-sub">видно сегодня, действие нужно сегодня</text>
+              </g>
+            </g>
+
+            <!-- Level 4: 3 хода (поручения) -->
+            <g class="cg-level cg-level-4">
+              <g class="cg-node cg-node-action">
+                <rect x="80" y="540" width="160" height="44" rx="8"/>
+                <text x="160" y="562" class="cg-action-eyebrow">Финансы</text>
+                <text x="160" y="578" class="cg-action-text">Сдвинуть платёж</text>
+              </g>
+              <g class="cg-node cg-node-action">
+                <rect x="240" y="540" width="160" height="44" rx="8"/>
+                <text x="320" y="562" class="cg-action-eyebrow">Коммерция</text>
+                <text x="320" y="578" class="cg-action-text">Зафиксировать ₸42M</text>
+              </g>
+              <g class="cg-node cg-node-action">
+                <rect x="400" y="540" width="160" height="44" rx="8"/>
+                <text x="480" y="562" class="cg-action-eyebrow">Закупки</text>
+                <text x="480" y="578" class="cg-action-text">Поставщик −4%</text>
+              </g>
+            </g>
+          </svg>
+          <div class="cg-footer">
+            <span class="cg-dot" aria-hidden="true"></span>
+            <span>Источник → событие → связка → ход. За одно утро.</span>
           </div>
         </div>
       </div>
     </section>
 
+    <aside class="gartner-note gartner-note-standalone" aria-label="Контекст Gartner" data-reveal>
+      <span>Gartner · апрель 2026</span>
+      <strong>80% CEO ожидают, что AI серьезно изменит операционные возможности бизнеса.</strong>
+      <p>Для управления это означает простой сдвиг: быстрее видеть изменение, точнее понимать последствия, понятнее поручать действия.</p>
+    </aside>
+
     <section class="decision-shift-section" id="shift" aria-labelledby="shift-title">
-      <div class="section-head">
+      <div class="section-head" data-reveal>
         <p class="eyebrow">Сдвиг</p>
         <h2 id="shift-title">DEXIS меняет не отчетность, а скорость реакции на изменения.</h2>
         <p>В обычной модели данные доходят до руководителя через отчеты, сводки, встречи и сообщения. Это нормально. Ограничение появляется тогда, когда решение зависит не от одного отдела, а от связи между оплатой, складом, закупочной ценой, обязательством и поручением.</p>
       </div>
-      <div class="shift-board">
-        <article>
+      <div class="shift-board" data-reveal-group>
+        <article data-reveal>
           <span>Было</span>
           <strong>Фрагменты по отделам</strong>
           <p>Финансы видят деньги. Склад видит остатки. Закупки видят цену. Коммерция видит клиента. Собственник получает подготовленные фрагменты, но причинная связь между ними не всегда видна вовремя.</p>
         </article>
-        <article class="shift-ai-card" id="online">
+        <article class="shift-ai-card" id="online" data-reveal>
           <span>Становится</span>
           <strong>Онлайн-реакция DEXIS</strong>
           <p>AI-сотрудник замечает изменение в источнике и сразу проверяет, какие связанные решения оно затрагивает: маржу, срок поставки, лимит платежей, обязательство перед клиентом, поручение ответственному.</p>
         </article>
-        <article id="analytics">
+        <article id="analytics" data-reveal>
           <span>Основа</span>
           <strong>Сквозная аналитика</strong>
           <p>DEXIS полезен не потому, что красиво отвечает текстом. Он полезен, когда у него есть связанная аналитическая основа: данные из разных систем, правила бизнеса и контроль исполнения.</p>
         </article>
       </div>
-      <a class="section-thin-link" href="#contact">Показать сдвиг на моих данных <span aria-hidden="true">→</span></a>
     </section>
 
-    <aside class="fact-bar" aria-label="Что собирает DEXIS">
+    <aside class="fact-bar" aria-label="Что собирает DEXIS" data-reveal>
       <span>6 источников</span>
       <span class="fact-dot" aria-hidden="true">·</span>
       <span>3 сценария</span>
@@ -134,7 +211,7 @@
     </aside>
 
     <section class="work-section" id="work" aria-labelledby="work-title">
-      <div class="section-head">
+      <div class="section-head" data-reveal>
         <p class="eyebrow">Как это работает</p>
         <h2 id="work-title">Один пример: изменение в оплате, цене и складе превращается в решение.</h2>
         <p>Motion показывает не интерфейс ради интерфейса, а новый управленческий процесс: источник → связь → последствия → варианты → поручения → проверка.</p>
@@ -291,7 +368,6 @@
               <p>Сравнить исполнение поручений с изменением риска.</p>
             </article>
           </div>
-          <p class="delivery-note">Руководитель получает не отчет, а предложенное решение с причиной, сценарием, ответственными и контролем исполнения.</p>
         </div>
       </div>
       <a class="section-thin-link" href="#contact">Запросить разбор сегодняшнего сценария <span aria-hidden="true">→</span></a>
@@ -303,59 +379,50 @@
     </aside>
 
     <section class="proof-section" id="decisions" aria-labelledby="decision-title">
-      <div class="section-head">
+      <div class="section-head" data-reveal>
         <p class="eyebrow">Что меняется в решениях</p>
         <h2 id="decision-title">Скорость без качества опасна. Качество без скорости запаздывает.</h2>
         <p>Поэтому DEXIS должен улучшать оба параметра: быстрее поднимать важное изменение и точнее показывать, на чем стоит рекомендация.</p>
       </div>
-      <div class="proof-grid">
-        <article>
+      <div class="proof-grid" data-reveal-group>
+        <article data-reveal>
           <h3>Время до обнаружения</h3>
           <p>Сколько проходит от изменения в оплате, складе, цене или задаче до того, как оно попало в поле зрения руководителя.</p>
         </article>
-        <article>
+        <article data-reveal>
           <h3>Полнота основания</h3>
           <p>Принято ли решение по одному фрагменту или по связке: деньги, склад, закупка, маржа, поставка, поручение.</p>
         </article>
-        <article>
+        <article data-reveal>
           <h3>Контроль исполнения</h3>
           <p>Понятно ли, кто отвечает за действие, когда проверяется результат и как изменился риск после поручения.</p>
         </article>
       </div>
-      <a class="section-thin-link" href="#contact">Применить принцип к моему бизнесу <span aria-hidden="true">→</span></a>
     </section>
 
-    <aside class="fact-bar fact-bar-quiet" aria-label="Что не делает DEXIS">
-      <span>Не отчёт.</span>
-      <span class="fact-dot" aria-hidden="true">·</span>
-      <span>Не дашборд.</span>
-      <span class="fact-dot" aria-hidden="true">·</span>
-      <strong>Связка для одного действия сегодня.</strong>
-    </aside>
-
     <section class="impact-section" id="impact" aria-labelledby="impact-title">
-      <div class="section-head">
+      <div class="section-head" data-reveal>
         <p class="eyebrow">Что становится осязаемым</p>
         <h2 id="impact-title">После DEXIS решение видно не только в панели. Оно видно в деньгах, марже и сроках.</h2>
-        <p>Финальный смысл не в том, что AI что-то красиво объяснил. Смысл в том, что управленческое изменение дошло до действия и стало измеримым.</p>
+        <p>Не отчёт, не дашборд — связка для одного действия сегодня. Управленческое изменение дошло до действия и стало измеримым в деньгах, марже и сроках.</p>
       </div>
-      <div class="impact-board" aria-label="Осязаемый эффект DEXIS">
-        <article>
+      <div class="impact-board" aria-label="Осязаемый эффект DEXIS" data-reveal-group>
+        <article data-reveal>
           <span>Деньги</span>
           <strong>Раньше видно, где зависнет поступление</strong>
           <p>Собственник понимает, какая оплата влияет на платежный календарь и какие обязательства лучше не подтверждать вслепую.</p>
         </article>
-        <article>
+        <article data-reveal>
           <span>Маржа</span>
           <strong>Решение не съедает прибыль незаметно</strong>
           <p>Если закупочная цена изменилась, DEXIS связывает это с клиентскими условиями до подтверждения сделки.</p>
         </article>
-        <article>
+        <article data-reveal>
           <span>Поставка</span>
           <strong>Обещание клиенту проверено по складу</strong>
           <p>Резерв, остаток, срок отгрузки и деньги рассматриваются вместе, а не как четыре отдельные новости.</p>
         </article>
-        <article>
+        <article data-reveal>
           <span>Исполнение</span>
           <strong>Поручение не остается в чате</strong>
           <p>На следующий день видно, что сделано, что не сделано и как изменился риск после поручения.</p>
@@ -365,12 +432,12 @@
     </section>
 
     <section class="offer-section" id="offer" aria-labelledby="offer-title">
-      <div class="section-head">
+      <div class="section-head" data-reveal>
         <p class="eyebrow">Первый шаг — платный разбор одного сценария</p>
         <h2 id="offer-title">Разбор за 10–15 рабочих дней.</h2>
         <p>Один управленческий сценарий на ваших данных. Это вход в DEXIS, не замена системы.</p>
       </div>
-      <div class="offer-card">
+      <div class="offer-card" data-reveal>
         <div class="offer-card-head">
           <span class="offer-badge">DEXIS Management Scenario</span>
           <strong>Что вы получаете на выходе</strong>
@@ -406,25 +473,25 @@
     </section>
 
     <section class="contact-section" id="contact" aria-labelledby="contact-title">
-      <div class="section-head">
+      <div class="section-head" data-reveal>
         <p class="eyebrow">Связаться с DEXIS</p>
         <h2 id="contact-title">Свяжемся удобным способом и обсудим, какие источники нужны для разбора.</h2>
       </div>
-      <div class="contact-channels">
-        <a class="contact-channel" href="https://t.me/leevitaliy" target="_blank" rel="noopener">
+      <div class="contact-channels" data-reveal-group>
+        <a class="contact-channel" href="https://t.me/leevitaliy" target="_blank" rel="noopener" data-reveal>
           <span>Telegram</span>
           <strong>@leevitaliy</strong>
           <p>Быстрый чат, удобно для предварительных вопросов.</p>
         </a>
-        <a class="contact-channel" href="tel:+7000000000">
-          <span>Телефон</span>
-          <strong>+7 (___) ___-__-__</strong>
-          <p>Звонок 15–20 минут, расскажем что в работе и какие данные нужны.</p>
-        </a>
-        <div class="contact-channel contact-channel-form-anchor">
+        <div class="contact-channel contact-channel-form-anchor" data-reveal>
+          <span>Звонок</span>
+          <strong>По запросу</strong>
+          <p>Оставьте Telegram или заполните форму ниже — перезвоним сами в течение рабочего дня.</p>
+        </div>
+        <div class="contact-channel contact-channel-form-anchor" data-reveal>
           <span>Форма</span>
           <strong>Короткая, ниже</strong>
-          <p>Опишите боль одним кликом, мы перезвоним сами в течение рабочего дня.</p>
+          <p>Опишите боль одним кликом — мы выйдем на связь и обсудим источники.</p>
         </div>
       </div>
       <form class="contact-form" action="#" method="post" aria-label="Запрос на разбор">

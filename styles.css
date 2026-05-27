@@ -5,13 +5,28 @@
   --surface-3: #ece8dd;
   --text: #141413;
   --muted: #636057;
-  --faint: #8a867b;
+  --faint: #6f6c63; /* AA pass — 4.7:1 on --bg */
   --line: #d8d2c4;
   --accent: #2d6f4d;
   --accent-soft: #e8f3ea;
   --warning: #9a6a18;
   --danger: #9d3d34;
   --max: 1180px;
+
+  /* Type scale — 6 размеров (Refactoring UI 5-6 max) */
+  --fs-eyebrow: 12px;
+  --fs-body-sm: 13px;
+  --fs-body: 16px;
+  --fs-body-lg: clamp(17px, 1.3vw, 19px);
+  --fs-h3: clamp(20px, 1.8vw, 24px);
+  --fs-h2: clamp(28px, 3.4vw, 46px);
+  --fs-h1: clamp(40px, 5.4vw, 68px); /* v23 fix #1: cap 76→68 — H1 5 строк вместо 6 на 1440 */
+
+  /* Easing tokens — premium feel */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-in-out-quart: cubic-bezier(0.76, 0, 0.24, 1);
+
   --font-body: "Manrope", -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif;
   --font-display: "Fraunces", "Times New Roman", Georgia, serif;
 }
@@ -80,7 +95,7 @@ button {
 
 .brand {
   font-size: 18px;
-  font-weight: 650;
+  font-weight: 700;
 }
 
 .brand span,
@@ -93,7 +108,7 @@ button {
   display: flex;
   gap: 28px;
   color: var(--muted);
-  font-size: 13px;
+  font-size: var(--fs-body-sm);
 }
 
 .nav-action {
@@ -104,7 +119,7 @@ button {
   border: 1px solid var(--line);
   border-radius: 6px;
   padding: 0 14px;
-  font-size: 13px;
+  font-size: var(--fs-body-sm);
 }
 
 .hero,
@@ -127,11 +142,405 @@ button {
 .hero {
   min-height: min(840px, calc(100svh - 96px));
   display: grid;
-  grid-template-columns: minmax(420px, 0.94fr) minmax(580px, 1.06fr);
+  /* v23 fix: left col шире (520-1.04fr) для H1 4-5 строк вместо 6+ на 1440 */
+  grid-template-columns: minmax(520px, 1.04fr) minmax(540px, 0.96fr);
   align-items: center;
-  gap: clamp(26px, 2.8vw, 36px);
+  gap: clamp(28px, 3vw, 40px);
   padding-top: clamp(34px, 4vw, 48px);
   padding-bottom: clamp(28px, 3vw, 42px);
+}
+
+/* v22 web-critic fix #2: hero-sources chip-row — выравнивает baseline left col с right */
+.hero-sources {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 24px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.hero-sources li {
+  min-height: 32px;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 12px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: rgba(251, 250, 246, 0.6);
+  color: var(--muted);
+  font-size: var(--fs-eyebrow);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  transition: color 240ms var(--ease-out-expo), border-color 240ms var(--ease-out-expo);
+}
+
+.hero-sources li:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+/* ============================================================
+   v22 — Connections Graph (hero right column, unique artifact)
+   Sequential reveal по scroll-in: L1 → links1 → L2 → links2 → L3 → links3 → L4
+   ============================================================ */
+.connections-graph {
+  width: 100%;
+  align-self: stretch;
+  display: grid;
+  align-content: center;
+}
+
+.cg-frame {
+  position: relative;
+  display: grid;
+  gap: 20px;
+  padding: clamp(20px, 2vw, 28px);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--surface-2);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.6) inset,
+    0 20px 50px -28px rgba(45, 111, 77, 0.18);
+}
+
+.cg-header {
+  display: grid;
+  gap: 4px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--line);
+}
+
+.cg-eyebrow {
+  color: var(--accent);
+  font-size: var(--fs-eyebrow);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.cg-title {
+  font-family: var(--font-display);
+  font-size: clamp(20px, 1.8vw, 26px);
+  font-weight: 600;
+  letter-spacing: -0.015em;
+}
+
+.cg-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+  overflow: visible;
+}
+
+/* === Nodes shared === */
+.cg-node circle,
+.cg-node rect {
+  fill: var(--surface-2);
+  stroke: var(--line);
+  stroke-width: 1.4;
+  transition:
+    fill 600ms var(--ease-out-expo),
+    stroke 600ms var(--ease-out-expo),
+    transform 700ms var(--ease-out-expo);
+}
+
+.cg-node text {
+  font-family: var(--font-body);
+  font-size: var(--fs-body-sm);
+  font-weight: 600;
+  fill: var(--text);
+  text-anchor: middle;
+  dominant-baseline: middle;
+  letter-spacing: 0;
+}
+
+/* === Source nodes (L1) — small circles === */
+.cg-node-src circle {
+  fill: var(--surface);
+}
+
+.cg-node-src text {
+  font-size: var(--fs-eyebrow);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  fill: var(--muted);
+}
+
+/* === Event nodes (L2) — small rects === */
+.cg-node-event rect {
+  fill: var(--surface);
+}
+
+.cg-node-event .cg-event-title {
+  font-size: var(--fs-body-sm);
+  font-weight: 700;
+  fill: var(--text);
+}
+
+.cg-node-event .cg-event-sub {
+  font-size: 10.5px;
+  font-weight: 500;
+  fill: var(--muted);
+}
+
+/* === Risk node (L3) — large central, accent === */
+.cg-node-risk rect {
+  fill: var(--accent-soft);
+  stroke: var(--accent);
+  stroke-width: 1.6;
+}
+
+.cg-node-risk .cg-risk-eyebrow {
+  font-size: 10px;
+  font-weight: 700;
+  fill: var(--accent);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.cg-node-risk .cg-risk-title {
+  font-family: var(--font-display);
+  font-size: 17px;
+  font-weight: 600;
+  fill: var(--text);
+  letter-spacing: -0.01em;
+}
+
+.cg-node-risk .cg-risk-sub {
+  font-size: 10.5px;
+  font-weight: 500;
+  fill: var(--muted);
+}
+
+/* === Action nodes (L4) — rects, dark === */
+.cg-node-action rect {
+  fill: var(--text);
+  stroke: var(--text);
+}
+
+.cg-node-action .cg-action-eyebrow {
+  font-size: 9.5px;
+  font-weight: 700;
+  fill: rgba(244, 241, 233, 0.7);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.cg-node-action .cg-action-text {
+  font-size: var(--fs-eyebrow);
+  font-weight: 600;
+  fill: var(--bg);
+}
+
+/* === Links === */
+.cg-link {
+  fill: none;
+  stroke: var(--line);
+  stroke-width: 1.4;
+  stroke-linecap: round;
+  stroke-dasharray: 200;
+  stroke-dashoffset: 200;
+  transition: stroke-dashoffset 900ms var(--ease-out-expo), stroke 600ms var(--ease-out-expo);
+}
+
+/* === Entry states: hidden by default === */
+.cg-svg .cg-node {
+  opacity: 0;
+  transform: translateY(8px);
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+/* === Active state: container has .is-running (toggled by JS on scroll-in) === */
+.connections-graph.is-running .cg-svg .cg-node {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.connections-graph.is-running .cg-svg .cg-link {
+  stroke-dashoffset: 0;
+}
+
+/* === Sequential delays — Level 1 (5 sources, 90ms stagger) === */
+.connections-graph.is-running .cg-level-1 .cg-node:nth-child(1) { transition-delay: 0ms; }
+.connections-graph.is-running .cg-level-1 .cg-node:nth-child(2) { transition-delay: 90ms; }
+.connections-graph.is-running .cg-level-1 .cg-node:nth-child(3) { transition-delay: 180ms; }
+.connections-graph.is-running .cg-level-1 .cg-node:nth-child(4) { transition-delay: 270ms; }
+.connections-graph.is-running .cg-level-1 .cg-node:nth-child(5) { transition-delay: 360ms; }
+
+/* Links 1 — after L1 fully entered */
+.connections-graph.is-running .cg-links-1 .cg-link { transition-delay: 500ms; }
+
+/* Level 2 — after links 1 drawn */
+.connections-graph.is-running .cg-level-2 .cg-node:nth-child(1) { transition-delay: 700ms; }
+.connections-graph.is-running .cg-level-2 .cg-node:nth-child(2) { transition-delay: 790ms; }
+.connections-graph.is-running .cg-level-2 .cg-node:nth-child(3) { transition-delay: 880ms; }
+
+/* Links 2 — after L2 entered */
+.connections-graph.is-running .cg-links-2 .cg-link { transition-delay: 1000ms; }
+
+/* Level 3 — risk node, dramatic */
+.connections-graph.is-running .cg-level-3 .cg-node { transition-delay: 1200ms; }
+
+/* Links 3 */
+.connections-graph.is-running .cg-links-3 .cg-link { transition-delay: 1400ms; }
+
+/* Level 4 — actions */
+.connections-graph.is-running .cg-level-4 .cg-node:nth-child(1) { transition-delay: 1500ms; }
+.connections-graph.is-running .cg-level-4 .cg-node:nth-child(2) { transition-delay: 1590ms; }
+.connections-graph.is-running .cg-level-4 .cg-node:nth-child(3) { transition-delay: 1680ms; }
+
+/* Pulse on risk after entry — subtle attention */
+@keyframes cg-risk-pulse {
+  0%, 100% { stroke-width: 1.6; }
+  50% { stroke-width: 2.4; }
+}
+
+.connections-graph.is-running .cg-node-risk rect {
+  animation: cg-risk-pulse 3.4s var(--ease-in-out-quart) infinite;
+  animation-delay: 2200ms;
+}
+
+/* === Footer caption === */
+.cg-footer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: var(--fs-body-sm);
+}
+
+.cg-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+  flex-shrink: 0;
+  animation: cg-dot-pulse 2s var(--ease-in-out-quart) infinite;
+}
+
+@keyframes cg-dot-pulse {
+  0%, 100% { opacity: 0.55; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+/* === Reduced motion === */
+@media (prefers-reduced-motion: reduce) {
+  .cg-svg .cg-node {
+    opacity: 1;
+    transform: none;
+  }
+  .cg-svg .cg-link {
+    stroke-dashoffset: 0;
+  }
+  .cg-node-risk rect,
+  .cg-dot {
+    animation: none;
+  }
+}
+
+/* ============================================================
+   v22 — H1 word-stagger entry + magnetic CTAs
+   ============================================================ */
+.hero h1 .h1-word {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 900ms var(--ease-out-expo), transform 900ms var(--ease-out-expo);
+}
+
+.hero h1.is-revealed .h1-word {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.hero h1.is-revealed .h1-word:nth-child(1) { transition-delay: 0ms; }
+.hero h1.is-revealed .h1-word:nth-child(2) { transition-delay: 100ms; }
+.hero h1.is-revealed .h1-word:nth-child(3) { transition-delay: 200ms; }
+.hero h1.is-revealed .h1-word:nth-child(4) { transition-delay: 300ms; }
+.hero h1.is-revealed .h1-word:nth-child(5) { transition-delay: 400ms; }
+.hero h1.is-revealed .h1-word:nth-child(6) { transition-delay: 500ms; }
+.hero h1.is-revealed .h1-word:nth-child(7) { transition-delay: 600ms; }
+.hero h1.is-revealed .h1-word:nth-child(8) { transition-delay: 700ms; }
+.hero h1.is-revealed .h1-word:nth-child(9) { transition-delay: 800ms; }
+.hero h1.is-revealed .h1-word:nth-child(10) { transition-delay: 900ms; }
+.hero h1.is-revealed .h1-word:nth-child(n + 11) { transition-delay: 1000ms; }
+
+@media (prefers-reduced-motion: reduce) {
+  .hero h1 .h1-word {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Magnetic CTA — translate set by JS through CSS var */
+.nav-action,
+.offer-cta,
+.contact-submit {
+  transform: translate(var(--mx, 0px), var(--my, 0px));
+  will-change: transform;
+}
+
+/* ============================================================
+   v23 web-critic fix #2: card hover-lift (shift/proof/impact)
+   Все 10 cards «оживают» при hover — premium feel.
+   ============================================================ */
+.shift-board article,
+.proof-grid article,
+.impact-board article {
+  transition:
+    transform 360ms var(--ease-out-expo),
+    box-shadow 360ms var(--ease-out-expo),
+    border-color 360ms var(--ease-out-expo);
+}
+
+@media (hover: hover) {
+  .shift-board article:hover,
+  .proof-grid article:hover,
+  .impact-board article:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 14px 36px -22px rgba(45, 111, 77, 0.22);
+    border-color: rgba(45, 111, 77, 0.35);
+    z-index: 1;
+    position: relative;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .shift-board article:hover,
+  .proof-grid article:hover,
+  .impact-board article:hover {
+    transform: none;
+  }
+}
+
+/* === Mobile responsive (<980px hero stacks) === */
+@media (max-width: 980px) {
+  .cg-frame {
+    padding: 18px;
+  }
+  .cg-title {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 560px) {
+  .cg-frame {
+    padding: 14px;
+  }
+  .cg-eyebrow {
+    font-size: 11px;
+  }
+  .cg-title {
+    font-size: var(--fs-body);
+  }
+  .cg-footer {
+    font-size: var(--fs-eyebrow);
+  }
 }
 
 .hero-copy {
@@ -141,7 +550,7 @@ button {
 .eyebrow {
   margin: 0 0 14px;
   font-family: var(--font-body);
-  font-size: 12px;
+  font-size: var(--fs-eyebrow);
   font-weight: 600;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -164,10 +573,10 @@ h3 {
 }
 
 h1 {
-  max-width: 640px;
+  max-width: 680px;
   margin-bottom: 18px;
-  font-size: clamp(40px, 6vw, 76px);
-  line-height: 1.02;
+  font-size: var(--fs-h1);
+  line-height: 1.03;
   font-weight: 600;
   letter-spacing: -0.024em;
 }
@@ -212,8 +621,9 @@ h1 {
   display: block;
   margin-bottom: 8px;
   color: var(--accent);
-  font-size: 12px;
-  font-weight: 650;
+  font-size: var(--fs-eyebrow);
+  font-weight: 700;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
 }
 
@@ -222,7 +632,7 @@ h1 {
   max-width: 480px;
   font-size: clamp(19px, 1.75vw, 24px);
   line-height: 1.16;
-  font-weight: 640;
+  font-weight: 600;
 }
 
 .gartner-note p {
@@ -231,6 +641,39 @@ h1 {
   color: var(--muted);
   font-size: 14px;
   line-height: 1.42;
+}
+
+/* v22: standalone gartner-note между hero и shift — bridge-quote */
+.gartner-note-standalone {
+  max-width: var(--max);
+  margin: clamp(40px, 5vw, 72px) auto 0;
+  padding: clamp(28px, 3.4vw, 44px) clamp(18px, 4vw, 48px);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  background: transparent;
+  text-align: center;
+  display: grid;
+  gap: 10px;
+  justify-items: center;
+}
+
+.gartner-note-standalone span {
+  margin-bottom: 0;
+}
+
+.gartner-note-standalone strong {
+  max-width: 760px;
+  font-family: var(--font-display);
+  font-size: clamp(22px, 2.4vw, 32px);
+  line-height: 1.18;
+  font-weight: 600;
+  letter-spacing: -0.012em;
+  color: var(--text);
+}
+
+.gartner-note-standalone p {
+  max-width: 620px;
+  margin: 4px 0 0;
 }
 
 .hero-assurance {
@@ -249,7 +692,7 @@ h1 {
   background: rgba(251, 250, 246, 0.68);
   color: var(--muted);
   padding: 0 11px;
-  font-size: 12px;
+  font-size: var(--fs-eyebrow);
 }
 
 .command-center {
@@ -293,13 +736,13 @@ h1 {
 .screen-topbar span,
 .screen-sync {
   color: var(--muted);
-  font-size: 12px;
+  font-size: var(--fs-eyebrow);
 }
 
 .screen-topbar strong {
   color: var(--text);
   font-size: 14px;
-  font-weight: 620;
+  font-weight: 600;
 }
 
 .screen-sync {
@@ -317,8 +760,8 @@ h1 {
 
 .screen-title span {
   color: var(--accent);
-  font-size: 13px;
-  font-weight: 650;
+  font-size: var(--fs-body-sm);
+  font-weight: 700;
   text-transform: uppercase;
 }
 
@@ -326,7 +769,7 @@ h1 {
   max-width: 560px;
   color: var(--text);
   font-size: 15px;
-  font-weight: 620;
+  font-weight: 600;
   line-height: 1.25;
 }
 
@@ -345,7 +788,7 @@ h1 {
   gap: 16px;
   margin-bottom: 12px;
   color: var(--muted);
-  font-size: 13px;
+  font-size: var(--fs-body-sm);
 }
 
 .dashboard-top div:first-child {
@@ -387,7 +830,7 @@ h1 {
 .ai-page-cards > article > p:not(.kicker) {
   margin: 0;
   color: var(--muted);
-  font-size: 16px;
+  font-size: var(--fs-body);
   line-height: 1.48;
 }
 
@@ -432,7 +875,7 @@ h1 {
 .health-score strong {
   font-size: clamp(60px, 5.5vw, 82px);
   line-height: 0.88;
-  font-weight: 650;
+  font-weight: 700;
 }
 
 .compact-score strong {
@@ -450,7 +893,7 @@ h1 {
   max-width: 280px;
   margin: 4px 0 10px;
   color: var(--faint);
-  font-size: 12px;
+  font-size: var(--fs-eyebrow);
   line-height: 1.35;
 }
 
@@ -465,8 +908,8 @@ h1 {
   background: #fff8e8;
   color: var(--warning);
   padding: 0 12px;
-  font-size: 13px;
-  font-weight: 620;
+  font-size: var(--fs-body-sm);
+  font-weight: 600;
 }
 
 .health-scale {
@@ -495,7 +938,7 @@ h1 {
 .reason-list p {
   margin: 0;
   color: var(--muted);
-  font-size: 13px;
+  font-size: var(--fs-body-sm);
   line-height: 1.45;
 }
 
@@ -520,7 +963,7 @@ h1 {
 
 .reason-list span {
   color: var(--muted);
-  font-size: 13px;
+  font-size: var(--fs-body-sm);
 }
 
 .reason-list strong {
@@ -544,7 +987,7 @@ h1 {
   margin-top: 12px;
   font-size: clamp(21px, 1.75vw, 26px);
   line-height: 1.06;
-  font-weight: 630;
+  font-weight: 600;
 }
 
 .health-action-list {
@@ -572,8 +1015,8 @@ h1 {
   display: block;
   margin-bottom: 6px;
   color: var(--accent);
-  font-size: 12px;
-  font-weight: 650;
+  font-size: var(--fs-eyebrow);
+  font-weight: 700;
   text-transform: uppercase;
 }
 
@@ -618,7 +1061,7 @@ h1 {
   margin-bottom: 8px;
   font-size: clamp(21px, 1.7vw, 24px);
   line-height: 1.05;
-  font-weight: 620;
+  font-weight: 600;
 }
 
 .hero-snapshot .dashboard-main h2 {
@@ -641,7 +1084,7 @@ h1 {
   display: block;
   margin-bottom: 10px;
   color: var(--muted);
-  font-size: 13px;
+  font-size: var(--fs-body-sm);
 }
 
 .metric-value {
@@ -677,20 +1120,16 @@ h1 {
   margin-bottom: 40px;
 }
 
-.section-head h2 {
-  margin-bottom: 14px;
-  font-family: var(--font-display);
-  font-size: clamp(28px, 3.6vw, 50px);
-  line-height: 1.04;
-  font-weight: 600;
-  letter-spacing: -0.02em;
-}
-
+.section-head h2,
 .proof-section .section-head h2,
 .owner-panel-section .section-head h2 {
+  margin-bottom: 14px;
   max-width: 820px;
-  font-size: clamp(26px, 3.2vw, 44px);
-  line-height: 1.08;
+  font-family: var(--font-display);
+  font-size: var(--fs-h2);
+  line-height: 1.06;
+  font-weight: 600;
+  letter-spacing: -0.02em;
 }
 
 .section-head p:not(.eyebrow) {
@@ -727,8 +1166,8 @@ h1 {
   display: block;
   margin-bottom: 34px;
   color: var(--accent);
-  font-size: 12px;
-  font-weight: 650;
+  font-size: var(--fs-eyebrow);
+  font-weight: 700;
   text-transform: uppercase;
 }
 
@@ -737,13 +1176,13 @@ h1 {
   margin-bottom: 14px;
   font-size: clamp(24px, 2.2vw, 32px);
   line-height: 1.06;
-  font-weight: 640;
+  font-weight: 600;
 }
 
 .shift-board p {
   margin: 0;
   color: var(--muted);
-  font-size: 16px;
+  font-size: var(--fs-body);
   line-height: 1.48;
 }
 
@@ -759,8 +1198,8 @@ h1 {
   margin-top: 22px;
   border-bottom: 1px solid currentColor;
   color: var(--accent);
-  font-size: 16px;
-  font-weight: 620;
+  font-size: var(--fs-body);
+  font-weight: 600;
 }
 
 .work-section {
@@ -831,7 +1270,7 @@ h1 {
   margin-bottom: 12px;
   font-size: 24px;
   line-height: 1.12;
-  font-weight: 620;
+  font-weight: 600;
 }
 
 .benefit-grid p,
@@ -841,7 +1280,7 @@ h1 {
 .trust-grid p {
   margin-bottom: 0;
   color: var(--muted);
-  font-size: 16px;
+  font-size: var(--fs-body);
   line-height: 1.45;
 }
 
@@ -861,8 +1300,8 @@ h1 {
 .impact-board span {
   display: block;
   color: var(--accent);
-  font-size: 12px;
-  font-weight: 750;
+  font-size: var(--fs-eyebrow);
+  font-weight: 700;
   text-transform: uppercase;
 }
 
@@ -878,8 +1317,8 @@ h1 {
   min-height: 34px;
   margin-bottom: 30px;
   color: var(--accent);
-  font-size: 12px;
-  font-weight: 650;
+  font-size: var(--fs-eyebrow);
+  font-weight: 700;
   text-transform: uppercase;
 }
 
@@ -908,8 +1347,8 @@ h1 {
 .implementation-path span {
   display: block;
   color: var(--accent);
-  font-size: 12px;
-  font-weight: 650;
+  font-size: var(--fs-eyebrow);
+  font-weight: 700;
   text-transform: uppercase;
 }
 
@@ -918,14 +1357,14 @@ h1 {
   margin: 12px 0 0;
   font-size: clamp(25px, 2.35vw, 36px);
   line-height: 1.03;
-  font-weight: 640;
+  font-weight: 600;
 }
 
 .evidence-source p {
   max-width: 390px;
   margin: 18px 0 0;
   color: var(--muted);
-  font-size: 16px;
+  font-size: var(--fs-body);
   line-height: 1.45;
 }
 
@@ -978,7 +1417,7 @@ h1 {
   max-width: 620px;
   margin: 0 0 0 22px;
   color: var(--muted);
-  font-size: 13px;
+  font-size: var(--fs-body-sm);
   line-height: 1.4;
 }
 
@@ -1008,8 +1447,8 @@ h1 {
 .founder-profile span {
   display: block;
   color: var(--accent);
-  font-size: 12px;
-  font-weight: 650;
+  font-size: var(--fs-eyebrow);
+  font-weight: 700;
   text-transform: uppercase;
 }
 
@@ -1019,7 +1458,7 @@ h1 {
   margin: 12px 0 14px;
   font-size: clamp(29px, 2.45vw, 38px);
   line-height: 1.03;
-  font-weight: 640;
+  font-weight: 600;
 }
 
 .owner-panel-main p,
@@ -1027,7 +1466,7 @@ h1 {
 .founder-profile p {
   margin: 0;
   color: var(--muted);
-  font-size: 16px;
+  font-size: var(--fs-body);
   line-height: 1.45;
 }
 
@@ -1043,7 +1482,7 @@ h1 {
   padding: 0 14px;
   color: var(--accent);
   font-size: 14px;
-  font-weight: 620;
+  font-weight: 600;
 }
 
 .owner-panel-list {
@@ -1082,7 +1521,7 @@ h1 {
 
 .work-section .section-head h2 {
   max-width: 760px;
-  font-size: clamp(34px, 4vw, 54px);
+  font-size: var(--fs-h2);
 }
 
 .work-section .section-head p:not(.eyebrow) {
@@ -1110,7 +1549,7 @@ h1 {
 .control-button[data-action="replay"] {
   border-color: #2f7d50;
   color: #1f6f45;
-  font-weight: 620;
+  font-weight: 600;
 }
 
 .control-button[data-action="replay"]:hover,
@@ -1141,7 +1580,7 @@ h1 {
   gap: 14px;
   color: var(--muted);
   border-bottom: 1px solid var(--line);
-  font-size: 13px;
+  font-size: var(--fs-body-sm);
 }
 
 .motion-title span:last-child {
@@ -1159,7 +1598,7 @@ h1 {
   color: var(--text);
   font-size: clamp(22px, 3vw, 34px);
   line-height: 1.08;
-  font-weight: 620;
+  font-weight: 600;
 }
 
 .data-plane {
@@ -1289,7 +1728,7 @@ h1 {
   display: block;
   margin-bottom: 7px;
   color: var(--muted);
-  font-size: 12px;
+  font-size: var(--fs-eyebrow);
 }
 
 .data-plane strong {
@@ -1301,7 +1740,7 @@ h1 {
 .data-plane p {
   margin: 6px 0 0;
   color: var(--faint);
-  font-size: 12px;
+  font-size: var(--fs-eyebrow);
   line-height: 1.35;
 }
 
@@ -1348,7 +1787,7 @@ h1 {
   z-index: 2;
   margin-top: 20px;
   font-size: 28px;
-  font-weight: 650;
+  font-weight: 700;
 }
 
 .neural-brain {
@@ -1448,8 +1887,8 @@ h1 {
 
 .thinking-panel span {
   color: var(--accent);
-  font-size: 13px;
-  font-weight: 650;
+  font-size: var(--fs-body-sm);
+  font-weight: 700;
   text-transform: uppercase;
 }
 
@@ -1559,8 +1998,8 @@ h1 {
 .decision-summary span,
 .decision-card-grid span {
   color: var(--accent);
-  font-size: 13px;
-  font-weight: 650;
+  font-size: var(--fs-body-sm);
+  font-weight: 700;
   text-transform: uppercase;
 }
 
@@ -1569,9 +2008,9 @@ h1 {
   width: fit-content;
   margin-left: 12px;
   color: var(--accent);
-  font-size: 13px;
+  font-size: var(--fs-body-sm);
   font-style: normal;
-  font-weight: 650;
+  font-weight: 700;
   text-transform: uppercase;
   animation: recommendation-blink 1.1s ease-in-out infinite;
 }
@@ -1612,7 +2051,7 @@ h1 {
 .decision-card-grid p,
 .delivery-note {
   color: var(--muted);
-  font-size: 12px;
+  font-size: var(--fs-eyebrow);
   line-height: 1.4;
   overflow-wrap: anywhere;
 }
@@ -1771,7 +2210,7 @@ h1 {
   background: #eef5ed;
   padding: 0 18px;
   color: var(--accent);
-  font-weight: 620;
+  font-weight: 600;
 }
 
 .demo-page {
@@ -1801,7 +2240,7 @@ h1 {
   border-radius: 6px;
   padding: 0 12px;
   color: var(--muted);
-  font-size: 13px;
+  font-size: var(--fs-body-sm);
 }
 
 .demo-hero {
@@ -1852,8 +2291,8 @@ h1 {
 .demo-tasks span {
   display: block;
   color: var(--accent);
-  font-size: 12px;
-  font-weight: 650;
+  font-size: var(--fs-eyebrow);
+  font-weight: 700;
   text-transform: uppercase;
 }
 
@@ -1889,7 +2328,7 @@ h1 {
 
 .demo-panel-top strong {
   font-size: 15px;
-  font-weight: 620;
+  font-weight: 600;
 }
 
 .demo-pill {
@@ -1897,7 +2336,7 @@ h1 {
   border-radius: 999px;
   padding: 6px 10px;
   color: var(--muted);
-  font-size: 12px;
+  font-size: var(--fs-eyebrow);
 }
 
 .demo-panel-grid {
@@ -2107,8 +2546,8 @@ h1 {
 .trace-grid span,
 .tasks-head span {
   color: var(--accent);
-  font-size: 12px;
-  font-weight: 650;
+  font-size: var(--fs-eyebrow);
+  font-weight: 700;
   text-transform: uppercase;
 }
 
@@ -2131,7 +2570,7 @@ h1 {
   background: var(--surface);
   padding: 0 10px;
   color: var(--muted);
-  font-size: 12px;
+  font-size: var(--fs-eyebrow);
   text-transform: none;
 }
 
@@ -2168,7 +2607,7 @@ h1 {
 .console-score strong {
   font-size: clamp(76px, 6.8vw, 104px);
   line-height: 0.82;
-  font-weight: 650;
+  font-weight: 700;
 }
 
 .console-score small {
@@ -2187,8 +2626,8 @@ h1 {
   background: #fff8e8;
   color: var(--warning);
   padding: 0 12px;
-  font-size: 13px;
-  font-weight: 620;
+  font-size: var(--fs-body-sm);
+  font-weight: 600;
 }
 
 .console-priorities {
@@ -2232,7 +2671,7 @@ h1 {
   margin: 14px 0 24px;
   font-size: clamp(34px, 3.25vw, 46px);
   line-height: 1.02;
-  font-weight: 640;
+  font-weight: 600;
 }
 
 .decision-rationale {
@@ -2273,7 +2712,7 @@ h1 {
 .trace-grid p {
   margin: 0;
   color: var(--muted);
-  font-size: 13px;
+  font-size: var(--fs-body-sm);
   line-height: 1.4;
 }
 
@@ -2321,7 +2760,7 @@ h1 {
   color: var(--muted);
   padding: 0 9px;
   font-size: 11px;
-  font-weight: 650;
+  font-weight: 700;
   text-transform: uppercase;
 }
 
@@ -2848,7 +3287,7 @@ h1 {
     width: max-content;
     transform: translateX(-50%);
     color: var(--faint);
-    font-size: 12px;
+    font-size: var(--fs-eyebrow);
   }
 
   .mobile-output-flow span {
@@ -2883,7 +3322,7 @@ h1 {
     width: max-content;
     transform: translateX(-50%);
     color: var(--faint);
-    font-size: 12px;
+    font-size: var(--fs-eyebrow);
   }
 
   .mobile-data-flow span {
@@ -2937,6 +3376,59 @@ h1 {
   .health-reasons {
     display: none;
   }
+
+  /* v22: mobile density — сократить motion-demo и секции до читаемой длины */
+  .data-plane article:nth-child(n + 3) {
+    display: none;
+  }
+
+  .analysis-item:nth-child(n + 3) {
+    display: none;
+  }
+
+  .thinking-panel {
+    display: none;
+  }
+
+  .decision-card-grid article:nth-child(n + 3) {
+    display: none;
+  }
+
+  /* Снизить вертикальные отступы секций на mobile (с clamp 60-96 до clamp 32-48) */
+  .hero,
+  .decision-shift-section,
+  .benefits-section,
+  .fit-section,
+  .work-section,
+  .proof-section,
+  .impact-section,
+  .owner-panel-section,
+  .modules-section,
+  .trust-section,
+  .formats-section,
+  .founder-section,
+  .offer-section,
+  .contact-section {
+    padding-top: clamp(32px, 6vw, 48px);
+    padding-bottom: clamp(32px, 6vw, 48px);
+  }
+
+  .gartner-note-standalone {
+    margin-top: 24px;
+    padding-top: 22px;
+    padding-bottom: 22px;
+  }
+
+  .gartner-note-standalone strong {
+    font-size: 19px;
+    line-height: 1.22;
+  }
+
+  /* Fact-bar — менее громоздкий */
+  .fact-bar {
+    padding-top: 18px;
+    padding-bottom: 18px;
+  }
 }
 
 @media (max-width: 560px) {
@@ -2975,7 +3467,7 @@ h1 {
   }
 
   .demo-hero p {
-    font-size: 16px;
+    font-size: var(--fs-body);
   }
 
   .demo-hero-compact h1 {
@@ -3110,7 +3602,7 @@ h1 {
   }
 
   .gartner-note p {
-    font-size: 13px;
+    font-size: var(--fs-body-sm);
   }
 
   .hero-assurance {
@@ -3124,7 +3616,7 @@ h1 {
   .hero-snapshot .dashboard-top {
     gap: 6px;
     margin-bottom: 10px;
-    font-size: 12px;
+    font-size: var(--fs-eyebrow);
   }
 
   .hero-snapshot .dashboard-top strong {
@@ -3132,7 +3624,7 @@ h1 {
   }
 
   .screen-topbar strong {
-    font-size: 13px;
+    font-size: var(--fs-body-sm);
   }
 
   .screen-title strong {
@@ -3156,7 +3648,7 @@ h1 {
   .health-status {
     min-height: 28px;
     margin-bottom: 8px;
-    font-size: 12px;
+    font-size: var(--fs-eyebrow);
   }
 
   .health-score-card p,
@@ -3227,7 +3719,7 @@ h1 {
 
   .worker-core p {
     bottom: 14px;
-    font-size: 12px;
+    font-size: var(--fs-eyebrow);
   }
 
   .worker-core::before {
@@ -3248,7 +3740,7 @@ h1 {
   }
 
   .thinking-panel p {
-    font-size: 13px;
+    font-size: var(--fs-body-sm);
   }
 
   .data-plane article {
@@ -3256,7 +3748,7 @@ h1 {
   }
 
   .data-plane strong {
-    font-size: 13px;
+    font-size: var(--fs-body-sm);
   }
 
   .analysis-plane {
@@ -3389,7 +3881,7 @@ h1 {
   }
 
   .founder-facts {
-    font-size: 16px;
+    font-size: var(--fs-body);
   }
 }
 
@@ -3473,7 +3965,7 @@ h1 {
   gap: 8px;
   margin-top: clamp(20px, 2.4vw, 32px);
   font-family: var(--font-body);
-  font-size: 13px;
+  font-size: var(--fs-body-sm);
   font-weight: 600;
   letter-spacing: 0.01em;
   color: var(--accent);
@@ -3523,7 +4015,7 @@ h1 {
   display: inline-flex;
   align-items: center;
   font-family: var(--font-body);
-  font-size: 12px;
+  font-size: var(--fs-eyebrow);
   font-weight: 700;
   letter-spacing: 0.05em;
   text-transform: uppercase;
@@ -3613,8 +4105,8 @@ h1 {
   align-items: center;
   gap: 10px;
   padding: 14px 24px;
-  background: var(--text);
-  color: var(--bg);
+  background: var(--accent);
+  color: #fff;
   border-radius: 999px;
   font-family: var(--font-body);
   font-size: 15px;
@@ -3624,8 +4116,7 @@ h1 {
 }
 
 .offer-cta:hover {
-  background: var(--accent);
-  transform: translateY(-1px);
+  background: var(--text);
 }
 
 .offer-cta span {
@@ -3682,7 +4173,7 @@ a.contact-channel:hover {
 
 .contact-channel p {
   margin: 0;
-  font-size: 13px;
+  font-size: var(--fs-body-sm);
   line-height: 1.5;
   color: var(--muted);
 }
@@ -3774,7 +4265,7 @@ a.contact-channel:hover {
 
 .contact-field span {
   font-family: var(--font-body);
-  font-size: 12px;
+  font-size: var(--fs-eyebrow);
   font-weight: 600;
   letter-spacing: 0.04em;
   text-transform: uppercase;
@@ -3816,12 +4307,11 @@ a.contact-channel:hover {
 
 .contact-submit:hover {
   background: var(--text);
-  transform: translateY(-1px);
 }
 
 .contact-privacy {
   margin: 12px 0 0;
-  font-size: 12px;
+  font-size: var(--fs-eyebrow);
   line-height: 1.45;
   color: var(--faint);
 }
@@ -3838,7 +4328,7 @@ a.contact-channel:hover {
   justify-content: space-between;
   align-items: center;
   font-family: var(--font-body);
-  font-size: 13px;
+  font-size: var(--fs-body-sm);
   color: var(--muted);
 }
 
@@ -3995,4 +4485,49 @@ a.contact-channel:hover {
 .neural-brain {
   /* circular elements remain — outside 3-value system, but functionally circles */
   border-radius: 999px;
+}
+
+/* ============================================================
+   v22 web-critic fix #1: scroll-reveal stagger across sections
+   IntersectionObserver toggles .is-visible on [data-reveal]
+   ============================================================ */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity 700ms var(--ease-out-expo),
+    transform 700ms var(--ease-out-expo);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+[data-reveal].is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* Premium hover transitions — заменяют простой ease */
+.section-thin-link,
+.offer-cta,
+.contact-submit,
+.contact-channel,
+.contact-pain label,
+.contact-pain input[type="radio"],
+.contact-field input,
+.panel-demo-link,
+.nav-action,
+.control-button {
+  transition:
+    color 280ms var(--ease-out-expo),
+    background 280ms var(--ease-out-expo),
+    border-color 280ms var(--ease-out-expo),
+    transform 280ms var(--ease-out-expo),
+    box-shadow 280ms var(--ease-out-expo);
 }
