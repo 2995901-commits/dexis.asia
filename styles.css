@@ -8,9 +8,12 @@
   --faint: #8a867b;
   --line: #d8d2c4;
   --accent: #2d6f4d;
+  --accent-soft: #e8f3ea;
   --warning: #9a6a18;
   --danger: #9d3d34;
   --max: 1180px;
+  --font-body: "Manrope", -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif;
+  --font-display: "Fraunces", "Times New Roman", Georgia, serif;
 }
 
 * {
@@ -27,7 +30,7 @@ body {
   margin: 0;
   background: var(--bg);
   color: var(--text);
-  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", sans-serif;
+  font-family: var(--font-body);
   letter-spacing: 0;
   overflow-x: hidden;
 }
@@ -105,10 +108,12 @@ button {
 }
 
 .hero,
+.decision-shift-section,
 .benefits-section,
 .fit-section,
 .work-section,
 .proof-section,
+.impact-section,
 .owner-panel-section,
 .modules-section,
 .trust-section,
@@ -130,13 +135,15 @@ button {
 }
 
 .hero-copy {
-  max-width: 500px;
+  max-width: 620px;
 }
 
 .eyebrow {
   margin: 0 0 14px;
-  font-size: 13px;
-  font-weight: 650;
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
 }
 
@@ -147,12 +154,22 @@ p {
   margin-top: 0;
 }
 
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-style: normal;
+  letter-spacing: -0.018em;
+}
+
 h1 {
-  max-width: 580px;
+  max-width: 640px;
   margin-bottom: 18px;
-  font-size: clamp(36px, 3vw, 46px);
+  font-size: clamp(40px, 6vw, 76px);
   line-height: 1.02;
-  font-weight: 650;
+  font-weight: 600;
+  letter-spacing: -0.024em;
 }
 
 .hero-logo-mark {
@@ -180,6 +197,39 @@ h1 {
   margin-bottom: 0;
   color: var(--muted);
   font-size: clamp(16px, 1.25vw, 18px);
+  line-height: 1.42;
+}
+
+.gartner-note {
+  margin-top: 22px;
+  padding: 16px 18px;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  background: rgba(251, 250, 246, 0.72);
+}
+
+.gartner-note span {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 650;
+  text-transform: uppercase;
+}
+
+.gartner-note strong {
+  display: block;
+  max-width: 480px;
+  font-size: clamp(19px, 1.75vw, 24px);
+  line-height: 1.16;
+  font-weight: 640;
+}
+
+.gartner-note p {
+  max-width: 460px;
+  margin: 10px 0 0;
+  color: var(--muted);
+  font-size: 14px;
   line-height: 1.42;
 }
 
@@ -318,6 +368,29 @@ h1 {
   grid-template-columns: minmax(300px, 0.95fr) minmax(360px, 1.3fr) minmax(250px, 0.78fr);
 }
 
+.ai-page-cards {
+  display: grid;
+  grid-template-columns: minmax(220px, 0.75fr) minmax(0, 1.25fr);
+}
+
+.ai-page-cards > article {
+  min-height: 230px;
+  padding: 20px;
+  border-right: 1px solid var(--line);
+  background: var(--surface-2);
+}
+
+.ai-page-cards > article:last-child {
+  border-right: 0;
+}
+
+.ai-page-cards > article > p:not(.kicker) {
+  margin: 0;
+  color: var(--muted);
+  font-size: 16px;
+  line-height: 1.48;
+}
+
 .hero-snapshot .health-grid {
   grid-template-columns: minmax(210px, 0.76fr) minmax(300px, 1fr);
 }
@@ -360,6 +433,12 @@ h1 {
   font-size: clamp(60px, 5.5vw, 82px);
   line-height: 0.88;
   font-weight: 650;
+}
+
+.compact-score strong {
+  color: var(--accent);
+  font-size: clamp(42px, 4vw, 60px);
+  letter-spacing: 0;
 }
 
 .health-score span {
@@ -584,29 +663,104 @@ h1 {
   color: var(--danger);
 }
 
+.hero-sub {
+  font-family: var(--font-body);
+  max-width: 540px;
+  margin-bottom: 22px;
+  font-size: clamp(17px, 1.3vw, 19px);
+  line-height: 1.45;
+  color: var(--muted);
+}
+
 .section-head {
-  max-width: 790px;
-  margin-bottom: 36px;
+  max-width: 820px;
+  margin-bottom: 40px;
 }
 
 .section-head h2 {
   margin-bottom: 14px;
-  font-size: clamp(38px, 5vw, 72px);
-  line-height: 0.98;
-  font-weight: 640;
+  font-family: var(--font-display);
+  font-size: clamp(28px, 3.6vw, 50px);
+  line-height: 1.04;
+  font-weight: 600;
+  letter-spacing: -0.02em;
 }
 
 .proof-section .section-head h2,
 .owner-panel-section .section-head h2 {
   max-width: 820px;
-  font-size: clamp(36px, 3.8vw, 54px);
-  line-height: 1.04;
+  font-size: clamp(26px, 3.2vw, 44px);
+  line-height: 1.08;
 }
 
 .section-head p:not(.eyebrow) {
+  font-family: var(--font-body);
   color: var(--muted);
-  font-size: 19px;
-  line-height: 1.45;
+  font-size: clamp(15px, 1.2vw, 18px);
+  line-height: 1.55;
+  max-width: 720px;
+}
+
+.decision-shift-section {
+  padding-top: clamp(42px, 5vw, 72px);
+}
+
+.shift-board {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  background: var(--surface-2);
+}
+
+.shift-board article {
+  min-height: 260px;
+  padding: 26px;
+  border-right: 1px solid var(--line);
+}
+
+.shift-board article:last-child {
+  border-right: 0;
+}
+
+.shift-board span {
+  display: block;
+  margin-bottom: 34px;
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 650;
+  text-transform: uppercase;
+}
+
+.shift-board strong {
+  display: block;
+  margin-bottom: 14px;
+  font-size: clamp(24px, 2.2vw, 32px);
+  line-height: 1.06;
+  font-weight: 640;
+}
+
+.shift-board p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 16px;
+  line-height: 1.48;
+}
+
+.shift-ai-card {
+  background: #eef5ed;
+}
+
+.text-link {
+  width: fit-content;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  margin-top: 22px;
+  border-bottom: 1px solid currentColor;
+  color: var(--accent);
+  font-size: 16px;
+  font-weight: 620;
 }
 
 .work-section {
@@ -615,6 +769,7 @@ h1 {
 
 .benefit-grid,
 .proof-grid,
+.impact-board,
 .fit-grid,
 .trust-grid {
   display: grid;
@@ -625,6 +780,7 @@ h1 {
 
 .benefit-grid article,
 .proof-grid article,
+.impact-board article,
 .fit-grid article,
 .trust-grid article {
   min-height: 214px;
@@ -635,6 +791,7 @@ h1 {
 
 .benefit-grid article:nth-child(3n),
 .proof-grid article:last-child,
+.impact-board article:last-child,
 .fit-grid article:nth-child(4n),
 .trust-grid article:nth-child(5n) {
   border-right: 0;
@@ -668,6 +825,7 @@ h1 {
 
 .benefit-grid h3,
 .proof-grid h3,
+.impact-board strong,
 .fit-grid h3,
 .trust-grid h3 {
   margin-bottom: 12px;
@@ -678,12 +836,41 @@ h1 {
 
 .benefit-grid p,
 .proof-grid p,
+.impact-board p,
 .fit-grid p,
 .trust-grid p {
   margin-bottom: 0;
   color: var(--muted);
   font-size: 16px;
   line-height: 1.45;
+}
+
+.impact-board {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  background: color-mix(in srgb, var(--accent) 7%, var(--surface));
+}
+
+.impact-board article {
+  min-height: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.impact-board span {
+  display: block;
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 750;
+  text-transform: uppercase;
+}
+
+.impact-board strong {
+  display: block;
+  font-size: clamp(23px, 2.2vw, 34px);
+  line-height: 0.98;
+  letter-spacing: 0;
 }
 
 .fit-grid span {
@@ -2326,8 +2513,11 @@ h1 {
 
   .dashboard-grid,
   .health-grid,
+  .ai-page-cards,
+  .shift-board,
   .benefit-grid,
   .proof-grid,
+  .impact-board,
   .fit-grid,
   .trust-grid,
   .evidence-board,
@@ -2437,8 +2627,11 @@ h1 {
 
   .dashboard-grid article,
   .health-grid > article,
+  .ai-page-cards > article,
+  .shift-board article,
   .benefit-grid article,
   .proof-grid article,
+  .impact-board article,
   .fit-grid article,
   .trust-grid article,
   .implementation-path article,
@@ -2456,8 +2649,11 @@ h1 {
 
   .dashboard-grid article:last-child,
   .health-grid > article:last-child,
+  .ai-page-cards > article:last-child,
+  .shift-board article:last-child,
   .benefit-grid article:last-child,
   .proof-grid article:last-child,
+  .impact-board article:last-child,
   .fit-grid article:last-child,
   .trust-grid article:last-child,
   .implementation-path article:last-child,
@@ -2745,6 +2941,7 @@ h1 {
 
 @media (max-width: 560px) {
   .hero,
+  .decision-shift-section,
   .benefits-section,
   .fit-section,
   .work-section,
@@ -2846,17 +3043,42 @@ h1 {
     padding-bottom: 8px;
   }
 
+  .hero > *,
+  .hero-copy,
+  .command-center,
+  .dashboard-screen {
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  h1,
+  .hero-sub,
+  .gartner-note,
+  .screen-title strong,
+  .health-action-list strong,
   .section-head h2 {
-    font-size: 34px;
-    line-height: 1.02;
+    overflow-wrap: anywhere;
+  }
+
+  .site-nav {
+    grid-template-columns: 1fr;
+  }
+
+  .nav-action {
+    display: none;
+  }
+
+  .section-head h2 {
+    font-size: clamp(24px, 6.8vw, 30px);
+    line-height: 1.08;
   }
 
   .section-head p:not(.eyebrow) {
-    font-size: 16px;
+    font-size: 15px;
   }
 
   .work-section .section-head h2 {
-    font-size: 34px;
+    font-size: clamp(24px, 6.8vw, 30px);
   }
 
   .work-section .section-head p:not(.eyebrow) {
@@ -2864,8 +3086,9 @@ h1 {
   }
 
   h1 {
-    font-size: clamp(34px, 9.4vw, 40px);
-    line-height: 1;
+    font-size: clamp(40px, 11.6vw, 52px);
+    line-height: 1.04;
+    letter-spacing: -0.026em;
   }
 
   .hero-logo-mark {
@@ -2875,6 +3098,19 @@ h1 {
   .hero-sub {
     font-size: 15px;
     line-height: 1.38;
+  }
+
+  .gartner-note {
+    margin-top: 16px;
+    padding: 14px;
+  }
+
+  .gartner-note strong {
+    font-size: 18px;
+  }
+
+  .gartner-note p {
+    font-size: 13px;
   }
 
   .hero-assurance {
@@ -2910,7 +3146,7 @@ h1 {
   }
 
   .health-score strong {
-    font-size: 56px;
+    font-size: 52px;
   }
 
   .health-score span {
@@ -3080,6 +3316,8 @@ h1 {
   }
 
   .benefit-grid article,
+  .ai-page-cards > article,
+  .shift-board article,
   .proof-grid article,
   .fit-grid article,
   .trust-grid article,
@@ -3099,6 +3337,7 @@ h1 {
   }
 
   .fit-grid span,
+  .shift-board span,
   .benefit-grid span,
   .trust-grid span {
     min-height: auto;
@@ -3177,4 +3416,583 @@ h1 {
     opacity: 1;
     transform: none;
   }
+}
+
+/* ============================================================
+   v21: Fact-bars, thin links, Offer section, Contact, Footer
+   ============================================================ */
+
+/* --- Fact-bar (короткие плотные строки между разделами) --- */
+.fact-bar {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: clamp(20px, 2.4vw, 30px) clamp(18px, 4vw, 48px);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: center;
+  gap: 12px 18px;
+  font-family: var(--font-display);
+  font-size: clamp(20px, 2vw, 30px);
+  line-height: 1.2;
+  color: var(--text);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  background: linear-gradient(180deg, transparent, rgba(45, 111, 77, 0.045) 50%, transparent);
+}
+
+.fact-bar strong {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.fact-bar .fact-dot {
+  color: var(--faint);
+  font-size: 0.7em;
+  transform: translateY(-2px);
+}
+
+.fact-bar-quiet {
+  background: transparent;
+  font-size: clamp(17px, 1.5vw, 22px);
+  color: var(--muted);
+  border-top-color: transparent;
+  border-bottom: none;
+  padding-top: clamp(8px, 1.2vw, 14px);
+  padding-bottom: clamp(20px, 2.4vw, 30px);
+}
+
+.fact-bar-quiet strong {
+  color: var(--text);
+}
+
+/* --- Thin section links (мост к разбору) --- */
+.section-thin-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: clamp(20px, 2.4vw, 32px);
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: var(--accent);
+  border-bottom: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
+  padding-bottom: 3px;
+  transition: color 0.18s ease, border-color 0.18s ease, transform 0.18s ease;
+}
+
+.section-thin-link:hover {
+  color: var(--text);
+  border-bottom-color: var(--text);
+  transform: translateX(2px);
+}
+
+.section-thin-link span {
+  font-family: var(--font-display);
+  font-size: 1.05em;
+}
+
+/* --- Offer section (DEXIS Management Scenario) --- */
+.offer-section {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: clamp(60px, 7vw, 100px) clamp(18px, 4vw, 48px);
+}
+
+.offer-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: clamp(28px, 3.4vw, 48px);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.4) inset, 0 24px 60px -32px rgba(45, 111, 77, 0.18);
+}
+
+.offer-card-head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 18px;
+  margin-bottom: clamp(20px, 2.4vw, 32px);
+  padding-bottom: clamp(18px, 2vw, 26px);
+  border-bottom: 1px solid var(--line);
+}
+
+.offer-badge {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: var(--accent-soft);
+  padding: 6px 12px;
+  border-radius: 999px;
+}
+
+.offer-card-head strong {
+  font-family: var(--font-display);
+  font-size: clamp(20px, 1.8vw, 26px);
+  font-weight: 600;
+  letter-spacing: -0.015em;
+}
+
+.offer-deliverables {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 clamp(24px, 3vw, 36px);
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(20px, 2vw, 30px);
+}
+
+.offer-deliverables li {
+  display: grid;
+  grid-template-columns: 38px 1fr;
+  gap: 10px 16px;
+  align-items: start;
+}
+
+.offer-deliverables li > span {
+  grid-row: span 2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+.offer-deliverables li strong {
+  font-family: var(--font-display);
+  font-size: clamp(16px, 1.3vw, 19px);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.offer-deliverables li p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+.offer-card-foot {
+  display: grid;
+  gap: 14px;
+  padding-top: clamp(18px, 2vw, 26px);
+  border-top: 1px solid var(--line);
+}
+
+.offer-data-scope,
+.offer-pricing {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--muted);
+}
+
+.offer-data-scope strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.offer-cta {
+  justify-self: start;
+  margin-top: 6px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 24px;
+  background: var(--text);
+  color: var(--bg);
+  border-radius: 999px;
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.005em;
+  transition: background 0.18s ease, transform 0.18s ease;
+}
+
+.offer-cta:hover {
+  background: var(--accent);
+  transform: translateY(-1px);
+}
+
+.offer-cta span {
+  font-family: var(--font-display);
+  font-size: 1.15em;
+}
+
+/* --- Contact section (3 channels + diagnostic form) --- */
+.contact-section {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: clamp(60px, 6vw, 90px) clamp(18px, 4vw, 48px) clamp(70px, 7vw, 100px);
+}
+
+.contact-channels {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(14px, 1.6vw, 22px);
+  margin-bottom: clamp(36px, 4vw, 56px);
+}
+
+.contact-channel {
+  display: grid;
+  gap: 6px;
+  padding: clamp(20px, 2vw, 28px);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  transition: border-color 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+a.contact-channel:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px -16px rgba(45, 111, 77, 0.22);
+}
+
+.contact-channel span {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.contact-channel strong {
+  font-family: var(--font-display);
+  font-size: clamp(17px, 1.5vw, 22px);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--text);
+}
+
+.contact-channel p {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+.contact-channel-form-anchor {
+  border-style: dashed;
+}
+
+/* --- Diagnostic form --- */
+.contact-form {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: clamp(24px, 3vw, 40px);
+}
+
+.contact-pain {
+  border: none;
+  margin: 0 0 clamp(20px, 2.4vw, 28px);
+  padding: 0;
+}
+
+.contact-pain legend {
+  display: block;
+  margin-bottom: 14px;
+  font-family: var(--font-display);
+  font-size: clamp(17px, 1.5vw, 22px);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--text);
+}
+
+.contact-pain label {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 10px 10px 0;
+  padding: 10px 16px;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 14px;
+  color: var(--text);
+  transition: border-color 0.18s ease, background 0.18s ease;
+}
+
+.contact-pain label:hover {
+  border-color: var(--accent);
+}
+
+.contact-pain input[type="radio"] {
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border: 1.5px solid var(--line);
+  border-radius: 50%;
+  margin: 0;
+  cursor: pointer;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.contact-pain input[type="radio"]:checked {
+  border-color: var(--accent);
+  background: radial-gradient(circle at center, var(--accent) 0 5px, transparent 6px);
+}
+
+.contact-pain label:has(input:checked) {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.contact-fields {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-bottom: clamp(18px, 2vw, 24px);
+}
+
+.contact-field {
+  display: grid;
+  gap: 6px;
+}
+
+.contact-field-wide {
+  grid-column: 1 / -1;
+}
+
+.contact-field span {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--faint);
+}
+
+.contact-field input {
+  padding: 12px 14px;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  font-family: var(--font-body);
+  font-size: 15px;
+  color: var(--text);
+  transition: border-color 0.18s ease;
+}
+
+.contact-field input:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.contact-submit {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 26px;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.005em;
+  cursor: pointer;
+  transition: background 0.18s ease, transform 0.18s ease;
+}
+
+.contact-submit:hover {
+  background: var(--text);
+  transform: translateY(-1px);
+}
+
+.contact-privacy {
+  margin: 12px 0 0;
+  font-size: 12px;
+  line-height: 1.45;
+  color: var(--faint);
+}
+
+/* --- Site footer --- */
+.site-footer {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: clamp(32px, 4vw, 48px) clamp(18px, 4vw, 48px);
+  border-top: 1px solid var(--line);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px 32px;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-body);
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.footer-left {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.footer-brand {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text);
+  letter-spacing: -0.02em;
+}
+
+.footer-brand span {
+  color: var(--accent);
+}
+
+.footer-right {
+  display: inline-flex;
+  align-items: center;
+  gap: 22px;
+}
+
+.footer-right a:hover {
+  color: var(--text);
+}
+
+/* --- Mobile responsive overrides for new v21 sections --- */
+@media (max-width: 880px) {
+  .offer-deliverables {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-channels {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-fields {
+    grid-template-columns: 1fr;
+  }
+
+  .offer-card-head {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 560px) {
+  .fact-bar {
+    font-size: 18px;
+    padding-top: 18px;
+    padding-bottom: 18px;
+  }
+
+  .contact-pain label {
+    width: 100%;
+    margin-right: 0;
+    justify-content: flex-start;
+  }
+
+  .site-footer {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+/* ============================================================
+   v21 web-critic fixes — line-height + radii consolidation + hero focal
+   Apply after web-critic audit returned 7.72/10:
+     fix #1: body line-height 1.42 → 1.55 (long Russian paragraphs)
+     fix #2: hero command-center single focal (HTML done above)
+     fix #3: border-radius zoo 5 values → 3 values (6 / 12 / 999)
+   Target after fixes: ~8.27/10
+   ============================================================ */
+
+/* --- Fix #1: line-height для длинных русских параграфов --- */
+.hero-sub,
+.shift-board p,
+.proof-grid p,
+.impact-board p,
+.benefit-grid p,
+.ai-page-cards > article > p:not(.kicker),
+.fit-grid p,
+.trust-grid p {
+  line-height: 1.55;
+  max-width: 60ch;
+}
+
+.gartner-note p,
+.data-plane p,
+.analysis-item p {
+  line-height: 1.5;
+}
+
+.section-head p:not(.eyebrow) {
+  line-height: 1.6;
+}
+
+/* --- Fix #2: hero-snapshot single focal --- */
+.ai-page-cards-single {
+  grid-template-columns: 1fr;
+}
+
+.ai-page-cards-single article {
+  padding: clamp(16px, 1.4vw, 22px);
+}
+
+.command-center.hero-snapshot {
+  /* Один focal block — без "Без DEXIS" article + без screen-title*/
+  padding-top: clamp(16px, 1.6vw, 22px);
+}
+
+/* --- Fix #3: border-radius consolidation (6 / 12 / 999) --- */
+.command-center,
+.command-center .dashboard-screen,
+.data-plane article,
+.analysis-item,
+.work-stage,
+.decision-output,
+.thinking-panel,
+.shift-board article,
+.proof-grid article,
+.impact-board article,
+.benefit-grid article {
+  border-radius: 12px;
+}
+
+.offer-card,
+.contact-form {
+  border-radius: 12px;
+}
+
+.contact-channel {
+  border-radius: 12px;
+}
+
+.skip-link,
+.nav-action,
+.control-button,
+.contact-field input,
+.health-action,
+.fit-grid article,
+.benefit-card {
+  border-radius: 6px;
+}
+
+.worker-core,
+.core-ring,
+.neural-brain {
+  /* circular elements remain — outside 3-value system, but functionally circles */
+  border-radius: 999px;
 }
