@@ -230,6 +230,77 @@ function startWhenReady() {
   });
 })();
 
+// v24: comparison drag-slider — «Сейчас / С DEXIS» split-screen
+// Pointer events (mouse + touch) меняют --cmp-split на .comparison-section
+(function setupComparisonSlider() {
+  const stage = document.querySelector(".cmp-stage");
+  const divider = stage?.querySelector(".cmp-divider");
+  const section = stage?.closest(".comparison-section");
+  if (!stage || !divider || !section) return;
+
+  let dragging = false;
+
+  function setSplit(percent) {
+    const clamped = Math.max(4, Math.min(96, percent));
+    section.style.setProperty("--cmp-split", clamped);
+    divider.setAttribute("aria-valuenow", Math.round(clamped));
+  }
+
+  function onPointerDown(e) {
+    dragging = true;
+    divider.setPointerCapture(e.pointerId);
+    e.preventDefault();
+  }
+
+  function onPointerMove(e) {
+    if (!dragging) return;
+    const rect = stage.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const percent = (x / rect.width) * 100;
+    setSplit(percent);
+  }
+
+  function onPointerUp(e) {
+    if (!dragging) return;
+    dragging = false;
+    if (divider.hasPointerCapture(e.pointerId)) {
+      divider.releasePointerCapture(e.pointerId);
+    }
+  }
+
+  divider.addEventListener("pointerdown", onPointerDown);
+  divider.addEventListener("pointermove", onPointerMove);
+  divider.addEventListener("pointerup", onPointerUp);
+  divider.addEventListener("pointercancel", onPointerUp);
+
+  // Клик на любую часть stage — переместить divider туда
+  stage.addEventListener("click", (e) => {
+    if (e.target === divider || divider.contains(e.target)) return;
+    const rect = stage.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const percent = (x / rect.width) * 100;
+    setSplit(percent);
+  });
+
+  // Keyboard accessibility — ←/→ перемещают divider на 5%
+  divider.addEventListener("keydown", (e) => {
+    const current = parseFloat(section.style.getPropertyValue("--cmp-split")) || 50;
+    if (e.key === "ArrowLeft") {
+      setSplit(current - 5);
+      e.preventDefault();
+    } else if (e.key === "ArrowRight") {
+      setSplit(current + 5);
+      e.preventDefault();
+    } else if (e.key === "Home") {
+      setSplit(8);
+      e.preventDefault();
+    } else if (e.key === "End") {
+      setSplit(92);
+      e.preventDefault();
+    }
+  });
+})();
+
 // v22: connections-graph — запуск sequential entry через 600ms после load,
 // чтобы граф уже начал отрисовываться когда пользователь видит hero (без scroll).
 (function setupConnectionsGraph() {

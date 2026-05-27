@@ -31,9 +31,9 @@
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 
   <link rel="preconnect" href="https://fonts.bunny.net" crossorigin>
-  <link href="https://fonts.bunny.net/css?family=manrope:400,500,600,700|fraunces:600,700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=visual-upgrade-23-final">
-  <script src="script.js?v=visual-upgrade-23-final" defer charset="UTF-8"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,700;9..144,800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=visual-upgrade-24-drag-slider">
+  <script src="script.js?v=visual-upgrade-24-drag-slider" defer charset="UTF-8"></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Перейти к основному содержанию</a>
@@ -197,6 +197,104 @@
           <strong>Сквозная аналитика</strong>
           <p>DEXIS полезен не потому, что красиво отвечает текстом. Он полезен, когда у него есть связанная аналитическая основа: данные из разных систем, правила бизнеса и контроль исполнения.</p>
         </article>
+      </div>
+    </section>
+
+    <section class="comparison-section" id="comparison" aria-labelledby="comparison-title">
+      <div class="section-head" data-reveal>
+        <p class="eyebrow">Сравнение</p>
+        <h2 id="comparison-title">Утро понедельника. До и с DEXIS.</h2>
+        <p>Слева — то, что собственник делает в 08:30 сейчас: 6 разных окон, 47 уведомлений, нет приоритета. Справа — что показывает DEXIS: одно решение с обоснованием. Потяните разделитель.</p>
+      </div>
+
+      <div class="cmp-stage" data-reveal>
+        <!-- Левая часть: «Сейчас» — фрагменты систем -->
+        <div class="cmp-pane cmp-pane-before" data-cmp-pane="before" aria-label="Утро без DEXIS — фрагменты">
+          <div class="cmp-pane-header">
+            <span class="cmp-pane-eyebrow">Сейчас · 08:30</span>
+            <strong class="cmp-pane-title">6 окон, 47 уведомлений</strong>
+          </div>
+          <div class="cmp-windows" aria-hidden="true">
+            <div class="cmp-window cmp-w-1c">
+              <div class="cmp-w-bar"><span></span><span></span><span></span></div>
+              <div class="cmp-w-label">1С · оплаты</div>
+              <div class="cmp-w-rows"><i></i><i></i><i></i><i></i></div>
+              <div class="cmp-w-badge">3 новых</div>
+            </div>
+            <div class="cmp-window cmp-w-bank">
+              <div class="cmp-w-bar"><span></span><span></span><span></span></div>
+              <div class="cmp-w-label">Банк-клиент</div>
+              <div class="cmp-w-rows"><i></i><i></i><i></i></div>
+              <div class="cmp-w-badge">12 новых</div>
+            </div>
+            <div class="cmp-window cmp-w-crm">
+              <div class="cmp-w-bar"><span></span><span></span><span></span></div>
+              <div class="cmp-w-label">CRM · сделки</div>
+              <div class="cmp-w-rows"><i></i><i></i><i></i><i></i></div>
+              <div class="cmp-w-badge">7 новых</div>
+            </div>
+            <div class="cmp-window cmp-w-wa">
+              <div class="cmp-w-bar"><span></span><span></span><span></span></div>
+              <div class="cmp-w-label">WhatsApp · поставщик</div>
+              <div class="cmp-w-rows"><i></i><i></i></div>
+              <div class="cmp-w-badge">18 новых</div>
+            </div>
+            <div class="cmp-window cmp-w-email">
+              <div class="cmp-w-bar"><span></span><span></span><span></span></div>
+              <div class="cmp-w-label">Email · клиент</div>
+              <div class="cmp-w-rows"><i></i><i></i><i></i></div>
+              <div class="cmp-w-badge">5 новых</div>
+            </div>
+            <div class="cmp-window cmp-w-xlsx">
+              <div class="cmp-w-bar"><span></span><span></span><span></span></div>
+              <div class="cmp-w-label">Excel · маржа</div>
+              <div class="cmp-w-rows"><i></i><i></i><i></i><i></i></div>
+              <div class="cmp-w-badge">2 версии</div>
+            </div>
+          </div>
+          <div class="cmp-pane-footer">Связь между ними руководитель собирает в голове.</div>
+        </div>
+
+        <!-- Правая часть: «С DEXIS» — одно решение -->
+        <div class="cmp-pane cmp-pane-after" data-cmp-pane="after" aria-label="Утро с DEXIS — одно решение">
+          <div class="cmp-pane-header">
+            <span class="cmp-pane-eyebrow cmp-pane-eyebrow-accent">С DEXIS · 08:00</span>
+            <strong class="cmp-pane-title">Одно решение. С основанием.</strong>
+          </div>
+          <div class="cmp-decision">
+            <div class="cmp-decision-risk">
+              <span>Связка</span>
+              <strong>Кассовый разрыв 14 дней + маржа −4%</strong>
+              <p>Видно сегодня. Действие нужно сегодня.</p>
+            </div>
+            <ul class="cmp-decision-actions">
+              <li>
+                <span class="cmp-action-tag">Финансы</span>
+                <strong>Сдвинуть платёж поставщику на 5 дней</strong>
+                <p>Снимает кассовый разрыв.</p>
+              </li>
+              <li>
+                <span class="cmp-action-tag">Коммерция</span>
+                <strong>Зафиксировать график ₸42M</strong>
+                <p>Маржа возвращается в норму.</p>
+              </li>
+              <li>
+                <span class="cmp-action-tag">Закупки</span>
+                <strong>Сравнить поставщика −4%</strong>
+                <p>Альтернатива готова к решению.</p>
+              </li>
+            </ul>
+          </div>
+          <div class="cmp-pane-footer">Все связи между источниками собраны заранее.</div>
+        </div>
+
+        <!-- Divider with handle -->
+        <button class="cmp-divider" type="button" aria-label="Перетащить разделитель сравнения" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" role="slider">
+          <span class="cmp-handle" aria-hidden="true">
+            <span class="cmp-handle-arrow cmp-handle-arrow-left">←</span>
+            <span class="cmp-handle-arrow cmp-handle-arrow-right">→</span>
+          </span>
+        </button>
       </div>
     </section>
 
