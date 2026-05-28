@@ -28,7 +28,7 @@
   --ease-in-out-quart: cubic-bezier(0.76, 0, 0.24, 1);
 
   --font-body: "Manrope", -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif;
-  --font-display: "Fraunces", "Times New Roman", Georgia, serif;
+  --font-display: "Playfair Display", "Times New Roman", Georgia, serif;
 }
 
 * {
@@ -896,10 +896,9 @@ h1 {
   font-size: var(--fs-h1);
   line-height: 1.03;
   font-weight: 700;
-  letter-spacing: -0.028em;
-  /* v24: Fraunces variable optical-sizing — display variant для H1.
-     opsz 144 = display, wght 700 = bolder для premium feel */
-  font-variation-settings: "opsz" 144, "SOFT" 25, "WONK" 0;
+  /* v25: Playfair Display (cyrillic-capable high-contrast serif).
+     Чуть мягче letter-spacing — у Playfair широкие глифы */
+  letter-spacing: -0.02em;
 }
 
 .hero-logo-mark {
@@ -1450,9 +1449,7 @@ h1 {
   font-size: var(--fs-h2);
   line-height: 1.06;
   font-weight: 600;
-  letter-spacing: -0.02em;
-  /* v24: Fraunces opsz 96 — sub-display variant для H2 */
-  font-variation-settings: "opsz" 96;
+  letter-spacing: -0.018em;
 }
 
 .section-head p:not(.eyebrow) {
